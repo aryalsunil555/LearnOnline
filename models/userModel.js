@@ -18,7 +18,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
     },
-    last_nlocationame: {
+    location: {
 		type: mysequelize.Sequelize.STRING,
         allowNull : false,
         defaultValue: 0
