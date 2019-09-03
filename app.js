@@ -9,7 +9,7 @@ var path = require('path');
 var Auth = require('./middleware/auth');
 const middleware = require('./middleware/middleware');
 
-const User = require('./models/users');
+const User = require('./models/userModel');
 
 // bodyParser
 myapp.use(bodyParser.json());
