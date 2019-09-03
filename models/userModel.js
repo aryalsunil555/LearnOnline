@@ -20,9 +20,15 @@ const myUsers = mysequelize.sequelize.define('myUsers',
     },
     location: {
 		type: mysequelize.Sequelize.STRING,
+        allowNull : false
+    },
+    
+    verify: {
+		type: mysequelize.Sequelize.STRING,
         allowNull : false,
         defaultValue: 0
-	},
+    },
+ 
 
 
 	email: {

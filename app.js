@@ -40,7 +40,12 @@ var upload = multer({ storage: mystorage });
 
 // get home page
 myapp.get('/home', function(req,res){
-	res.render('backend/registration');
+	res.render('home');
+})
+
+// get user login page
+myapp.get('/login', function(req,res){
+	res.render('login');
 })
 
 
