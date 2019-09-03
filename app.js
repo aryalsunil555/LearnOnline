@@ -1,8 +1,15 @@
+require('./configs/dbconfigs');
+
 var express = require('express');
 var myapp = new express();
 var bodyParser = require('body-parser');
 var path = require('path');
 var multer = require('multer');
+var path = require('path');
+var Auth = require('./middleware/auth');
+const middleware = require('./middleware/middleware');
+
+const User = require('./models/users');
 
 // bodyParser
 myapp.use(bodyParser.json());
@@ -25,6 +32,35 @@ var mystorage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: mystorage });
+
+
+//registration
+myapp.post('/register',(req,res) => {
+    var userData = new User(req.body);
+    var response = "";
+    console.log("REQUEST-->" + userData);
+    userData.save().then(function () {
+        response = "Registered Successfully!";
+        console.log(response);
+        res.send(response);
+
+    }).catch(function (e) {
+        response = "Error";
+        console.log(e)
+        res.send(e);
+    })
+    })
+
+    //LOGIN
+    myapp.post('/login',async function (req, res) {
+        var inputEmail = req.body.email;
+        var inputPassword = req.body.password;
+
+        const user = await User.checkCredentialsDb(inputEmail, inputPassword);
+        console.log(user);
+        const token = await user.generateAuthToken();
+        res.send({ token });
+    })
 
 
 
