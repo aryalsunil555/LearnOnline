@@ -33,6 +33,7 @@ describe('Users', function() {
                     "MiddleName": '',
                     "LastName": 'Rai',
                     "Gender": 'male',
+                    "UserType": 'male',
                     "Address": 'Gokarneshwor',
                     "DOB": '2019-06-17',
                     "Email": 'rai.riiibin1000@gmail.com',

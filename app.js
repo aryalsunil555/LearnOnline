@@ -22,6 +22,7 @@ myapp.set('view engine', 'ejs');
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/userModel.js');
+var mysequelize = require('./models/teacherModel.js');
 
 // multer storage
 var mystorage = multer.diskStorage({
