@@ -13,7 +13,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		allowNull : false
 	},
 
-	
+
 	last_name: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
@@ -22,13 +22,13 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		type: mysequelize.Sequelize.STRING,
         allowNull : false
     },
-    
+
     verify: {
 		type: mysequelize.Sequelize.STRING,
         allowNull : false,
         defaultValue: 0
     },
- 
+
 
 
 	email: {
