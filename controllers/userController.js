@@ -39,6 +39,32 @@ function userRegister(req, res, next) {
         })
 }
 
+function addTeacher(req, res, next) {
+    // console.log(req.body);
+    usermodel.create({
+            first_name: req.body.FirstName,
+            last_name: req.body.LastName,
+            gender: req.body.Gender,
+            address: req.body.Address,
+            dob: req.body.DOB,
+            email: req.body.Email,
+            phone: req.body.Phone,
+            profile_image: req.body.ProfileImage,
+            bio: req.body.Bio,
+            verify: req.body.Verify,
+            password: req.hashValue
+        })
+        .then(function(result) {
+            // console.log('data added');
+            req.body.email = req.body.Email;
+            next();
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
+
 
 
 // token
