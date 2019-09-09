@@ -22,21 +22,20 @@ after(done => {
 
 
 // Register student
-describe('Users', function() {
-    describe('POST user register', function() {
+describe('Students', function() {
+    describe('POST student register', function() {
 
-        it('it should register a single user', function(done) {
+        it('it should register a single student', function(done) {
             chai.request(myapp)
-                .post('/user/register/userFormData')
+                .post('/student/register')
                 .send({
                     "FirstName": 'Jeson',
                     "LastName": 'Rai',
                     "Gender": 'male',
-                    "UserType": 'male',
-                    "Address": 'Gokarneshwor',
                     "DOB": '2019-06-17',
-                    "Email": 'rai.riiibin1000@gmail.com',
                     "Phone": '+977-9817849333',
+                    "Address": 'Gokarneshwor',
+                    "Email": 'rai.riiibin1000@gmail.com',
                     "Password": 'asd'
                 })
                 .end(function(err, res) {
