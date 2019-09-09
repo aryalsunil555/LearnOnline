@@ -66,7 +66,16 @@ var authController = require('./controllers/authController');
 //var adminRoutes = require('./routes/adminRoutes')(myapp);
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
-
+//upload register profile photo
+myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
+    // console.log(req.testVall);
+    // res.status(200);
+    res.send({
+        "status": 200,
+        "message": "Profile Image Registered",
+        "name": req.testVall
+    })
+});
 
 
 // register form data
@@ -153,5 +162,9 @@ myapp.use(function(err, req, res, next) {
 myapp.listen(3000);
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> f84418f5dbf85b126492fa53d8b1720384bd5593
 module.exports = myapp;
 
