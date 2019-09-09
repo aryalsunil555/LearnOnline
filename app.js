@@ -79,7 +79,7 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 
 
 // register form data
-myapp.post('/user/register/userFormData', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
+myapp.post('/user/register/userFormData',userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
     // console.log('user register data route');
     // res.status(200);
     res.send({

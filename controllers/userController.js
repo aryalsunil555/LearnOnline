@@ -8,8 +8,6 @@ const Op = Sequelize.Op;
 function userRegister(req, res, next) {
     // console.log(req.body);
     usermodel.create({
-
-        profile_image: req.body.ProfileImage,
              
         first_name: req.body.FirstName,
          
@@ -19,7 +17,7 @@ function userRegister(req, res, next) {
 
         phone: req.body.Phone,
          
-        verify: req.body.Verify,
+      
 
         dob: req.body.DOB,
 
@@ -49,9 +47,9 @@ function addTeacher(req, res, next) {
             dob: req.body.DOB,
             email: req.body.Email,
             phone: req.body.Phone,
-            profile_image: req.body.ProfileImage,
+         
             bio: req.body.Bio,
-            verify: req.body.Verify,
+           
             password: req.hashValue
         })
         .then(function(result) {
