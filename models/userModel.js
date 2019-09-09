@@ -7,6 +7,11 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		autoIncrement: true,
 		allowNull : false
 	},
+	profile_image: {
+		type: mysequelize.Sequelize.STRING,
+        allowNull : true
+    },
+
 
 	first_name: {
 		type: mysequelize.Sequelize.STRING,
@@ -18,10 +23,26 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
     },
-    location: {
+    Address: {
+		type: mysequelize.Sequelize.STRING,
+        allowNull : false
+	},
+	Phone: {
+		type: mysequelize.Sequelize.STRING,
+        allowNull : false
+	},
+	
+	DOB: {
+		type: mysequelize.Sequelize.DATE,
+        allowNull : false
+	},
+	Gender: {
 		type: mysequelize.Sequelize.STRING,
         allowNull : false
     },
+
+
+
 
     verify: {
 		type: mysequelize.Sequelize.STRING,
@@ -46,7 +67,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 
 {
 	freezeTableName : true,
-	tableName: 'users'
+	tableName: 'student'
 }
 
 )

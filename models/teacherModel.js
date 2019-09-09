@@ -8,6 +8,8 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		allowNull : false
 	},
 
+	
+
 	first_name: {
 		type: mysequelize.Sequelize.BIGINT,
 		allowNull : false
