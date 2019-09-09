@@ -159,6 +159,9 @@ myapp.use(function(err, req, res, next) {
 myapp.listen(3000);
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f84418f5dbf85b126492fa53d8b1720384bd5593
 module.exports = myapp;
 
