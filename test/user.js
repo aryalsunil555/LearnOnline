@@ -118,3 +118,23 @@ describe('admin login', () => {
         });
     });
 });
+
+
+// admin login
+describe('teacher login', () => {
+    describe('/POST login', () => {
+        it('it should log in admin', (done) => {
+            // chai.request(baseUrlRoutes)
+            chai.request(myapp)
+                .post('/teacher/login')
+                .send({
+                    "email": 'rai.ribin1000@gmail.com',
+                    "password": 'asd',
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+});

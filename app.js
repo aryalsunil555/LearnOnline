@@ -124,13 +124,10 @@ myapp.post('/admin/token/verify', authController.tokenVerify, authController.adm
     })
 });
 
-<<<<<<< HEAD
-=======
 // get home page
 myapp.get('/index', function(req,res){
 	res.render('index');
 })
->>>>>>> c2356bc693c92398937e13f143beeb338153ae8a
 
 
 
@@ -153,9 +150,5 @@ myapp.use(function(err, req, res, next) {
 myapp.listen(3000);
 
 
-<<<<<<< HEAD
+module.exports = myapp;
 
-module.exports = myapp;
-=======
-module.exports = myapp;
->>>>>>> c2356bc693c92398937e13f143beeb338153ae8a
