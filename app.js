@@ -30,6 +30,9 @@ myapp.use(bodyParser.urlencoded({ extended: true }));
 myapp.use(express.static(
     path.join(__dirname, '/resources')
 ));
+// ejs
+myapp.set('views',__dirname+'/views');
+myapp.set('view engine','ejs');
 
 
 // sequelize
@@ -126,7 +129,7 @@ myapp.post('/admin/token/verify', authController.tokenVerify, authController.adm
 
 // get home page
 myapp.get('/index', function(req,res){
-	res.render('index');
+	res.render('pages/index');
 })
 
 
