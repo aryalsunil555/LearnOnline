@@ -69,15 +69,15 @@ var studentController = require('./controllers/studentController');
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
 //upload register profile photo
-myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
-    // console.log(req.testVall);
-    // res.status(200);
-    res.send({
-        "status": 200,
-        "message": "Profile Image Registered",
-        "name": req.testVall
-    })
-});
+// myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
+//     // console.log(req.testVall);
+//     // res.status(200);
+//     res.send({
+//         "status": 200,
+//         "message": "Profile Image Registered",
+//         "name": req.testVall
+//     })
+// });
 
 
 // register student data
@@ -94,10 +94,9 @@ myapp.post('/student/register', studentController.emailCheck, studentController.
 
 
 
-
-
 // student login route
-myapp.post('/user/login', authController.validator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
+//myapp.post('/student/login', authController.validator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
+myapp.post('/student/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
     // res.status(200);
     res.send({
         "status": 200,
@@ -107,10 +106,8 @@ myapp.post('/user/login', authController.validator, authController.checkPassword
     })
 });
 
-//admin add teacher
+//Teacher Register
 myapp.post('/user/register/userFormDataa', studentController.emailCheck, studentController.passwordHash, studentController.addTeacher, function(req, res) {
-    // console.log('user register data route');
-    // res.status(200);
     res.send({
         "status": 200,
         "message": "New Teacher Registered"
@@ -118,34 +115,20 @@ myapp.post('/user/register/userFormDataa', studentController.emailCheck, student
 });
 
 // admin login route 
-myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-    // res.status(200);
-    res.send({
-        "status": 200,
-        "message": "Admin logged in",
-        "token": req.genToken,
-        "info": req.userInfo
-    })
-});
+// myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
+//     // res.status(200);
+//     res.send({
+//         "status": 200,
+//         "message": "Admin logged in",
+//         "token": req.genToken,
+//         "info": req.userInfo
+//     })
+// });
 
 
-// verify user token
-myapp.post('/token/verify', authController.tokenVerify, authController.tokenemailvalidator, function(req, res) {
-    res.send({
-        "status": 200,
-        "message": "Token Verified",
-        "info": req.userInfoo
-    })
-});
 
-// verify admin token
-myapp.post('/admin/token/verify', authController.tokenVerify, authController.admintokenemailvalidator, function(req, res) {
-    res.send({
-        "status": 200,
-        "message": "Token Verified",
-        "info": req.adminInfoo
-    })
-});
+
+
 
 // get home page
 myapp.get('/index', function(req,res){
