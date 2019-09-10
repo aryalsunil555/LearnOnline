@@ -7,6 +7,8 @@ var multer = require('multer');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+
+
 let initCallback;
 
 
@@ -37,7 +39,7 @@ myapp.set('view engine','ejs');
 
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
-var mysequelize = require('./models/userModel.js');
+var mysequelize = require('./models/studentModel.js');
 
 
 
@@ -58,8 +60,8 @@ var upload = multer({ storage: mystorage });
 
 
 // controllers require
-var userController = require('./controllers/userController');
 var authController = require('./controllers/authController');
+var studentController = require('./controllers/studentController');
 
 
 // routes
@@ -78,13 +80,14 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 });
 
 
-// register form data
-myapp.post('/user/register/userFormData',userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
+// register student data
+// myapp.post('/student/register/userFormData', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen, function(req, res) {
+myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen,function(req, res) {
     // console.log('user register data route');
     // res.status(200);
     res.send({
         "status": 200,
-        "message": "user data registered",
+        "message": "Student data registered",
         "token": req.genToken
     })
 });
@@ -93,16 +96,24 @@ myapp.post('/user/register/userFormData',userController.emailCheck, userControll
 
 
 
-
-
-// user login route
+// student login route
 myapp.post('/user/login', authController.validator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
     // res.status(200);
     res.send({
         "status": 200,
-        "message": "User logged in",
+        "message": "Student logged in",
         "token": req.genToken,
         "info": req.userInfo
+    })
+});
+
+//admin add teacher
+myapp.post('/user/register/userFormDataa', studentController.emailCheck, studentController.passwordHash, studentController.addTeacher, function(req, res) {
+    // console.log('user register data route');
+    // res.status(200);
+    res.send({
+        "status": 200,
+        "message": "New Teacher Registered"
     })
 });
 

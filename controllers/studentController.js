@@ -1,30 +1,22 @@
-var usermodel = require('../models/userModel');
+var usermodel = require('../models/studentModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
+
 function userRegister(req, res, next) {
     // console.log(req.body);
     usermodel.create({
              
         first_name: req.body.FirstName,
-         
         last_name: req.body.LastName,
-         
         address: req.body.Address,
-
         phone: req.body.Phone,
-         
-      
-
         dob: req.body.DOB,
-
         gender: req.body.Gender,
-                  
         email: req.body.Email,
-           
         password: req.hashValue
         })
         .then(function(result) {
@@ -47,9 +39,7 @@ function addTeacher(req, res, next) {
             dob: req.body.DOB,
             email: req.body.Email,
             phone: req.body.Phone,
-         
             bio: req.body.Bio,
-           
             password: req.hashValue
         })
         .then(function(result) {
@@ -85,14 +75,14 @@ function token(req, res, next) {
 
 // email Check
 function emailCheck(req, res, next) {
-    var photo = req.body.Photo;
+    // var photo = req.body.Photo;
     usermodel.findOne({
             where: { email: req.body.Email }
         })
         .then(function(result) {
             if (result.dataValues != '') {
                 var fs = require('fs');
-                fs.unlinkSync('./resources/images/profile/' + photo);
+                // fs.unlinkSync('./resources/images/profile/' + photo);
                 next({
                     "status": 409,
                     "message": "Email already exists"
@@ -121,9 +111,13 @@ function passwordHash(req, res, next) {
         })
 
 }
+
+
+
 module.exports = {
     userRegister,
     token,
     emailCheck,
-    passwordHash
+    passwordHash,
+    addTeacher
 }
