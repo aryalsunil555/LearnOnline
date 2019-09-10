@@ -7,6 +7,8 @@ var multer = require('multer');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+
+
 let initCallback;
 
 
@@ -38,7 +40,10 @@ myapp.set('view engine', 'ejs');
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/studentModel.js');
+<<<<<<< HEAD
 var mysequelize = require('./models/teacherModel.js');
+=======
+>>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
 
 
 
@@ -59,8 +64,8 @@ var upload = multer({ storage: mystorage });
 
 
 // controllers require
-var userController = require('./controllers/userController');
 var authController = require('./controllers/authController');
+var studentController = require('./controllers/studentController');
 
 
 // routes
@@ -68,6 +73,7 @@ var authController = require('./controllers/authController');
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
 //upload register profile photo
+<<<<<<< HEAD
 myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
     // console.log(req.testVall);
     // res.status(200);
@@ -81,61 +87,72 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 
 // register student form data
 myapp.post('/student/register', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
+=======
+// myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
+//     // console.log(req.testVall);
+//     // res.status(200);
+//     res.send({
+//         "status": 200,
+//         "message": "Profile Image Registered",
+//         "name": req.testVall
+//     })
+// });
+
+
+// register student data
+// myapp.post('/student/register/userFormData', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen, function(req, res) {
+myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen,function(req, res) {
+>>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
     // console.log('user register data route');
     // res.status(200);
     res.send({
         "status": 200,
+<<<<<<< HEAD
         "message": "Student registered",
+=======
+        "message": "Student data registered",
+>>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
         "token": req.genToken
     })
 });
 
 
 
-
-
-
-
-// user login route
-myapp.post('/user/login', authController.validator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
+// student login route
+//myapp.post('/student/login', authController.validator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
+myapp.post('/student/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
     // res.status(200);
     res.send({
         "status": 200,
-        "message": "User logged in",
+        "message": "Student logged in",
         "token": req.genToken,
         "info": req.userInfo
+    })
+});
+
+//Teacher Register
+myapp.post('/user/register/userFormDataa', studentController.emailCheck, studentController.passwordHash, studentController.addTeacher, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "New Teacher Registered"
     })
 });
 
 // admin login route 
-myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-    // res.status(200);
-    res.send({
-        "status": 200,
-        "message": "Admin logged in",
-        "token": req.genToken,
-        "info": req.userInfo
-    })
-});
+// myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
+//     // res.status(200);
+//     res.send({
+//         "status": 200,
+//         "message": "Admin logged in",
+//         "token": req.genToken,
+//         "info": req.userInfo
+//     })
+// });
 
 
-// verify user token
-myapp.post('/token/verify', authController.tokenVerify, authController.tokenemailvalidator, function(req, res) {
-    res.send({
-        "status": 200,
-        "message": "Token Verified",
-        "info": req.userInfoo
-    })
-});
 
-// verify admin token
-myapp.post('/admin/token/verify', authController.tokenVerify, authController.admintokenemailvalidator, function(req, res) {
-    res.send({
-        "status": 200,
-        "message": "Token Verified",
-        "info": req.adminInfoo
-    })
-});
+
+
 
 // get home page
 myapp.get('/index', function(req, res) {
@@ -160,4 +177,13 @@ myapp.use(function(err, req, res, next) {
 
 
 // set port
+<<<<<<< HEAD
 myapp.listen(3000);
+=======
+myapp.listen(3000);
+
+
+
+module.exports = myapp;
+
+>>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be

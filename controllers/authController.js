@@ -8,9 +8,8 @@ var jwt = require('jsonwebtoken');
 // match has passwod
 function validator(req, res, next) {
     usermodel.findOne({
-  
             where: {
-                email: req.body.email
+                email: req.body.Email
             }
         })
         // use had already registered
@@ -119,7 +118,7 @@ function admintokenemailvalidator(req, res, next) {
 function checkPasswordMatch(req, res, next) {
     // comapre's first parameter password obtained from login form i.e. req.body.password
     // second parameter the value passed from previous function (from database) through req object
-    bcrypt.compare(req.body.password, req.userHashPassword, function(err, res) {
+    bcrypt.compare(req.body.Password, req.userHashPassword, function(err, res) {
         // res == true
         // console.log(res);
         if (res == true) {
