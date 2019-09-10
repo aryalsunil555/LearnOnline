@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 
 
 
-// match has passwod
+// match hash passwod
 function validator(req, res, next) {
     usermodel.findOne({
             where: {
@@ -35,7 +35,7 @@ function validator(req, res, next) {
 function adminValidator(req, res, next) {
     adminmodel.findOne({
             where: {
-                email: req.body.email
+                email: req.body.Email
             }
         })
         // use had already registered
@@ -163,7 +163,7 @@ function jwtTokenGen(req, res, next) {
 
 function adminjwtTokenGen(req, res, next) {
     jwt.sign({
-            email: req.body.email,
+            email: req.body.Email,
             accessLevel: 'superadmin'
         }, 'thisissecretkey', {
             expiresIn: "10h"

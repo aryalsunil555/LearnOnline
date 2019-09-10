@@ -62,6 +62,8 @@ var upload = multer({ storage: mystorage });
 // controllers require
 var authController = require('./controllers/authController');
 var studentController = require('./controllers/studentController');
+var teacherController = require('./controllers/teacherController');
+var adminController = require('./controllers/adminController');
 
 
 // routes
@@ -81,11 +83,8 @@ var studentController = require('./controllers/studentController');
 
 
 // register student data
-// myapp.post('/student/register/userFormData', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen, function(req, res) {
-myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen,function(req, res) {
-    // console.log('user register data route');
-    // res.status(200);
-    res.send({
+myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister, authController.jwtTokenGen,function(req, res) {
+       res.send({
         "status": 200,
         "message": "Student data registered",
         "token": req.genToken
@@ -95,9 +94,7 @@ myapp.post('/student/register', studentController.emailCheck, studentController.
 
 
 // student login route
-//myapp.post('/student/login', authController.validator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
 myapp.post('/student/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
-    // res.status(200);
     res.send({
         "status": 200,
         "message": "Student logged in",
@@ -107,23 +104,35 @@ myapp.post('/student/login', authController.validator,authController.checkPasswo
 });
 
 //Teacher Register
-myapp.post('/user/register/userFormDataa', studentController.emailCheck, studentController.passwordHash, studentController.addTeacher, function(req, res) {
+//myapp.post('/teacher/register/', studentController.emailCheck, studentController.passwordHash, studentController.addTeacher, function(req, res) {
+myapp.post('/teacher/register/', teacherController.emailCheck,teacherController.passwordHash,teacherController.addTeacher, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Teacher Registered"
     })
 });
 
+//adminRegister
+myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
+    res.send({
+     "status": 200,
+     "message": "Admin data registered",
+     "token": req.genToken
+ })
+});
+
+
 // admin login route 
-// myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-//     // res.status(200);
-//     res.send({
-//         "status": 200,
-//         "message": "Admin logged in",
-//         "token": req.genToken,
-//         "info": req.userInfo
-//     })
-// });
+myapp.post('/admin/login', authController.adminValidator,authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
+  
+    //res.status(200);
+    res.send({
+        "status": 200,
+        "message": "Admin logged in",
+        "token": req.genToken,
+        "info": req.userInfo
+    })
+});
 
 
 

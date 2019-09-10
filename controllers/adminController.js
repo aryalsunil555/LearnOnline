@@ -1,4 +1,4 @@
-var usermodel = require('../models/studentModel');
+var usermodel = require('../models/adminModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -6,16 +6,11 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-function studentRegister(req, res, next) {
+function adminRegister(req, res, next) {
     // console.log(req.body);
     usermodel.create({
              
-        first_name: req.body.FirstName,
-        last_name: req.body.LastName,
-        address: req.body.Address,
-        phone: req.body.Phone,
-        dob: req.body.DOB,
-        gender: req.body.Gender,
+       
         email: req.body.Email,
         password: req.hashValue
         })
@@ -89,7 +84,7 @@ function passwordHash(req, res, next) {
 
 
 module.exports = {
-    studentRegister,
+ adminRegister,
     token,
     emailCheck,
     passwordHash,
