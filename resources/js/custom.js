@@ -1,17 +1,17 @@
-let signuporm = document.querySelector('#signupForm');
-let loginForm = document.querySelector('#loginForm');
-let login = document.querySelector('#login');
-let signup = document.querySelector('#signup');
+// let signuporm = document.querySelector('#signupForm');
+// let loginForm = document.querySelector('#loginForm');
+// let login = document.querySelector('#login');
+// let signup = document.querySelector('#signup');
 
-document.addEventListener('click', (e) => {
-    if (e.target === signup) {
-        loginForm.style.display = 'none';
-        signupForm.style.display = 'flex';
-    } else if (e.target === login) {
-        signupForm.style.display = 'none';
-        loginForm.style.display = 'flex';
-    }
-});
+// document.addEventListener('click', (e) => {
+//     if (e.target === signup) {
+//         loginForm.style.display = 'none';
+//         signupForm.style.display = 'flex';
+//     } else if (e.target === login) {
+//         signupForm.style.display = 'none';
+//         loginForm.style.display = 'flex';
+//     }
+// });
 
 
 
@@ -60,7 +60,9 @@ $(document).ready(function() {
             });
         }
         else{
-        	alert('Password does not match');
+        	$(StudentPassword).addClass("errorInput");
+            $(StudentPassword).focus();
+
         }
     });
 });

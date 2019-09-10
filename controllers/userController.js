@@ -1,4 +1,4 @@
-var usermodel = require('../models/userModel');
+var usermodel = require('../models/studentModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;

@@ -31,13 +31,14 @@ myapp.use(express.static(
     path.join(__dirname, '/resources')
 ));
 // ejs
-myapp.set('views',__dirname+'/views');
-myapp.set('view engine','ejs');
+myapp.set('views', __dirname + '/views');
+myapp.set('view engine', 'ejs');
 
 
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
-var mysequelize = require('./models/userModel.js');
+var mysequelize = require('./models/studentModel.js');
+var mysequelize = require('./models/teacherModel.js');
 
 
 
@@ -78,13 +79,13 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 });
 
 
-// register form data
-myapp.post('/user/register/userFormData', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
+// register student form data
+myapp.post('/student/register', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
     // console.log('user register data route');
     // res.status(200);
     res.send({
         "status": 200,
-        "message": "user data registered",
+        "message": "Student registered",
         "token": req.genToken
     })
 });
@@ -137,8 +138,8 @@ myapp.post('/admin/token/verify', authController.tokenVerify, authController.adm
 });
 
 // get home page
-myapp.get('/index', function(req,res){
-	res.render('pages/index');
+myapp.get('/index', function(req, res) {
+    res.render('pages/index');
 })
 
 
@@ -160,11 +161,3 @@ myapp.use(function(err, req, res, next) {
 
 // set port
 myapp.listen(3000);
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> f84418f5dbf85b126492fa53d8b1720384bd5593
-module.exports = myapp;
-
