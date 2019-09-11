@@ -26,7 +26,6 @@
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.1",
     "routes": "^2.1.0",
-    "nodemon": "^1.19.2",
     "sequelize": "^5.16.0",
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.0.7",
