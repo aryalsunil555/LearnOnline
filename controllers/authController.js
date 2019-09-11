@@ -1,16 +1,15 @@
-var usermodel = require('../models/userModel');
+var usermodel = require('../models/studentModel');
 var adminmodel = require('../models/adminModel');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
 
 
-// match has passwod
+// match hash passwod
 function validator(req, res, next) {
     usermodel.findOne({
-  
             where: {
-                email: req.body.email
+                email: req.body.Email
             }
         })
         // use had already registered
@@ -36,7 +35,7 @@ function validator(req, res, next) {
 function adminValidator(req, res, next) {
     adminmodel.findOne({
             where: {
-                email: req.body.email
+                email: req.body.Email
             }
         })
         // use had already registered
@@ -119,7 +118,7 @@ function admintokenemailvalidator(req, res, next) {
 function checkPasswordMatch(req, res, next) {
     // comapre's first parameter password obtained from login form i.e. req.body.password
     // second parameter the value passed from previous function (from database) through req object
-    bcrypt.compare(req.body.password, req.userHashPassword, function(err, res) {
+    bcrypt.compare(req.body.Password, req.userHashPassword, function(err, res) {
         // res == true
         // console.log(res);
         if (res == true) {
@@ -164,7 +163,7 @@ function jwtTokenGen(req, res, next) {
 
 function adminjwtTokenGen(req, res, next) {
     jwt.sign({
-            email: req.body.email,
+            email: req.body.Email,
             accessLevel: 'superadmin'
         }, 'thisissecretkey', {
             expiresIn: "10h"

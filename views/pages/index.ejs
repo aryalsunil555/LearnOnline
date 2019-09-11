@@ -23,10 +23,10 @@
         <a class="nav-link" href="#">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="courses/courses.html">Courses</a>
+        <a class="nav-link" href="../courses/courses">Courses</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html" id="signup">Signup</a>
+        <a class="nav-link" href="index" id="signup">Signup</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" id="login">Login</a>
@@ -56,16 +56,33 @@
       <input type="text" name="" value="" id="StudentFirstName" placeholder="Enter the First Name">
       <input type="text" name="" value="" id="StudentLastName" placeholder="Enter the Last Name">
       <div class="gender">
-            <input type="radio" name="gender" value="male"> Male<br>
-            <input type="radio" name="gender" value="female"> Female<br>
-            <input type="radio" name="gender" value="other"> Other<br>
+            <input type="radio" name="gender" value="male" id="male"> 
+            <label for="male" >Male</label>
+            
+            <input type="radio" name="gender" value="female" id="female"> 
+            <label for="female">Female</label> 
+
+            <input type="radio" name="gender" value="other" id="other"> 
+            <label for="other">Other</label>
       </div>
-      <input type="text" name="" value="" id="StudentDob" placeholder="Enter the DOB">
+
+      <input placeholder="Enter the Date of Birth" class="textbox-n" type="text" onblur="(this.type='text')" 
+      onfocus="(this.type='date')"  id="StudentDob"> 
+      
       <input type="text" name="" value="" id="StudentPhone" placeholder="Enter the phone">
       <input type="text" name="" value="" id="StudentAddress" placeholder="Enter the Address">
-      <input type="text" name="" value="" id="StudentEmail" placeholder="Enter the Email">
-      <input type="text" name="" value="" id="StudentPassword" placeholder="Enter the password">
-      <input type="text" name="" value="" id="StudentConfirmPassword" placeholder="Confirm the password">
+
+       <select>
+  <optgroup label="Address">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+  </optgroup>
+</select> 
+
+
+      <input type="email" name="" value="" id="StudentEmail" placeholder="Enter the Email">
+      <input type="password" name="" value="" id="StudentPassword" placeholder="Enter the password">
+      <input type="password" name="" value="" id="StudentConfirmPassword" placeholder="Confirm the password">
       <button type="submit" name="button" class="btn btn-primary">Signup</button>
     </form>
 

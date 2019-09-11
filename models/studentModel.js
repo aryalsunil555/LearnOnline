@@ -23,22 +23,22 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
     },
-    Address: {
+    address: {
 		type: mysequelize.Sequelize.STRING,
-        allowNull : false
+        allowNull : true
 	},
-	Phone: {
+	phone: {
 		type: mysequelize.Sequelize.STRING,
-        allowNull : false
+        allowNull : true
 	},
 	
-	DOB: {
+	dob: {
 		type: mysequelize.Sequelize.DATE,
-        allowNull : false
+        allowNull : true
 	},
-	Gender: {
+	gender: {
 		type: mysequelize.Sequelize.STRING,
-        allowNull : false
+        allowNull : true
     },
 
 
