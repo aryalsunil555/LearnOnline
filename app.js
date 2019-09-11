@@ -40,10 +40,9 @@ myapp.set('view engine', 'ejs');
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/studentModel.js');
-<<<<<<< HEAD
+
 var mysequelize = require('./models/teacherModel.js');
-=======
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
+
 
 
 
@@ -75,7 +74,7 @@ var adminController = require('./controllers/adminController');
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
 //upload register profile photo
-<<<<<<< HEAD
+
 myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
     // console.log(req.testVall);
     // res.status(200);
@@ -88,8 +87,8 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 
 
 // register student form data
-myapp.post('/student/register', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
-=======
+//myapp.post('/student/register', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
+
 // myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
 //     // console.log(req.testVall);
 //     // res.status(200);
@@ -102,27 +101,14 @@ myapp.post('/student/register', userController.emailCheck, userController.passwo
 
 
 // register student data
-<<<<<<< HEAD
+
 myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister, authController.jwtTokenGen,function(req, res) {
-       res.send({
-=======
-// myapp.post('/student/register/userFormData', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen, function(req, res) {
-myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen,function(req, res) {
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
-    // console.log('user register data route');
-    // res.status(200);
-    res.send({
->>>>>>> 39c06a8e34a47f9f398f53019df503e54c27a0a4
+     res.send({
         "status": 200,
-<<<<<<< HEAD
-        "message": "Student registered",
-=======
-        "message": "Student data registered",
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
+        "message": "Student registered",      
         "token": req.genToken
     })
 });
-
 
 
 // student login route
@@ -136,14 +122,25 @@ myapp.post('/student/login', authController.validator,authController.checkPasswo
 });
 
 //Teacher Register
-//myapp.post('/teacher/register/', studentController.emailCheck, studentController.passwordHash, studentController.addTeacher, function(req, res) {
-myapp.post('/teacher/register/', teacherController.emailCheck,teacherController.passwordHash,teacherController.addTeacher, function(req, res) {
+  myapp.post('/teacher/register', teacherController.emailCheck, teacherController.passwordHash, teacherController.teacherRegister,authController.jwtTokenGen, function(req, res) {
+   
     res.send({
+
         "status": 200,
-        "message": "New Teacher Registered"
+        "message": "New Teacher Registered",
+        "token": req.genToken
     })
 });
 
+//techer login
+myapp.post('/teacher/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher logged in",
+        "token": req.genToken,
+        "info": req.userInfo
+    })
+});
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
     res.send({
@@ -194,13 +191,9 @@ myapp.use(function(err, req, res, next) {
 
 
 // set port
-<<<<<<< HEAD
-myapp.listen(3000);
-=======
-myapp.listen(3000);
 
-
+myapp.listen(3000);
 
 module.exports = myapp;
 
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
+

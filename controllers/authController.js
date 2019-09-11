@@ -1,5 +1,6 @@
 var usermodel = require('../models/studentModel');
 var adminmodel = require('../models/adminModel');
+var usermodel = require('../models/teacherModel');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
