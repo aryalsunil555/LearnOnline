@@ -40,11 +40,7 @@ myapp.set('view engine', 'ejs');
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/studentModel.js');
-<<<<<<< HEAD
 var mysequelize = require('./models/teacherModel.js');
-=======
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
-
 
 
 
@@ -75,7 +71,6 @@ var adminController = require('./controllers/adminController');
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
 //upload register profile photo
-<<<<<<< HEAD
 myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
     // console.log(req.testVall);
     // res.status(200);
@@ -87,38 +82,14 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 });
 
 
-// register student form data
-myapp.post('/student/register', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
-=======
-// myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
-//     // console.log(req.testVall);
-//     // res.status(200);
-//     res.send({
-//         "status": 200,
-//         "message": "Profile Image Registered",
-//         "name": req.testVall
-//     })
-// });
-
-
 // register student data
-<<<<<<< HEAD
-myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister, authController.jwtTokenGen,function(req, res) {
-       res.send({
-=======
-// myapp.post('/student/register/userFormData', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen, function(req, res) {
 myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen,function(req, res) {
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
     // console.log('user register data route');
     // res.status(200);
     res.send({
->>>>>>> 39c06a8e34a47f9f398f53019df503e54c27a0a4
         "status": 200,
-<<<<<<< HEAD
         "message": "Student registered",
-=======
         "message": "Student data registered",
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
         "token": req.genToken
     })
 });
@@ -179,7 +150,6 @@ myapp.get('/index', function(req, res) {
 
 
 myapp.use(function(err, req, res, next) {
-
     // console.log(err.status);
     // console.log(err.message);
     console.log(err);
@@ -194,13 +164,9 @@ myapp.use(function(err, req, res, next) {
 
 
 // set port
-<<<<<<< HEAD
-myapp.listen(3000);
-=======
 myapp.listen(3000);
 
 
 
 module.exports = myapp;
 
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
