@@ -23,7 +23,7 @@
         <a class="nav-link" href="#">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../courses/courses">Courses</a>
+        <a class="nav-link" href="courses">Courses</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="index" id="signup">Signup</a>
@@ -51,46 +51,40 @@
     </div>
   </section>
   <section class="indexForms">
-    <form class="" action="index.html" method="post" id="signupForm">
+    <form class=""  method="post" id="signupForm">
       <h3>Sign up</h3>
-      <input type="text" name="" value="" id="StudentFirstName" placeholder="Enter the First Name">
-      <input type="text" name="" value="" id="StudentLastName" placeholder="Enter the Last Name">
+      <input type="text" name="" value="test" id="StudentFirstName" placeholder="Enter the First Name" class="signupInputs">
+      <input type="text" name="" value="test" id="StudentLastName" placeholder="Enter the Last Name" class="signupInputs">
       <div class="gender">
-            <input type="radio" name="gender" value="male" id="male"> 
+            <input type="radio" name="gender" value="male" id="male" checked="">
             <label for="male" >Male</label>
-            
-            <input type="radio" name="gender" value="female" id="female"> 
-            <label for="female">Female</label> 
 
-            <input type="radio" name="gender" value="other" id="other"> 
+            <input type="radio" name="gender" value="female" id="female">
+            <label for="female">Female</label>
+
+            <input type="radio" name="gender" value="other" id="other">
             <label for="other">Other</label>
       </div>
 
-      <input placeholder="Enter the Date of Birth" class="textbox-n" type="text" onblur="(this.type='text')" 
-      onfocus="(this.type='date')"  id="StudentDob"> 
-      
-      <input type="text" name="" value="" id="StudentPhone" placeholder="Enter the phone">
-      <input type="text" name="" value="" id="StudentAddress" placeholder="Enter the Address">
+      <input placeholder="Enter the Date of Birth" class="textbox-n signupInputs " type="text" onblur="(this.type='text')"
+      onfocus="(this.type='date')" value="12-12-2000"  id="StudentDob">
 
-       <select>
-  <optgroup label="Address">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-  </optgroup>
-</select> 
+      <input type="text" name="" value="1234567890" id="StudentPhone" class="signupInputs" placeholder="Enter the phone">
+      <input type="text" name="" value="ktm" id="StudentAddress" class="signupInputs" placeholder="Enter the Address">
 
 
-      <input type="email" name="" value="" id="StudentEmail" placeholder="Enter the Email">
-      <input type="password" name="" value="" id="StudentPassword" placeholder="Enter the password">
-      <input type="password" name="" value="" id="StudentConfirmPassword" placeholder="Confirm the password">
+
+      <input type="email" name="" value="test@gmail.com" id="StudentEmail" class="signupInputs" placeholder="Enter the Email">
+      <input type="password" name="" value="12" id="StudentPassword" class="signupInputs" placeholder="Enter the password">
+      <input type="password" name="" value="12" id="StudentConfirmPassword" class="signupInputs" placeholder="Confirm the password">
       <button type="submit" name="button" class="btn btn-primary">Signup</button>
     </form>
 
     <form class="" action="index.html" method="post" id="loginForm" style="display:none">
       <h3>Log In</h3>
-      <input type="text" name="" value="" placeholder="Enter the Email">
-      <input type="text" name="" value="" placeholder="Enter the password">
-      <button type="button" name="button" class="btn btn-primary">Log In</button>
+      <input type="text" name="" value="" placeholder="Enter the Email" id="loginEmail">
+      <input type="text" name="" value="" placeholder="Enter the password" id="loginPassword">
+      <button type="submit" name="button" class="btn btn-primary">Log In</button>
     </form>
   </section>
 </div>
