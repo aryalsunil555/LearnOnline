@@ -29,7 +29,7 @@ $(document).ready(function() {
             var gender = $("input[name='gender']:checked").val();
             var signupInputs=$('.signupInputs');
 
-           
+
             var studentRegisterFormData = {
                 // key         value
                 FirstName: $('#StudentFirstName').val(),
@@ -55,6 +55,9 @@ $(document).ready(function() {
                     // window.sessionStorage.clear();
                     // window.localStorage.setItem('token', result.token);
                     // window.location.href = "../user/dashboard.html";
+
+
+                  //TO CHANGE THE INPUT FIELDS BLANK AFTER REGISTRATION//
 
             for (var i = 0; i < signupInputs.length; i++) {
                            signupInputs[i].value='';

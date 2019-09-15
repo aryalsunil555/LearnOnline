@@ -19,7 +19,7 @@ myapp.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'content-type,X-Requested-With,authorization');
-    next(); // next passes to another application middleware 
+    next(); // next passes to another application middleware
 });
 
 
@@ -66,7 +66,7 @@ var studentController = require('./controllers/studentController');
 
 
 // routes
-//var adminRoutes = require('./routes/adminRoutes')(myapp);
+// var adminRoutes = require('./routes/adminRoutes')(myapp);
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
 //upload register profile photo
@@ -127,16 +127,16 @@ myapp.post('/user/register/userFormDataa', studentController.emailCheck, student
     })
 });
 
-// admin login route 
-// myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-//     // res.status(200);
-//     res.send({
-//         "status": 200,
-//         "message": "Admin logged in",
-//         "token": req.genToken,
-//         "info": req.userInfo
-//     })
-// });
+// admin login route
+myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
+    // res.status(200);
+    res.send({
+        "status": 200,
+        "message": "Admin logged in",
+        "token": req.genToken,
+        "info": req.userInfo
+    })
+});
 
 
 
@@ -151,6 +151,23 @@ myapp.get('/index', function(req, res) {
 // get courses
 myapp.get('/courses', function(req, res) {
     res.render('pages/courses/courses');
+})
+
+
+// get admin
+myapp.get('/admin', function(req, res) {
+    res.render('admin/admin');
+})
+
+// get admindashboard
+myapp.get('/admindashboard', function(req, res) {
+    res.render('admin/admindashboard');
+})
+
+
+// get teachersignup
+myapp.get('/teacher', function(req, res) {
+    res.render('teacher/teacher');
 })
 
 
