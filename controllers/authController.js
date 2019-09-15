@@ -1,14 +1,14 @@
-var usermodel = require('../models/studentModel');
+var studentmodel = require('../models/studentModel');
 var adminmodel = require('../models/adminModel');
-var usermodel = require('../models/teacherModel');
+var teachermodel = require('../models/teacherModel');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
 
 
 // match hash passwod
-function validator(req, res, next) {
-    usermodel.findOne({
+function studentvalidator(req, res, next) {
+    studentmodel.findOne({
             where: {
                 email: req.body.Email
             }
@@ -26,11 +26,38 @@ function validator(req, res, next) {
 
             next({
                 "status": 400,
-                "message": "Please register first to login"
+                "message": "Please register student data first to login"
             })
 
         })
 }
+
+// match hash passwod
+function teachervalidator(req, res, next) {
+    teachermodel.findOne({
+            where: {
+                email: req.body.Email
+            }
+        })
+        // use had already registered
+        .then(function(result) {
+            // store the teacher'shash password obtained from database in a variable and pass it through req object
+            req.userHashPassword = result.dataValues.password;
+            req.userInfo = result.dataValues;
+            // console.log(req.userInfo);
+            next();
+        })
+        // err denotes the user was not found - > user was not registerd 
+        .catch(function(err) {
+
+            next({
+                "status": 400,
+                "message": "Please register teacher data first to login"
+            })
+
+        })
+}
+
 
 // check admin email for validation
 function adminValidator(req, res, next) {
@@ -62,7 +89,7 @@ function adminValidator(req, res, next) {
 // check user token email
 function tokenemailvalidator(req, res, next) {
 
-    usermodel.findOne({
+    studentmodel.findOne({
 
             where: {
                 email: req.email
@@ -189,7 +216,7 @@ function adminjwtTokenGen(req, res, next) {
 
 // verify token
 function tokenVerify(req, res, next) {
-    // console.log(req.headers);
+    //console.log(req.headers);
     if (req.headers.authorization == undefined) {
         next({ status: 500, message: 'no authorization header present' })
     } else {
@@ -214,7 +241,8 @@ function tokenVerify(req, res, next) {
 
 
 module.exports = {
-    validator,
+    studentvalidator,
+    teachervalidator,
     checkPasswordMatch,
     tokenemailvalidator,
     jwtTokenGen,

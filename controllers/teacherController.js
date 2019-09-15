@@ -30,6 +30,35 @@ function teacherRegister(req, res, next) {
         })
 }
 
+// teacher update
+function teacherUpdate(req, res, next) {
+    // console.log(req.body);
+    if (req.body.id != '') {
+        teachermodel.update({
+                first_name: req.body.FirstName,
+                last_name: req.body.LastName,
+                address: req.body.Address,
+                dob: req.body.DOB,
+                phone: req.body.Phone,
+                gender:req.body.Gender,
+                bio:req.body.Bio,
+                email:req.body.Email
+            }, {
+                where: { id: req.params.id }
+            })
+            .then(function(result) {
+                // console.log('data added');
+                next();
+            })
+            .catch(function(err) {
+                next({ "status": 500, "message": "DB Error" });
+            })
+    } else {
+        next({ "status": 500, "message": "Invalid Teacher" });
+    }
+}
+
+
 // token
 function token(req, res, next) {
     jwt.sign({ username: req.body.username, accesslevel: 'superadmin' }, 'thisissecretkey', { expiresIn: '10h' },
@@ -91,6 +120,7 @@ function passwordHash(req, res, next) {
 
 module.exports = {
     teacherRegister,
+    teacherUpdate,
     token,
     emailCheck,
     passwordHash,

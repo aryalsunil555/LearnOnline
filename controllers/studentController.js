@@ -29,6 +29,38 @@ function studentRegister(req, res, next) {
         })
 }
 
+const emailToValidate = 'a@a.com';
+const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+console.log(emailRegexp.test(emailToValidate));
+// student update
+function studentUpdate(req, res, next) {
+    // console.log(req.body);
+    if (req.body.id != '') {
+        usermodel.update({
+                first_name: req.body.FirstName,
+                last_name: req.body.LastName,
+                address: req.body.Address,
+                dob: req.body.DOB,
+                phone: req.body.Phone,
+                gender:req.body.Gender,
+                email:req.body.Email
+            }, {
+                where: { id: req.params.id }
+            })
+            .then(function(result) {
+                // console.log('data added');
+                next();
+            })
+            .catch(function(err) {
+                next({ "status": 500, "message": "DB Error" });
+            })
+    } else {
+        next({ "status": 500, "message": "Invalid Student" });
+    }
+}
+
+
 // token
 function token(req, res, next) {
     jwt.sign({ username: req.body.username, accesslevel: 'superadmin' }, 'thisissecretkey', { expiresIn: '10h' },
@@ -90,8 +122,9 @@ function passwordHash(req, res, next) {
 
 module.exports = {
     studentRegister,
+    studentUpdate,
     token,
     emailCheck,
-    passwordHash,
+    passwordHash
 
 }

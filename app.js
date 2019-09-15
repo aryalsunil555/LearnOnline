@@ -8,6 +8,8 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 
+
+
 let initCallback;
 
 
@@ -73,15 +75,39 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 });
 
 
-// student login route
-myapp.post('/student/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
+
+//Student Register
+myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
-        "message": "Student logged in",
+        "message": "New Student Registered",
+        "token": req.genToken
+    })
+});
+
+// student login route
+myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "student logged in",
         "token": req.genToken,
         "info": req.userInfo
     })
 });
+
+
+// Student Update 
+myapp.put('/student/update/:id', studentController.studentUpdate, function(req, res) {
+
+    res.send({
+        "status": 200,
+        "message": "student data updated",
+        "info": req.userInfoo
+    })
+});
+
+
+
 
 //Teacher Register
   myapp.post('/teacher/register', teacherController.emailCheck, teacherController.passwordHash, teacherController.teacherRegister,authController.jwtTokenGen, function(req, res) {
@@ -93,12 +119,22 @@ myapp.post('/student/login', authController.validator,authController.checkPasswo
 });
 
 //techer login
-myapp.post('/teacher/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
+myapp.post('/teacher/login', authController.teachervalidator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
         "message": "Teacher logged in",
         "token": req.genToken,
         "info": req.userInfo
+    })
+});
+
+// teacher Update 
+myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
+
+    res.send({
+        "status": 200,
+        "message": "teacher data updated",
+        "info": req.userInfoo
     })
 });
 

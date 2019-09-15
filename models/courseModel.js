@@ -30,6 +30,10 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 	description: {
 		type: mysequelize.Sequelize.STRING,
         allowNull : false
+    },
+    author: {
+		type: mysequelize.Sequelize.DATE,
+        allowNull : false
 	},
 	
 	fee: {
