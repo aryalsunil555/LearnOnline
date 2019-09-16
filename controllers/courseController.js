@@ -1,4 +1,4 @@
-var usermodel = require('../models/courseModel');
+var coursemodel = require('../models/courseModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -8,25 +8,50 @@ const Op = Sequelize.Op;
 
 function courseRegister(req, res, next) {
     // console.log(req.body);
-    usermodel.create({
+    coursemodel.create({
              
-        course_name: req.body.CourseName,
+        title: req.body.Title,
+        description: req.body.Description,
         credit: req.body.Credit,
-        videos: req.body.Videos,
-        descriptiob: req.body.Description,
         fee: req.body.Fee,
-        author: req.body.Author
-       
+        course_image: req.body.CourseImage,
+        start_date: req.body.StartDate,
+        end_date: req.body.EndDate
         })
         .then(function(result) {
-            // console.log('data added');
-            req.body.email = req.body.Email;
+       
             next();
         })
         .catch(function(err) {
             next({ "status": 500, "message": "DB Error" });
         })
 }
+
+//course update
+function courseUpdate(req, res, next) {
+if (req.body.id != '') {
+    coursemodel.update({
+        title: req.body.Title,
+        description: req.body.Description,
+        credit: req.body.Credit,
+        fee: req.body.Fee,
+        start_date: req.body.StartDate,
+        end_date: req.body.EndDate
+        }, {
+            where: { id: req.params.id }
+        })
+        .then(function(result) {
+            next();
+        })
+        .catch(function(err) {
+            next({ "status":500, "message": "DB Error" });
+        })
+    } else {
+        next({ "status": 500, "message":"Invalid course data" });
+
+    }
+          }
+
 
 // token
 function token(req, res, next) {
@@ -46,51 +71,18 @@ function token(req, res, next) {
         });
 }
 
-// email Check
-function emailCheck(req, res, next) {
-    // var photo = req.body.Photo;
-    usermodel.findOne({
-            where: { email: req.body.Email }
-        })
-        .then(function(result) {
-            if (result.dataValues != '') {
-                var fs = require('fs');
-                // fs.unlinkSync('./resources/images/profile/' + photo);
-                next({
-                    "status": 409,
-                    "message": "Email already exists"
-                });
-            }
-        })
-        .catch(function(result) {
-            next();
-        })
-}
 
 
 
 
-// has password
-function passwordHash(req, res, next) {
-    // req.body.Password
-    bcrypt.hash(req.body.Password, saltRounds)
-        .then(function(hash) {
-            req.hashValue = hash;
-            // console.log(req.hashValue);
-            next();
-        })
-        .catch(function(err) {
-            console.log(err);
-        })
 
-}
 
 
 
 module.exports = {
-    studentRegister,
-    token,
-    emailCheck,
-    passwordHash,
+    courseRegister,
+    courseUpdate,
+       token,
+  
 
 }
