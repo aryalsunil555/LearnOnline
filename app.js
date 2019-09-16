@@ -194,13 +194,9 @@ myapp.use(function(err, req, res, next) {
 
 
 // set port
-<<<<<<< HEAD
-myapp.listen(3000);
-=======
 myapp.listen(3000);
 
 
 
 module.exports = myapp;
 
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
