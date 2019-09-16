@@ -8,10 +8,8 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		allowNull : false
 	},
 
-	
-
 	first_name: {
-		type: mysequelize.Sequelize.BIGINT,
+		type: mysequelize.Sequelize.STRING,
 		allowNull : false
 	},
 
@@ -21,20 +19,17 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 	},
 
 	dob: {
-		type: mysequelize.Sequelize.STRING,
+		type: mysequelize.Sequelize.DATE,
 		allowNull : false
 	},
-
 	gender: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
 	},
-
 	phone: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
 	},
-
 	address: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
@@ -45,16 +40,10 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		allowNull : false
 	},
 
-	password: {
-		type: mysequelize.Sequelize.STRING,
-		allowNull : false
-	},
-
-	profileImage: {
+	profile_image: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : true
 	},
-
 	bio: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
@@ -64,8 +53,13 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		type: mysequelize.Sequelize.STRING,
         allowNull : false,
         defaultValue: 0
-    }
+    },
 
+	password: {
+		type: mysequelize.Sequelize.STRING,
+		allowNull : false
+	}
+	
 },
 
 {
@@ -77,10 +71,10 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 
 myUsers.sync({force:false})
 // .then(function(){
-// console.log('users table created')
+// console.log('admin table created')
 // })
 // .catch(function(){
-// 	console.log('err creating table')
+// 	console.log('err creating admin table')
 // })
 
 module.exports = myUsers;

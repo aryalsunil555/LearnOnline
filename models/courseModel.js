@@ -7,77 +7,49 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		autoIncrement: true,
 		allowNull : false
 	},
-	profile_image: {
+	course_image: {
 		type: mysequelize.Sequelize.STRING,
         allowNull : true
     },
 
 
-	first_name: {
+	course_name: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
 	},
 
 
-	last_name: {
+	credit: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
     },
-    address: {
+    videos: {
 		type: mysequelize.Sequelize.STRING,
         allowNull : false
 	},
-	phone: {
+	description: {
 		type: mysequelize.Sequelize.STRING,
         allowNull : false
-	},
-	
-	dob: {
+    },
+    author: {
 		type: mysequelize.Sequelize.DATE,
         allowNull : false
 	},
-	gender: {
-		type: mysequelize.Sequelize.STRING,
+	
+	fee: {
+		type: mysequelize.Sequelize.DATE,
         allowNull : false
-    },
-
-
-
-
-    verify: {
-		type: mysequelize.Sequelize.STRING,
-        allowNull : false,
-        defaultValue: 0
-    },
-
-
-
-	email: {
-		type: mysequelize.Sequelize.STRING,
-		allowNull : false
-	},
-
-
-	password: {
-		type: mysequelize.Sequelize.STRING,
-		allowNull : false
 	}
 
 },
 
 {
 	freezeTableName : true,
-	tableName: 'student'
+	tableName: 'course'
 }
 
 )
 
-myUsers.sync({force:false})
-// .then(function(){
-// console.log('users table created')
-// })
-// .catch(function(){
-// 	console.log('err creating table')
-// })
+myUsers.sync({force:true})
 
 module.exports = myUsers;

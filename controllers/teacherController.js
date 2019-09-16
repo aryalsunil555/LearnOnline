@@ -1,4 +1,4 @@
-var usermodel = require('../models/teacherModel');
+var teachermodel = require('../models/teacherModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -6,21 +6,22 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-function addTeacher(req, res, next) {
+function teacherRegister(req, res, next) {
     // console.log(req.body);
-    usermodel.create({
-            first_name: req.body.FirstName,
-            last_name: req.body.LastName,
-            gender: req.body.Gender,
-            address: req.body.Address,
-            dob: req.body.DOB,
-            email: req.body.Email,
-            phone: req.body.Phone,
-            bio: req.body.Bio,
-            password: req.hashValue
+    teachermodel.create({
+         
+        first_name:req.body.FirstName,
+        last_name:req.body.LastName,
+        dob:req.body.DOB,
+        gender:req.body.Gender,
+        phone:req.body.Phone,
+        address:req.body.Address,
+        email: req.body.Email,
+        bio:req.body.Bio,
+        password: req.hashValue
         })
         .then(function(result) {
-            console.log('data added');
+            //console.log('data added');
             req.body.email = req.body.Email;
             next();
         })
@@ -29,7 +30,33 @@ function addTeacher(req, res, next) {
         })
 }
 
-
+// teacher update
+function teacherUpdate(req, res, next) {
+    // console.log(req.body);
+    if (req.body.id != '') {
+        teachermodel.update({
+                first_name: req.body.FirstName,
+                last_name: req.body.LastName,
+                address: req.body.Address,
+                dob: req.body.DOB,
+                phone: req.body.Phone,
+                gender:req.body.Gender,
+                bio:req.body.Bio,
+                email:req.body.Email
+            }, {
+                where: { id: req.params.id }
+            })
+            .then(function(result) {
+                // console.log('data added');
+                next();
+            })
+            .catch(function(err) {
+                next({ "status": 500, "message": "DB Error" });
+            })
+    } else {
+        next({ "status": 500, "message": "Invalid Teacher" });
+    }
+}
 
 
 // token
@@ -53,7 +80,7 @@ function token(req, res, next) {
 // email Check
 function emailCheck(req, res, next) {
     // var photo = req.body.Photo;
-    usermodel.findOne({
+    teachermodel.findOne({
             where: { email: req.body.Email }
         })
         .then(function(result) {
@@ -92,8 +119,10 @@ function passwordHash(req, res, next) {
 
 
 module.exports = {
+    teacherRegister,
+    teacherUpdate,
     token,
     emailCheck,
     passwordHash,
-    addTeacher
+
 }

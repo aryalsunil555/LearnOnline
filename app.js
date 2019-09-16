@@ -9,9 +9,8 @@ const swaggerUi = require('swagger-ui-express');
 
 
 
+
 let initCallback;
-
-
 
 
 //this is the first middleware - application middleware , all routes hit this middleware first
@@ -19,7 +18,7 @@ myapp.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'content-type,X-Requested-With,authorization');
-    next(); // next passes to another application middleware 
+    next(); // next passes to another application middleware
 });
 
 
@@ -32,6 +31,8 @@ myapp.use(bodyParser.urlencoded({ extended: true }));
 myapp.use(express.static(
     path.join(__dirname, '/resources')
 ));
+
+
 // ejs
 myapp.set('views', __dirname + '/views');
 myapp.set('view engine', 'ejs');
@@ -40,12 +41,9 @@ myapp.set('view engine', 'ejs');
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/studentModel.js');
-<<<<<<< HEAD
 var mysequelize = require('./models/teacherModel.js');
-=======
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
 
-
+var mysequelize = require('./models/teacherModel.js');
 
 
 // multer storage
@@ -56,7 +54,6 @@ var mystorage = multer.diskStorage({
     filename: function(req, file, cb) {
         var name = 'asdasd' + (Math.floor(100000 + Math.random() * 900000)) + file.originalname;
         cb(null, name);
-        // console.log(name);
         req.testVall = name;
     }
 });
@@ -70,15 +67,14 @@ var teacherController = require('./controllers/teacherController');
 var adminController = require('./controllers/adminController');
 
 
+
 // routes
-//var adminRoutes = require('./routes/adminRoutes')(myapp);
+// var adminRoutes = require('./routes/adminRoutes')(myapp);
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
 //upload register profile photo
-<<<<<<< HEAD
+
 myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
-    // console.log(req.testVall);
-    // res.status(200);
     res.send({
         "status": 200,
         "message": "Profile Image Registered",
@@ -87,60 +83,84 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 });
 
 
-// register student form data
-myapp.post('/student/register', userController.emailCheck, userController.passwordHash, userController.userRegister, authController.jwtTokenGen, function(req, res) {
-=======
-// myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
-//     // console.log(req.testVall);
-//     // res.status(200);
-//     res.send({
-//         "status": 200,
-//         "message": "Profile Image Registered",
-//         "name": req.testVall
-//     })
-// });
+
+
 
 
 // register student data
-<<<<<<< HEAD
 myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister, authController.jwtTokenGen,function(req, res) {
-       res.send({
-=======
-// myapp.post('/student/register/userFormData', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen, function(req, res) {
-myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen,function(req, res) {
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
     // console.log('user register data route');
     // res.status(200);
     res.send({
->>>>>>> 39c06a8e34a47f9f398f53019df503e54c27a0a4
         "status": 200,
-<<<<<<< HEAD
         "message": "Student registered",
-=======
         "message": "Student data registered",
->>>>>>> e77e990bda6dd8b1887fc02c0eb5af8911a0a1be
         "token": req.genToken
     })
 });
 
-
-
 // student login route
-myapp.post('/student/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
+
+myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
+  // res.status(200);
     res.send({
         "status": 200,
-        "message": "Student logged in",
+        "message": "student logged in",
         "token": req.genToken,
         "info": req.userInfo
     })
 });
 
-//Teacher Register
-//myapp.post('/teacher/register/', studentController.emailCheck, studentController.passwordHash, studentController.addTeacher, function(req, res) {
-myapp.post('/teacher/register/', teacherController.emailCheck,teacherController.passwordHash,teacherController.addTeacher, function(req, res) {
+
+// Student Update 
+myapp.put('/student/update/:id', studentController.studentUpdate, function(req, res) {
+
     res.send({
         "status": 200,
-        "message": "New Teacher Registered"
+        "message": "student data updated",
+        "info": req.userInfoo
+    })
+});
+
+
+
+
+//Teacher Register
+  myapp.post('/teacher/register', teacherController.emailCheck, teacherController.passwordHash, teacherController.teacherRegister,authController.jwtTokenGen, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "New Teacher Registered",
+        "token": req.genToken
+    })
+});
+
+//techer login
+myapp.post('/teacher/login', authController.teachervalidator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher logged in",
+        "token":req.genToken,
+        
+    })
+});
+// admin login route
+myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
+    // res.status(200);
+    res.send({
+        "status": 200,
+        "message": "Admin logged in",
+        "token": req.genToken,
+        "info": req.userInfo
+    })
+});
+
+// teacher Update 
+myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
+
+    res.send({
+        "status": 200,
+        "message": "teacher data updated",
+        "info": req.userInfoo
     })
 });
 
@@ -153,11 +173,8 @@ myapp.post('/admin/register', adminController.emailCheck, adminController.passwo
  })
 });
 
-
 // admin login route 
 myapp.post('/admin/login', authController.adminValidator,authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-  
-    //res.status(200);
     res.send({
         "status": 200,
         "message": "Admin logged in",
@@ -167,36 +184,51 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
 });
 
 
-
-
-
-
 // get home page
 myapp.get('/index', function(req, res) {
     res.render('pages/index');
 })
 
+// get courses
+myapp.get('/courses', function(req, res) {
+    res.render('pages/courses/courses');
+})
+
+
+// get admin
+myapp.get('/admin', function(req, res) {
+    res.render('admin/admin');
+})
+
+// get admindashboard
+myapp.get('/admindashboard', function(req, res) {
+    res.render('admin/admindashboard');
+})
+
+
+// get teachersignup
+myapp.get('/teacher', function(req, res) {
+    res.render('teacher/teacher');
+})
+
+
 
 
 myapp.use(function(err, req, res, next) {
-
-    // console.log(err.status);
-    // console.log(err.message);
     console.log(err);
     res.status(err.status);
     res.send({
         "message": err.message
     })
-
-
 })
-
 
 
 // set port
 myapp.listen(3000);
 
 
-
 module.exports = myapp;
+<<<<<<< HEAD
 
+=======
+>>>>>>> bfea9cbc627964a3a9c0a38ff2c09dc04fdb332e

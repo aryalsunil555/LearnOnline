@@ -1,4 +1,4 @@
-var usermodel = require('../models/studentModel');
+var usermodel = require('../models/courseModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -6,18 +6,17 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-function studentRegister(req, res, next) {
+function courseRegister(req, res, next) {
     // console.log(req.body);
     usermodel.create({
              
-        first_name: req.body.FirstName,
-        last_name: req.body.LastName,
-        address: req.body.Address,
-        phone: req.body.Phone,
-        dob: req.body.DOB,
-        gender: req.body.Gender,
-        email: req.body.Email,
-        password: req.hashValue
+        course_name: req.body.CourseName,
+        credit: req.body.Credit,
+        videos: req.body.Videos,
+        descriptiob: req.body.Description,
+        fee: req.body.Fee,
+        author: req.body.Author
+       
         })
         .then(function(result) {
             // console.log('data added');
@@ -28,38 +27,6 @@ function studentRegister(req, res, next) {
             next({ "status": 500, "message": "DB Error" });
         })
 }
-
-const emailToValidate = 'a@a.com';
-const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-
-console.log(emailRegexp.test(emailToValidate));
-// student update
-function studentUpdate(req, res, next) {
-    // console.log(req.body);
-    if (req.body.id != '') {
-        usermodel.update({
-                first_name: req.body.FirstName,
-                last_name: req.body.LastName,
-                address: req.body.Address,
-                dob: req.body.DOB,
-                phone: req.body.Phone,
-                gender:req.body.Gender,
-                email:req.body.Email
-            }, {
-                where: { id: req.params.id }
-            })
-            .then(function(result) {
-                // console.log('data added');
-                next();
-            })
-            .catch(function(err) {
-                next({ "status": 500, "message": "DB Error" });
-            })
-    } else {
-        next({ "status": 500, "message": "Invalid Student" });
-    }
-}
-
 
 // token
 function token(req, res, next) {
@@ -122,9 +89,8 @@ function passwordHash(req, res, next) {
 
 module.exports = {
     studentRegister,
-    studentUpdate,
     token,
     emailCheck,
-    passwordHash
+    passwordHash,
 
 }

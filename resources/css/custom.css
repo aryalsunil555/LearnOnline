@@ -224,6 +224,58 @@ border-left: 5px solid purple;
 
 
 
+/*-----------------------------------ADMINDASHBOARD-START------------------*/
+
+.adminContainer{
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+}
+
+.graphContainer{
+  background-color: lightyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.graphContainer section{
+  border-bottom: 2px solid red;
+  height: 250px;
+}
+
+
+
+.summaryDataContainer{
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+
+.summaryDataContainer a{
+  padding:10px;
+  width:100%;
+  height: 250px;
+  border: 2px solid blue;
+  margin-left:10px;
+  text-decoration:none;
+}
+
+
+
+
+/*-----------------------------------ADMINDASHBOARD-END------------------*/
+
+
+
+
+
+
+
+
 
 
 /*---------------------ALERTS STYLING---------------------------------*/
@@ -231,6 +283,13 @@ border-left: 5px solid purple;
 .errorInput{
   border:2px solid red !important;
 }
+
+
+
+
+
+
+
 
 
 
@@ -278,6 +337,57 @@ border-left: 5px solid purple;
 .gender label{
   margin-top:5px;
 }
+
+
+/*-----------------------------------ADMINDASHBOARD-START------------------*/
+
+.adminContainer{
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.graphContainer{
+  background-color: lightyellow;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+}
+
+.graphContainer section{
+  border-bottom: 2px solid red;
+  height: 250px;
+  border:1px solid red;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+
+.summaryDataContainer{
+  display: flex;
+  flex-direction: row;
+  padding:10px;
+  justify-content: space-around;
+
+
+}
+
+.summaryDataContainer a{
+  padding:10px;
+  width:25%;
+  height: 250px;
+  border: 2px solid blue;
+  margin-left:10px;
+  text-decoration:none;
+}
+
+
+
+
+/*-----------------------------------ADMINDASHBOARD-END------------------*/
+
 
 
 }
