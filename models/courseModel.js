@@ -7,41 +7,40 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 		autoIncrement: true,
 		allowNull : false
 	},
-	course_image: {
-		type: mysequelize.Sequelize.STRING,
-        allowNull : true
-    },
 
-
-	course_name: {
+	title: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
 	},
 
+	description: {
+		type: mysequelize.Sequelize.STRING,
+		allowNull : false
+	},
 
 	credit: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
-    },
-    videos: {
-		type: mysequelize.Sequelize.STRING,
-        allowNull : false
 	},
-	description: {
-		type: mysequelize.Sequelize.STRING,
-        allowNull : false
-    },
-    author: {
-		type: mysequelize.Sequelize.DATE,
-        allowNull : false
-	},
-	
 	fee: {
+		type: mysequelize.Sequelize.INTEGER,
+		allowNull : false
+	},
+	course_image: {
+		type: mysequelize.Sequelize.STRING,
+		allowNull : true
+	},
+	start_date: {
 		type: mysequelize.Sequelize.DATE,
-        allowNull : false
-	}
+		allowNull : false
+	},
 
-},
+	end_date: {
+		type: mysequelize.Sequelize.DATE,
+		allowNull : false
+	}
+	},
+
 
 {
 	freezeTableName : true,
@@ -50,6 +49,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 
 )
 
-myUsers.sync({force:true})
+myUsers.sync({force:false})
+
 
 module.exports = myUsers;

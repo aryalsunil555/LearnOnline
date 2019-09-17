@@ -25,11 +25,10 @@
     "mocha": "^6.2.0",
     "multer": "^1.4.2",
     "mysql2": "^1.6.5",
-<<<<<<< HEAD
+
     "nodemon": "^1.19.1",
-=======
     "nodemon": "^1.19.2",
->>>>>>> 74fea9c671185b35d47205a8b2ab626ded6f7973
+
     "routes": "^2.1.0",
     "sequelize": "^5.16.0",
     "swagger-jsdoc": "^3.4.0",
