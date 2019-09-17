@@ -40,12 +40,9 @@ myapp.set('view engine', 'ejs');
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/studentModel.js');
 var mysequelize = require('./models/teacherModel.js');
-<<<<<<< HEAD
 
 
-=======
 var mysequelize = require('./models/teacherModel.js');
->>>>>>> d6f0cae516f3a761c0252462c5dad28c50d2d16d
 
 
 // multer storage
@@ -72,14 +69,11 @@ var adminController = require('./controllers/adminController');
 var courseController = require('./controllers/courseController');
 
 
-<<<<<<< HEAD
 // routes
 // var adminRoutes = require('./routes/adminRoutes')(myapp);
 //var userRoutes = require('./routes/userRoutes')(myapp);
 
 //upload register profile photo
-=======
->>>>>>> d6f0cae516f3a761c0252462c5dad28c50d2d16d
 myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
     res.send({
         "status": 200,
@@ -90,37 +84,19 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 
 
 
-<<<<<<< HEAD
 
 
-
-// register student data
-myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.userRegister, authController.jwtTokenGen,function(req, res) {
-    // console.log('user register data route');
-    // res.status(200);
-    res.send({
-        "status": 200,
-      
-        "message": "Student data registered",
-=======
 //Student Register
 myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Student Registered",
->>>>>>> d6f0cae516f3a761c0252462c5dad28c50d2d16d
         "token": req.genToken
     })
 });
 
 // student login route
-<<<<<<< HEAD
-// myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
-myapp.post('/student/login', authController.validator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
-    // res.status(200);
-=======
 myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
->>>>>>> d6f0cae516f3a761c0252462c5dad28c50d2d16d
     res.send({
         "status": 200,
         "message": "student logged in",
@@ -156,7 +132,6 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
 myapp.post('/teacher/login', authController.teachervalidator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
-<<<<<<< HEAD
         "message": "Teacher logged in"
     })
 
@@ -167,9 +142,7 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     res.send({
         "status": 200,
         "message": "Admin logged in",
-=======
         "message": "Teacher logged in",
->>>>>>> d6f0cae516f3a761c0252462c5dad28c50d2d16d
         "token": req.genToken,
         "info": req.userInfo
     })
@@ -230,6 +203,11 @@ myapp.get('/index', function(req, res) {
     res.render('pages/index');
 })
 
+// get admin login page
+myapp.get('/admin', function(req, res) {
+    res.render('admin/admin');
+})
+
 
 myapp.use(function(err, req, res, next) {
     console.log(err);
@@ -246,7 +224,4 @@ myapp.listen(3000);
 
 module.exports = myapp;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d6f0cae516f3a761c0252462c5dad28c50d2d16d
