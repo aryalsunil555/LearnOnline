@@ -1,26 +1,25 @@
 
-console.log("BOOM");
 
-let teacherSignup = document.querySelector('#teacherSignup');
-let teacherLogin = document.querySelector('#teacherLogin');
+// let teacherSignup = document.querySelector('#teacherSignup');
+// let teacherLogin = document.querySelector('#teacherLogin');
 
-let teacherSignupForm=document.querySelector('#teacherSignupForm');
-let teacherLoginForm=document.querySelector('#teacherLoginForm');
-
+// let teacherSignupForm=document.querySelector('#teacherSignupForm');
+// let teacherLoginForm=document.querySelector('#teacherLoginForm');
 
 
 
-document.addEventListener('click',(e)=>{
-   e.preventDefault();
-   if (e.target.id==="teacherSignup") {
-    teacherLoginForm.style.display="none";
-    teacherSignupForm.style.display="flex";
-   }
-   else if(e.target.id==="teacherLogin"){
-    teacherSignupForm.style.display="none";
-    teacherLoginForm.style.display="flex";
-   }
-});
+
+// document.addEventListener('click',(e)=>{
+//    e.preventDefault();
+//    if (e.target.id==="teacherSignup") {
+//     teacherLoginForm.style.display="none";
+//     teacherSignupForm.style.display="flex";
+//    }
+//    else if(e.target.id==="teacherLogin"){
+//     teacherSignupForm.style.display="none";
+//     teacherLoginForm.style.display="flex";
+//    }
+// });
 
 
 
@@ -34,6 +33,8 @@ $(document).ready(function() {
 
     $(document).on('submit', '#teacherSignupForm', function(e) {
         e.preventDefault();
+      console.log("BOOM");
+
         var password = $('#teacherPassword').val();
         var cpassword = $('#teacherConfirmPassword').val();
         if (password == cpassword) {
@@ -127,6 +128,6 @@ $(document).ready(function() {
 
 
 
-// });
+});
 
 
