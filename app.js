@@ -208,6 +208,11 @@ myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
 
+// get teacher signup
+myapp.get('/teacher', function(req, res) {
+    res.render('teacher/teacher');
+})
+
 
 myapp.use(function(err, req, res, next) {
     console.log(err);
