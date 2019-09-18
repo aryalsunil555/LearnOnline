@@ -228,7 +228,3 @@ myapp.listen(3000);
 
 
 module.exports = myapp;
-<<<<<<< HEAD
-
-=======
->>>>>>> bfea9cbc627964a3a9c0a38ff2c09dc04fdb332e
