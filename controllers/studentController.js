@@ -9,7 +9,7 @@ const Op = Sequelize.Op;
 function studentRegister(req, res, next) {
     // console.log(req.body);
     usermodel.create({
-             
+
         first_name: req.body.FirstName,
         last_name: req.body.LastName,
         address: req.body.Address,
@@ -29,10 +29,23 @@ function studentRegister(req, res, next) {
         })
 }
 
-const emailToValidate = 'a@a.com';
-const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+//delete student
+function deleteStudent(req, res, next){
+	usermodel.destroy({
+            where: {
+                id: req.params.id
+            },
+            raw: true
+        })
+        .then(function(result) {
+            next();
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
 
-console.log(emailRegexp.test(emailToValidate));
+
 // student update
 function studentUpdate(req, res, next) {
     // console.log(req.body);
@@ -122,6 +135,7 @@ function passwordHash(req, res, next) {
 
 module.exports = {
     studentRegister,
+    deleteStudent,
     studentUpdate,
     token,
     emailCheck,
