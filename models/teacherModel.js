@@ -69,7 +69,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 
 )
 
-myUsers.sync({force:true})
+myUsers.sync({force:false})
 // .then(function(){
 // console.log('admin table created')
 // })

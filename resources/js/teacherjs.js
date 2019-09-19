@@ -61,7 +61,7 @@ $(document).ready(function() {
                 data: JSON.stringify(teacherRegisterFormData),
                 success: function(result, status) {
                    
-                alert("Teacher Successfully Registered");
+                alert(result.message);
            
 	            $("input[name='gender']").prop("unchecked",true);
 	            $("#signupForm").css("display", "none");

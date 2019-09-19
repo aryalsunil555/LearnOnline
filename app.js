@@ -142,7 +142,6 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     res.send({
         "status": 200,
         "message": "Admin logged in",
-        "message": "Teacher logged in",
         "token": req.genToken,
         "info": req.userInfo
     })
@@ -208,11 +207,21 @@ myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
 
+//get admin dashboard page
+myapp.get('/admindashboard', function(req, res) {
+    res.render('admin/admindashboard');
+})
+
+
 // get teacher signup
-myapp.get('/teacher', function(req, res) {
+myapp.get('/teacher/register', function(req, res) {
     res.render('teacher/teacher');
 })
 
+// get course view
+myapp.get('/courses', function(req,res) {
+    res.render('pages/courses/courses');
+})
 
 myapp.use(function(err, req, res, next) {
     console.log(err);
@@ -228,8 +237,3 @@ myapp.listen(3000);
 
 
 module.exports = myapp;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> fcdc420db9a25c8982ae6e0ddd80246c32cc794a
