@@ -149,8 +149,8 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     res.send({
         "status": 200,
         "message": "Admin logged in",
-        "token": req.genToken,
-        "info": req.userInfo
+        // "token": req.genToken,
+        // "info": req.userInfo
     })
 });
 
@@ -173,15 +173,6 @@ myapp.post('/admin/register', adminController.emailCheck, adminController.passwo
  })
 });
 
-// admin login route 
-myapp.post('/admin/login', authController.adminValidator,authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-    res.send({
-        "status": 200,
-        "message": "Admin logged in",
-        "token": req.genToken,
-        "info": req.userInfo
-    })
-});
 
 
 // get home page
