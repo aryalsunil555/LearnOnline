@@ -9,7 +9,7 @@ const Op = Sequelize.Op;
 function studentRegister(req, res, next) {
     // console.log(req.body);
     usermodel.create({
-             
+
         first_name: req.body.FirstName,
         last_name: req.body.LastName,
         address: req.body.Address,
@@ -22,6 +22,22 @@ function studentRegister(req, res, next) {
         .then(function(result) {
             // console.log('data added');
             req.body.email = req.body.Email;
+            next();
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
+//delete student
+function deleteStudent(req, res, next){
+	usermodel.destroy({
+            where: {
+                id: req.params.id
+            },
+            raw: true
+        })
+        .then(function(result) {
             next();
         })
         .catch(function(err) {
@@ -119,6 +135,7 @@ function passwordHash(req, res, next) {
 
 module.exports = {
     studentRegister,
+    deleteStudent,
     studentUpdate,
     token,
     emailCheck,

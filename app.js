@@ -1,11 +1,11 @@
-var express = require('express'); var myapp = new express(); var bodyParser =
-require('body-parser'); var path = require('path'); var multer =
-require('multer');
+var express = require('express');
+var myapp = new express();
+var bodyParser = require('body-parser');
+var path = require('path');
+var multer = require('multer');
 
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-
-
 
 
 let initCallback;
@@ -16,7 +16,7 @@ myapp.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'content-type,X-Requested-With,authorization');
-    next(); // next passes to another application middleware 
+    next(); // next passes to another application middleware
 });
 
 
@@ -39,9 +39,6 @@ myapp.set('view engine', 'ejs');
 // sequelize
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/studentModel.js');
-var mysequelize = require('./models/teacherModel.js');
-
-
 var mysequelize = require('./models/teacherModel.js');
 
 
@@ -83,9 +80,6 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 });
 
 
-
-
-
 //Student Register
 myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
@@ -94,6 +88,7 @@ myapp.post('/student/register', studentController.emailCheck, studentController.
         "token": req.genToken
     })
 });
+
 
 // student login route
 myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
@@ -106,7 +101,7 @@ myapp.post('/student/login', authController.studentvalidator, authController.che
 });
 
 
-// Student Update 
+// Student Update
 myapp.put('/student/update/:id', studentController.studentUpdate, function(req, res) {
 
     res.send({
@@ -115,8 +110,6 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
         "info": req.userInfoo
     })
 });
-
-
 
 
 //Teacher Register
@@ -136,6 +129,8 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
     })
 
 });
+
+
 // admin login route
 myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
     // res.status(200);
@@ -148,7 +143,24 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     })
 });
 
-// teacher Update 
+
+// delete student data
+myapp.delete('/student/delete/:id', studentController.deleteStudent, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Student deleted"
+    })
+});
+
+// delete teacher data
+myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher deleted"
+    })
+});
+
+// teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
 
     res.send({
@@ -157,6 +169,7 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
         "info": req.userInfoo
     })
 });
+
 
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
@@ -167,7 +180,8 @@ myapp.post('/admin/register', adminController.emailCheck, adminController.passwo
  })
 });
 
-// admin login route 
+
+// admin login route
 myapp.post('/admin/login', authController.adminValidator,authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
@@ -177,6 +191,7 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
     })
 });
 
+
 //Course Register
 myapp.post('/course/register', courseController.courseRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
@@ -185,6 +200,7 @@ myapp.post('/course/register', courseController.courseRegister,authController.jw
         "token": req.genToken
     })
 });
+
 
 //Course Update
 myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res) {
@@ -197,16 +213,17 @@ myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res
 });
 
 
-
 // get home page
 myapp.get('/index', function(req, res) {
     res.render('pages/index');
 })
 
+
 // get admin login page
 myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
+
 
 // get teacher signup
 myapp.get('/teacher', function(req, res) {
@@ -228,8 +245,3 @@ myapp.listen(3000);
 
 
 module.exports = myapp;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> fcdc420db9a25c8982ae6e0ddd80246c32cc794a
