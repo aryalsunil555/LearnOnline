@@ -138,17 +138,9 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     res.send({
         "status": 200,
         "message": "Admin logged in",
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        // "token": req.genToken,
-        // "info": req.userInfo
-=======
-        "message": "Teacher logged in",
->>>>>>> a45567f4bea10d6164f4fd7c8457bfbfe855da89
         "token": req.genToken,
         "info": req.userInfo
->>>>>>> d9a5d5f66b4d2a983cb4e6ad88177f4bb07e2a7e
+
     })
 });
 
@@ -189,8 +181,6 @@ myapp.post('/admin/register', adminController.emailCheck, adminController.passwo
  })
 });
 
-<<<<<<< HEAD
-=======
 
 // admin login route
 myapp.post('/admin/login', authController.adminValidator,authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
@@ -201,7 +191,7 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
         "info": req.userInfo
     })
 });
->>>>>>> d9a5d5f66b4d2a983cb4e6ad88177f4bb07e2a7e
+
 
 
 //Course Register
@@ -209,7 +199,7 @@ myapp.post('/course/register', courseController.courseRegister,authController.jw
     res.send({
         "status": 200,
         "message": "New Course Date Registered",
-        "token": req.genToken
+        
     })
 });
 
@@ -245,14 +235,11 @@ myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
 
-<<<<<<< HEAD
 //get admin dashboard page
 myapp.get('/admindashboard', function(req, res) {
     res.render('admin/admindashboard');
 })
 
-=======
->>>>>>> a45567f4bea10d6164f4fd7c8457bfbfe855da89
 
 // get teacher signup
 myapp.get('/teacher/register', function(req, res) {
