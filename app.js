@@ -64,6 +64,7 @@ var studentController = require('./controllers/studentController');
 var teacherController = require('./controllers/teacherController');
 var adminController = require('./controllers/adminController');
 var courseController = require('./controllers/courseController');
+var coursetypeController = require('./controllers/coursetypeController');
 
 
 // routes
@@ -137,11 +138,17 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     res.send({
         "status": 200,
         "message": "Admin logged in",
+<<<<<<< HEAD
         // "token": req.genToken,
         // "info": req.userInfo
         "message": "Teacher logged in",
         "token": req.genToken,
         "info": req.userInfo
+=======
+        "token": req.genToken,
+        "info": req.userInfo
+
+>>>>>>> ba9b3684a11ee69affd4d6c5c504efd1e06442d5
     })
 });
 
@@ -182,7 +189,10 @@ myapp.post('/admin/register', adminController.emailCheck, adminController.passwo
  })
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ba9b3684a11ee69affd4d6c5c504efd1e06442d5
 
 // admin login route
 myapp.post('/admin/login', authController.adminValidator,authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
@@ -193,10 +203,14 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
         "info": req.userInfo
     })
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> ba9b3684a11ee69affd4d6c5c504efd1e06442d5
 
 
 //Course Register
-myapp.post('/course/register', courseController.courseRegister,authController.jwtTokenGen, function(req, res) {
+myapp.post('/course/register', courseController.courseRegister, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Course Date Registered",
@@ -215,6 +229,15 @@ myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res
     })
 });
 
+//courseType Register
+myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, function(req, res) {
+    res.send({
+        "status":200,
+        "message":"New coourse type registered",
+        "token":req.genToken    
+    })
+});
+
 
 // get home page
 myapp.get('/index', function(req, res) {
@@ -227,8 +250,12 @@ myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
 
+<<<<<<< HEAD
 
 //get admin dashboard
+=======
+//get admin dashboard page
+>>>>>>> ba9b3684a11ee69affd4d6c5c504efd1e06442d5
 myapp.get('/admindashboard', function(req, res) {
     res.render('admin/admindashboard');
 })
