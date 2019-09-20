@@ -195,11 +195,11 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
 
 
 //Course Register
-myapp.post('/course/register', courseController.courseRegister,authController.jwtTokenGen, function(req, res) {
+myapp.post('/course/register', courseController.courseRegister, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Course Date Registered",
-        
+        "token": req.genToken
     })
 });
 
