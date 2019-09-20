@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+
+
+<script type="text/javascript" src="../jquery/jquery.min.js">
+  </script>
+
+  <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../bootstrap/popperjs/popper.min.js"></script>
+  <script type="text/javascript" src="../js/addcourse.js"></script>
+	
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">cyberSchool</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Course Overview</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#" id="navAddCourse">Add Courses</a>
+          <a class="dropdown-item" href="#" id="navViewCourse">View Courses</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="teacherContainer">
+  <section class="addcourseFormHolder" id="addcourseFormHolder-id">
+    <form class=""  method="post" id="addcourseForm">
+      <h3>Add Courses</h3>
+      <input type="text" name="" value="I am title" id="addCourseTitle" placeholder="Enter the First Name" class="signupInputs form-control">
+
+      <textarea id="addCourseDescription" placeholder="Enter the course Description"></textarea>
+
+      <input type="text" name="" value="courseCredit" id="addCourseCredit" placeholder="Enter the Last Name" class="signupInputs form-control">
+
+      <input type="text" name="" value="100" id="addCourseFee" class="signupInputs form-control" placeholder="Enter the phone">   
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="addCourseImage">
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+
+        <input type="date" class="form-control" name="" id="addCourseStartDate" placeholder="Enter start date">
+        <input type="date" class="form-control" name="" id="addCourseEndDate" placeholder="Enter end date">
+    
+     
+      <button type="submit" name="button" class="btn btn-primary">
+        Add Course
+      </button>
+
+    </form>
+</section>
+
+<section class="listOfCourses" id="listOfCourses-id" style="display: none">
+  <div>
+    <a href="">
+ hello there
+
+      
+    </a>
+  </div>
+</section>
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+
+</html>

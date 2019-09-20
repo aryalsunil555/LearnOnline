@@ -23,7 +23,7 @@ function courseRegister(req, res, next) {
             next();
         })
         .catch(function(err) {
-            next({ "status": 500, "message": "DB Error" });
+            next({ "status": 500, "message": "course DB Error" });
         })
 }
 

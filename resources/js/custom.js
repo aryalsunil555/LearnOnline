@@ -51,17 +51,10 @@ $(document).ready(function() {
                     // setting a timeout
                 },
                 success: function(result, status) {
-                    // console.log(result);
-                    // console.log(status);
+                    
                     var message = result.message;
                     alert(message);
-                    // alert("Student Successfully Registered");
-                    // window.localStorage.clear();
-                    // window.sessionStorage.clear();
-                    // window.localStorage.setItem('token', result.token);
-                    // window.location.href = "../user/dashboard.html";
-
-
+                 
                     //TO CHANGE THE INPUT FIELDS BLANK AFTER REGISTRATION//
                     for (var i = 0; i < signupInputs.length; i++) {
                         signupInputs[i].value = '';
@@ -73,16 +66,13 @@ $(document).ready(function() {
 
                 },
                 error: function(jqXHR, status) {
-                    // console.log(jqXHR);
-                    // console.log(jqXHR.status);
                     console.log(status);
                     console.log(jqXHR.responseJSON.message);
-                    // $('#message').html(jqXHR.responseJSON.message);
-                    // console.log('data upload failed');
                     alert(jqXHR.responseJSON.message);
                 }
             });
-        } else {
+        } 
+        else {
             $(StudentPassword).addClass("errorInput");
             $(StudentPassword).focus();
 
@@ -90,7 +80,7 @@ $(document).ready(function() {
     });
 
 
-    // for LOGIN
+    // Student Login
     $(document).on('submit', '#loginForm', function(event) {
         event.preventDefault();
         const myFormData = {
@@ -115,7 +105,8 @@ $(document).ready(function() {
                 // alert('FAILED');
                 // }
 
-                alert('LOGGED IN SUCCESSFULLY');
+                // alert('LOGGED IN SUCCESSFULLY');
+                alert(result.message);
                 window.location.href = "courses";
                 // $('#login').text("LogOut");
             },
