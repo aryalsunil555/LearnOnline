@@ -65,6 +65,7 @@ var studentController = require('./controllers/studentController');
 var teacherController = require('./controllers/teacherController');
 var adminController = require('./controllers/adminController');
 var courseController = require('./controllers/courseController');
+var coursetypeController = require('./controllers/coursetypeController');
 
 
 myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
@@ -177,6 +178,15 @@ myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res
     })
 });
 
+//courseType Register
+myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, function(req, res) {
+    res.send({
+        "status":200,
+        "message":"New coourse type registered",
+        "token":req.genToken    
+    })
+});
+
 
 
 // get home page
@@ -199,5 +209,3 @@ myapp.listen(3000);
 
 
 module.exports = myapp;
-
-
