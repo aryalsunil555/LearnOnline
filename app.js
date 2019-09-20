@@ -8,8 +8,6 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 
-
-
 let initCallback;
 
 
@@ -18,7 +16,7 @@ myapp.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'content-type,X-Requested-With,authorization');
-    next(); // next passes to another application middleware 
+    next(); // next passes to another application middleware
 });
 
 
@@ -42,7 +40,6 @@ myapp.set('view engine', 'ejs');
 var mysequelize = require('./configs/dbconfigs.js');
 var mysequelize = require('./models/studentModel.js');
 var mysequelize = require('./models/teacherModel.js');
-var mysequelize = require('./models/teacherModel.js');
 
 
 // multer storage
@@ -56,6 +53,8 @@ var mystorage = multer.diskStorage({
         req.testVall = name;
     }
 });
+
+
 var upload = multer({ storage: mystorage });
 
 
@@ -68,6 +67,11 @@ var courseController = require('./controllers/courseController');
 var coursetypeController = require('./controllers/coursetypeController');
 
 
+// routes
+// var adminRoutes = require('./routes/adminRoutes')(myapp);
+//var userRoutes = require('./routes/userRoutes')(myapp);
+
+//upload register profile photo
 myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
     res.send({
         "status": 200,
@@ -75,7 +79,6 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
         "name": req.testVall
     })
 });
-
 
 
 //Student Register
@@ -86,6 +89,7 @@ myapp.post('/student/register', studentController.emailCheck, studentController.
         "token": req.genToken
     })
 });
+
 
 // student login route
 myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
@@ -98,7 +102,7 @@ myapp.post('/student/login', authController.studentvalidator, authController.che
 });
 
 
-// Student Update 
+// Student Update
 myapp.put('/student/update/:id', studentController.studentUpdate, function(req, res) {
 
     res.send({
@@ -107,8 +111,6 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
         "info": req.userInfoo
     })
 });
-
-
 
 
 //Teacher Register
@@ -124,13 +126,50 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
 myapp.post('/teacher/login', authController.teachervalidator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
+        "message": "Teacher logged in"
+    })
+
+});
+
+
+// admin login route
+myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
+    // res.status(200);
+    res.send({
+        "status": 200,
+        "message": "Admin logged in",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        // "token": req.genToken,
+        // "info": req.userInfo
+=======
         "message": "Teacher logged in",
+>>>>>>> a45567f4bea10d6164f4fd7c8457bfbfe855da89
         "token": req.genToken,
         "info": req.userInfo
+>>>>>>> d9a5d5f66b4d2a983cb4e6ad88177f4bb07e2a7e
     })
 });
 
-// teacher Update 
+
+// delete student data
+myapp.delete('/student/delete/:id', studentController.deleteStudent, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Student deleted"
+    })
+});
+
+// delete teacher data
+myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher deleted"
+    })
+});
+
+// teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
 
     res.send({
@@ -139,6 +178,7 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
         "info": req.userInfoo
     })
 });
+
 
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
@@ -149,7 +189,10 @@ myapp.post('/admin/register', adminController.emailCheck, adminController.passwo
  })
 });
 
-// admin login route 
+<<<<<<< HEAD
+=======
+
+// admin login route
 myapp.post('/admin/login', authController.adminValidator,authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
@@ -158,6 +201,8 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
         "info": req.userInfo
     })
 });
+>>>>>>> d9a5d5f66b4d2a983cb4e6ad88177f4bb07e2a7e
+
 
 //Course Register
 myapp.post('/course/register', courseController.courseRegister,authController.jwtTokenGen, function(req, res) {
@@ -167,6 +212,7 @@ myapp.post('/course/register', courseController.courseRegister,authController.jw
         "token": req.genToken
     })
 });
+
 
 //Course Update
 myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res) {
@@ -188,12 +234,35 @@ myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, func
 });
 
 
-
 // get home page
 myapp.get('/index', function(req, res) {
     res.render('pages/index');
 })
 
+
+// get admin login page
+myapp.get('/admin', function(req, res) {
+    res.render('admin/admin');
+})
+
+<<<<<<< HEAD
+//get admin dashboard page
+myapp.get('/admindashboard', function(req, res) {
+    res.render('admin/admindashboard');
+})
+
+=======
+>>>>>>> a45567f4bea10d6164f4fd7c8457bfbfe855da89
+
+// get teacher signup
+myapp.get('/teacher/register', function(req, res) {
+    res.render('teacher/teacher');
+})
+
+// get course view
+myapp.get('/courses', function(req,res) {
+    res.render('pages/courses/courses');
+})
 
 myapp.use(function(err, req, res, next) {
     console.log(err);

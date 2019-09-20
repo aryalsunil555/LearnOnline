@@ -9,7 +9,7 @@ const Op = Sequelize.Op;
 function teacherRegister(req, res, next) {
     // console.log(req.body);
     teachermodel.create({
-         
+
         first_name:req.body.FirstName,
         last_name:req.body.LastName,
         dob:req.body.DOB,
@@ -56,6 +56,22 @@ function teacherUpdate(req, res, next) {
     } else {
         next({ "status": 500, "message": "Invalid Teacher" });
     }
+}
+
+//delete teacher
+function deleteTeacher(req, res, next){
+	teachermodel.destroy({
+            where: {
+                id: req.params.id
+            },
+            raw: true
+        })
+        .then(function(result) {
+            next();
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
 }
 
 
@@ -113,13 +129,13 @@ function passwordHash(req, res, next) {
         .catch(function(err) {
             console.log(err);
         })
-
 }
 
 
 
 module.exports = {
     teacherRegister,
+    deleteTeacher,
     teacherUpdate,
     token,
     emailCheck,
