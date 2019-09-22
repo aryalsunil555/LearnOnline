@@ -1,4 +1,4 @@
-var coursemodel = require('../models/courseModel');
+var coursetypemodel = require('../models/coursetypeModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -6,37 +6,26 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-function courseRegister(req, res, next) {
+function coursetypeRegister(req, res, next) {
     // console.log(req.body);
     coursemodel.create({
              
-        title: req.body.Title,
-        description: req.body.Description,
-        credit: req.body.Credit,
-        fee: req.body.Fee,
-        course_image: req.body.CourseImage,
-        start_date: req.body.StartDate,
-        end_date: req.body.EndDate
+        coursetype_title: req.body.CoursetypeTitle
         })
         .then(function(result) {
        
             next();
         })
         .catch(function(err) {
-            next({ "status": 500, "message": "course DB Error" });
+            next({ "status": 500, "message": "DB Error" });
         })
 }
 
 //course update
-function courseUpdate(req, res, next) {
+function coursetypeUpdate(req, res, next) {
 if (req.body.id != '') {
-    coursemodel.update({
-        title: req.body.Title,
-        description: req.body.Description,
-        credit: req.body.Credit,
-        fee: req.body.Fee,
-        start_date: req.body.StartDate,
-        end_date: req.body.EndDate
+    coursetypemodel.update({
+        coursetype_title: req.body.CoursetypeTitle
         }, {
             where: { id: req.params.id }
         })
@@ -47,7 +36,7 @@ if (req.body.id != '') {
             next({ "status":500, "message": "DB Error" });
         })
     } else {
-        next({ "status": 500, "message":"Invalid course data" });
+        next({ "status": 500, "message":"Invalid coursetype data" });
 
     }
           }
@@ -80,8 +69,8 @@ function token(req, res, next) {
 
 
 module.exports = {
-    courseRegister,
-    courseUpdate,
+    coursetypeRegister,
+    coursetypeUpdate,
        token,
   
 

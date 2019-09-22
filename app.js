@@ -64,6 +64,7 @@ var studentController = require('./controllers/studentController');
 var teacherController = require('./controllers/teacherController');
 var adminController = require('./controllers/adminController');
 var courseController = require('./controllers/courseController');
+var coursetypeController = require('./controllers/coursetypeController');
 
 
 // routes
@@ -133,12 +134,14 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
 
 // admin login route
 myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-    // res.status(200);
     res.send({
         "status": 200,
         "message": "Admin logged in",
+<<<<<<< HEAD
         "token" : req.genToken,
         "info": req.userInfo
+=======
+>>>>>>> 43114e41ddef47a6b04496ba5a844f9b5055f272
     })
 });
 
@@ -192,7 +195,7 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
 
 
 //Course Register
-myapp.post('/course/register', courseController.courseRegister,authController.jwtTokenGen, function(req, res) {
+myapp.post('/course/register', courseController.courseRegister, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Course Date Registered",
@@ -211,6 +214,15 @@ myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res
     })
 });
 
+//courseType Register
+myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, function(req, res) {
+    res.send({
+        "status":200,
+        "message":"New coourse type registered",
+        "token":req.genToken    
+    })
+});
+
 
 // get home page
 myapp.get('/index', function(req, res) {
@@ -223,6 +235,10 @@ myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 43114e41ddef47a6b04496ba5a844f9b5055f272
 //get admin dashboard page
 myapp.get('/admindashboard', function(req, res) {
     res.render('admin/admindashboard');
@@ -233,6 +249,13 @@ myapp.get('/admindashboard', function(req, res) {
 myapp.get('/teacher/register', function(req, res) {
     res.render('teacher/teacher');
 })
+
+// get course add form 
+myapp.get('/teacher/courses', function(req, res) {
+    res.render('teacher/teachercourses');
+})
+
+
 
 // get course view
 myapp.get('/courses', function(req,res) {
