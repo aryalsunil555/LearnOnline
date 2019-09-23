@@ -82,7 +82,7 @@ myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req,
 
 
 //Student Register
-myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister,authController.jwtTokenGen, function(req, res) {
+myapp.post('/student/register', studentController.duplicateEmail, studentController.emailCheck, studentController.passwordHash, studentController.studentRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Student Registered",
@@ -114,7 +114,7 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
 
 
 //Teacher Register
-  myapp.post('/teacher/register', teacherController.emailCheck, teacherController.passwordHash, teacherController.teacherRegister,authController.jwtTokenGen, function(req, res) {
+  myapp.post('/teacher/register', teacherController.duplicateEmail, teacherController.emailCheck, teacherController.passwordHash, teacherController.teacherRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Teacher Registered",

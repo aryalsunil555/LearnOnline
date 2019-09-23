@@ -1,4 +1,5 @@
 var teachermodel = require('../models/teacherModel');
+var studentmodel = require('../models/studentModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -115,7 +116,26 @@ function emailCheck(req, res, next) {
 }
 
 
-
+// duplicate email Check
+function duplicateEmail(req, res, next) {
+   
+    studentmodel.findOne({
+            where: { email: req.body.Email }
+        })
+        .then(function(result) {
+            if (result.dataValues != '') {
+                var fs = require('fs');
+                // fs.unlinkSync('./resources/images/profile/' + photo);
+                next({
+                    "status": 409,
+                    "message": "Email already exists"
+                });
+            }
+        })
+        .catch(function(result) {
+            next();
+        })
+}
 
 // has password
 function passwordHash(req, res, next) {
@@ -139,6 +159,7 @@ module.exports = {
     teacherUpdate,
     token,
     emailCheck,
+    duplicateEmail,
     passwordHash,
 
 }
