@@ -198,7 +198,7 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
 myapp.post('/course/register', courseController.courseRegister, function(req, res) {
     res.send({
         "status": 200,
-        "message": "New Course Date Registered",
+        "message": "New Course Data Registered",
         "token": req.genToken
     })
 });
@@ -218,10 +218,20 @@ myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res
 myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, function(req, res) {
     res.send({
         "status":200,
-        "message":"New coourse type registered",
+        "message":"New course type registered",
         "token":req.genToken    
     })
 });
+
+//CourseType Update
+myapp.put('/coursetype/update/:coursetype_id', coursetypeController.coursetypeUpdate, function(req, res){
+    res.send({
+        "status":200,
+        "message":"coursetype data updated",
+        "info":req.userInfo
+    })
+});
+
 
 
 // get home page
