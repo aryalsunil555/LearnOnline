@@ -137,12 +137,10 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     res.send({
         "status": 200,
         "message": "Admin logged in",
-<<<<<<< HEAD
+
         "token" : req.genToken,
         "info": req.userInfo
-=======
->>>>>>> 43114e41ddef47a6b04496ba5a844f9b5055f272
-    })
+ })
 });
 
 
@@ -235,10 +233,6 @@ myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 43114e41ddef47a6b04496ba5a844f9b5055f272
 //get admin dashboard page
 myapp.get('/admindashboard', function(req, res) {
     res.render('admin/admindashboard');
