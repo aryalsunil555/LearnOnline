@@ -134,14 +134,13 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
 
 // admin login route
 myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
-    // res.status(200);
     res.send({
         "status": 200,
         "message": "Admin logged in",
-        "token": req.genToken,
-        "info": req.userInfo
 
-    })
+        "token" : req.genToken,
+        "info": req.userInfo
+ })
 });
 
 
@@ -191,7 +190,6 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
         "info": req.userInfo
     })
 });
-
 
 
 //Course Register
@@ -255,6 +253,13 @@ myapp.get('/admindashboard', function(req, res) {
 myapp.get('/teacher/register', function(req, res) {
     res.render('teacher/teacher');
 })
+
+// get course add form 
+myapp.get('/teacher/courses', function(req, res) {
+    res.render('teacher/teachercourses');
+})
+
+
 
 // get course view
 myapp.get('/courses', function(req,res) {

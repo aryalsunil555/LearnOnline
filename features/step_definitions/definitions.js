@@ -49,4 +49,22 @@ Then(/^send GET request to "([^"]*)", user name should be "([^"]*)"$/, async fun
 });
 
 
+Then(/^Put to service api "([^"]*)" with '([^']*)' and I should get the '([^']*)'$/, async function (url, data, expectval) {
+    var option = {
+        headers: { 'Content-Type': 'application/json' },
+        json: true,
+        body: JSON.parse(data)
+    };
+
+    res = await got.put(url, option);
+    var data = res.body;
+    var assertdata = JSON.parse(expectval);
+    return assert.deepEqual(data, assertdata);
+});
+
+
+
+
+
+
 

@@ -1,4 +1,4 @@
-Feature: <Feature Name>
+Feature: <Admin Login>
 This is a restful api service test project.
 You can use json-mock as an api server. Before runing the script, please init the mock message and start the json-mock server. It can be found in your project's node_modules folder. 
 Steps:
@@ -21,9 +21,7 @@ Steps:
   #     | http://localhost:3000/users | { "id": 3, "name": "Zack", "location": "CHINA"} | { "id": 3, "name": "Zack", "location": "CHINA"} |
   Scenario Outline: Post admin data
     * Post to service api "<URL>" with '<data>' and I should get the '<expectval>'
+    * 
     Examples: 
-      | URL                               | data                                            | expectval        |
-      | http://localhost:3000/admin/login | { "Email": "susan@gmail.com", "Password": "12"} | { "status": 200, "message": "Admin logged in"} |
-
-
-      
+      | URL                               | data                                            | expectval                                                   |
+      | http://localhost:3000/admin/login | { "Email": "susan@gmail.com", "Password": "12"} | { "status": 200, "message": "Admin logged in", "token": ""} |
