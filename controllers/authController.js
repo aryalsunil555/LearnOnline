@@ -61,6 +61,7 @@ function teachervalidator(req, res, next) {
 
 // check admin email for validation
 function adminValidator(req, res, next) {
+    // console.log(req.body.Email);
     adminmodel.findOne({
             where: {
                 email: req.body.Email

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "json-mock": "json-mock data.json"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,10 @@
     "sequelize": "^5.16.0",
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.0.7",
-    "yarn": "^1.17.3"
+    "yarn": "^1.17.3",
+    "@types/got": "^8.3.4",
+    "got": "^9.2.2",
+    "json-mock": "^0.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

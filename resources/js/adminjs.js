@@ -18,7 +18,13 @@ $(document).ready(function() {
           data: JSON.stringify(myFormData),
           success: function(result, status) {
              window.localStorage.setItem('token', result.token);
-             alert('LOGGED IN SUCCESSFULLY');    
+             alert(result.message);
+             window.location.href = "admindashboard";
+
+
+
+
+   
           },
           error: function(jqXHR, status) {
             alert(jqXHR.responseJSON.message);

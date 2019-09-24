@@ -13,11 +13,11 @@ document.addEventListener('click', (e) => {
 
 
 $(document).ready(function() {
-  // let signupForm=$('signupForm').val();
-  // let loginForm=$('loginForm').val();
+    // let signupForm=$('signupForm').val();
+    // let loginForm=$('loginForm').val();
 
-  let signupForm=$('#signupForm');
-  let loginForm=$('#loginForm');
+    let signupForm = $('#signupForm');
+    let loginForm = $('#loginForm');
 
 
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
         var cpassword = $('#StudentConfirmPassword').val();
         if (password == cpassword) {
             var gender = $("input[name='gender']:checked").val();
-            var signupInputs=$('.signupInputs');
+            var signupInputs = $('.signupInputs');
 
 
             var studentRegisterFormData = {
@@ -47,88 +47,75 @@ $(document).ready(function() {
                 method: 'post',
                 contentType: 'application/json',
                 data: JSON.stringify(studentRegisterFormData),
+                beforeSend: function() {
+                    // setting a timeout
+                },
                 success: function(result, status) {
-                    // console.log(result);
-                    // console.log(status);
-                    alert("Student Successfully Registered");
-                    // window.localStorage.clear();
-                    // window.sessionStorage.clear();
-                    // window.localStorage.setItem('token', result.token);
-                    // window.location.href = "../user/dashboard.html";
-
-
-                  //TO CHANGE THE INPUT FIELDS BLANK AFTER REGISTRATION//
-
-            for (var i = 0; i < signupInputs.length; i++) {
-                           signupInputs[i].value='';
-                       }
-            $("input[name='gender']").prop("unchecked",true);
-            $("#signupForm").css("display", "none");
-            $("#loginForm").css("display", "flex");
-            $("#loginEmail").focus();
+                    
+                    var message = result.message;
+                    alert(message);
+                 
+                    //TO CHANGE THE INPUT FIELDS BLANK AFTER REGISTRATION//
+                    for (var i = 0; i < signupInputs.length; i++) {
+                        signupInputs[i].value = '';
+                    }
+                    $("input[name='gender']").prop("unchecked", true);
+                    $("#signupForm").css("display", "none");
+                    $("#loginForm").css("display", "flex");
+                    $("#loginEmail").focus();
 
                 },
                 error: function(jqXHR, status) {
-                    // console.log(jqXHR);
-                    // console.log(jqXHR.status);
                     console.log(status);
                     console.log(jqXHR.responseJSON.message);
-                    // $('#message').html(jqXHR.responseJSON.message);
-                    // console.log('data upload failed');
                     alert(jqXHR.responseJSON.message);
                 }
             });
-        }
-        else{
-        	$(StudentPassword).addClass("errorInput");
+        } 
+        else {
+            $(StudentPassword).addClass("errorInput");
             $(StudentPassword).focus();
 
         }
     });
 
 
- // for LOGIN
-  $(document).on('submit', '#loginForm', function(event){
-    event.preventDefault();
-   const myFormData = {
-      Email : $('#loginEmail').val(),
-      Password : $('#loginPassword').val(),
-  }
-  console.log(myFormData);
-  $.ajax({
-          url: 'http://localhost:3000/student/login',
-          method: 'post',
-          contentType: 'application/json',
-          data: JSON.stringify(myFormData),
-          success: function(result, status) {
-            //console.log(result)
-             window.localStorage.setItem('token', result.token);
-             // if(result.userInfo.id==1){
-             //    alert('LOGGED IN SUCCESSFULLY');
-             // // window.location.href = "./dashboard/dashboard.html";
-             // }
-             // else{
-             // // window.location.href = "./dashboard/userDashboard.html";
-             // alert('FAILED');
-             // }
+    // Student Login
+    $(document).on('submit', '#loginForm', function(event) {
+        event.preventDefault();
+        const myFormData = {
+            Email: $('#loginEmail').val(),
+            Password: $('#loginPassword').val(),
+        }
+        console.log(myFormData);
+        $.ajax({
+            url: 'http://localhost:3000/student/login',
+            method: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify(myFormData),
+            success: function(result, status) {
+                //console.log(result)
+                window.localStorage.setItem('token', result.token);
+                // if(result.userInfo.id==1){
+                //    alert('LOGGED IN SUCCESSFULLY');
+                // // window.location.href = "./dashboard/dashboard.html";
+                // }
+                // else{
+                // // window.location.href = "./dashboard/userDashboard.html";
+                // alert('FAILED');
+                // }
 
-             alert('LOGGED IN SUCCESSFULLY');
-             window.location.href="courses";
-             $('#login').text("LogOut");
-          },
-          error: function(jqXHR, status) {
-            alert(jqXHR.responseJSON.message);
-              console.log(jqXHR.responseJSON.message);
-          }
-      });
-  });
-
-
-
-
-
-
-
+                // alert('LOGGED IN SUCCESSFULLY');
+                alert(result.message);
+                window.location.href = "courses";
+                // $('#login').text("LogOut");
+            },
+            error: function(jqXHR, status) {
+                alert(jqXHR.responseJSON.message);
+                console.log(jqXHR.responseJSON.message);
+            }
+        });
+    });
 
 
 });
