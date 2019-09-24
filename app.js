@@ -160,6 +160,14 @@ myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(re
     })
 });
 
+// delete Courses data
+myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Courses deleted"
+    })
+});
+
 // teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
 
@@ -169,6 +177,18 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
         "info": req.userInfoo
     })
 });
+
+
+
+// fetch student data
+myapp.get('/get/student/:id', studentController.getStudentData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Student data fetched",
+        "info": req.allUser
+    })
+});
+
 
 
 //adminRegister
@@ -225,10 +245,38 @@ myapp.get('/admin', function(req, res) {
 })
 
 
+
 // get teacher signup
 myapp.get('/teacher', function(req, res) {
     res.render('teacher/teacher');
 })
+
+//  student search
+myapp.post('/Student/search', studentController.searchStudent, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Student searched",
+        "info": req.User
+    })
+});
+
+//  teacher search
+myapp.post('/Teacher/search', teacherController.searchTeacher, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher searched",
+        "info": req.User
+    })
+});
+
+//  courses search
+myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Courses searched",
+        "info": req.User
+    })
+});
 
 
 myapp.use(function(err, req, res, next) {

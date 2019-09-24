@@ -75,6 +75,30 @@ function deleteTeacher(req, res, next){
 }
 
 
+//search teacher
+function searchTeacher(req, res, next){
+	var search = req.body.search
+console.log(search)
+    teachermodel.findAll({
+            where: {
+                first_name: {
+                    [Op.like]: '%' + search + '%'
+                }
+            },
+            raw: true
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.User = result;
+            // console.log(req.allUser);
+            next();
+            // console.log(result);
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
 // token
 function token(req, res, next) {
     jwt.sign({ username: req.body.username, accesslevel: 'superadmin' }, 'thisissecretkey', { expiresIn: '10h' },
@@ -138,6 +162,7 @@ module.exports = {
     teacherRegister,
     deleteTeacher,
     teacherUpdate,
+    searchTeacher,
     token,
     emailCheck,
     passwordHash,
