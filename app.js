@@ -67,15 +67,11 @@ var courseController = require('./controllers/courseController');
 var coursetypeController = require('./controllers/coursetypeController');
 
 
-// routes
-// var adminRoutes = require('./routes/adminRoutes')(myapp);
-//var userRoutes = require('./routes/userRoutes')(myapp);
-
-//upload register profile photo
-myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
-    res.send({
+// upload student profile Image
+myapp.post('/student/register/studentImage', upload.single('studentImage'), function(req, res) {
+       res.send({
         "status": 200,
-        "message": "Profile Image Registered",
+        "message": "Student Profile Image Registered",
         "name": req.testVall
     })
 });
@@ -131,18 +127,15 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
 
 });
 
+// teacher Update
+myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
 
-// admin login route
-myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
-        "message": "Admin logged in",
-
-        "token" : req.genToken,
-        "info": req.userInfo
- })
+        "message": "teacher data updated",
+        "info": req.userInfoo
+    })
 });
-
 
 // delete student data
 myapp.delete('/student/delete/:id', studentController.deleteStudent, function(req, res) {
@@ -160,15 +153,7 @@ myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(re
     })
 });
 
-// teacher Update
-myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
 
-    res.send({
-        "status": 200,
-        "message": "teacher data updated",
-        "info": req.userInfoo
-    })
-});
 
 
 //adminRegister

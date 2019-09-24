@@ -38,9 +38,15 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 	end_date: {
 		type: mysequelize.Sequelize.DATE,
 		allowNull : false
-	}
+	
 	},
 
+
+teacher_id: {
+	type: mysequelize.Sequelize.BIGINT,
+	allowNull : false
+}
+},
 
 {
 	freezeTableName : true,
@@ -49,7 +55,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 
 )
 
-myUsers.sync({force:true})
+myUsers.sync({force:false})
 
 
 module.exports = myUsers;
