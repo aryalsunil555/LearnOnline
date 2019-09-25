@@ -131,13 +131,9 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
 
     res.send({
         "status": 200,
-<<<<<<< HEAD
-        "message": "Admin logged in",
         "token" : req.genToken,
-=======
         "message": "teacher data updated",
         "info": req.userInfoo
->>>>>>> 6689b582f353e6aaf6160264cfbbf53f821f396e
     })
 });
 
@@ -157,7 +153,6 @@ myapp.get('/teacher/delete/:id', teacherController.deleteTeacher, function(req, 
     })
 });
 
-<<<<<<< HEAD
 // delete Courses data
 myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, res) {
     res.send({
@@ -165,11 +160,6 @@ myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, 
         "message": "Courses deleted"
     })
 });
-
-// teacher Update
-myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
-=======
->>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
 
 
 
@@ -270,7 +260,6 @@ myapp.get('/teacher/register', function(req, res) {
     res.render('teacher/teacher');
 })
 
-<<<<<<< HEAD
 //  student search
 myapp.post('/Student/search', studentController.searchStudent, function(req, res) {
     res.send({
@@ -298,7 +287,6 @@ myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
     })
 });
 
-=======
 // get course add form 
 myapp.get('/teacher/courses', function(req, res) {
     res.render('teacher/teachercourses');
@@ -310,7 +298,6 @@ myapp.get('/teacher/courses', function(req, res) {
 myapp.get('/courses', function(req,res) {
     res.render('pages/courses/courses');
 })
->>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
 
 myapp.use(function(err, req, res, next) {
     console.log(err);
