@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+      <link rel="stylesheet" href="../css/rating.css">
+
   </head>
   <body>
 
@@ -52,52 +54,64 @@
 
         <div class="coursesContainer">
 
-          <a href="../library/courseDetail.html" class="course">
-            <h6>FrontEnd Web Development</h6>
+          <a href="../library/courseDetail.html" class="courseBlock">
+            <h6>FrontEnd Web Development </h6>
             <div class="courseDesc">
-              <p>Learn to code websites using HTML,CSS and JavaScript</p>
-              <p>By: Robin Rai</p>
-              <p>$ 100</p>
+              <p>
+              <span class="courseTitle">Learn to code websites using HTML,CSS and JavaScript</span>
+              </p>
+
+              <!-- <p>Learn to code websites using HTML,CSS and JavaScript</p> -->
+              <p class="courseTeacher">By: <span class="courseTeacherLabel">Robin Rai</span></p>
+              <p class="coursePriceLabel"><span class="coursePriceLabel">Price: </span>$ 100</p>
+
+              <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5"/>
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4"/>
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3"/>
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2"/>
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1"/>
+                <label for="star1" title="text">1 star</label>
+            </div>
+            <br>
+            <br>
+
+            <span class="courseCredit"> 200 credit </span>
+
+
+
               <button type="button" name="button" class="btn btn-primary">Add to Cart</button> <br>
               <button type="button" name="button" class="btn btn-primary">BUY</button>
             </div>
           </a>
 
 
-          <a href="#" class="course">
-            <h6>Backend Web Development</h6>
-            <div class="courseDesc">
-              <p>Learn to code websites using HTML,CSS and JavaScript</p>
-              <p>By: Robin Rai</p>
-              <p>$ 100</p>
-              <button type="button" name="button">Add to Cart</button>
-            </div>
-          </a>
-
-
-          <a href="#" class="course">
-            <h6>Android App Development</h6>
-            <div class="courseDesc">
-              <p>Learn to code websites using HTML,CSS and JavaScript</p>
-              <p>By: Robin Rai</p>
-              <p>$ 100</p>
-              <button type="button" name="button">Add to Cart</button>
-            </div>
-          </a>
-
+       
         </div>
 
 
 
 
 
+
+
+
+
+
+
   </body>
-  <script type="text/javascript" src="../resource/jquery/jquery.min.js">
+ 
+  <script type="text/javascript" src="jquery/jquery.min.js">
   </script>
-  <script type="text/javascript" src="../resource/BS/popperjs/popper.min.js">
+
+  <script type="text/javascript" src="bootstrap/popperjs/popper.min.js">
   </script>
-  <script type="text/javascript" src="../resource/BS/js/bootstrap.min.js">
+
+  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js">
   </script>
-  <script type="text/javascript" src="../resource/CUSTOMJS/customjs.js">
-  </script>
+
 </html>

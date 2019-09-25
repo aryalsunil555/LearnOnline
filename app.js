@@ -132,8 +132,12 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
 
     res.send({
         "status": 200,
+
         "message": "teacher data updated",
         "info": req.userInfoo
+        "token": req.genToken,
+        "message": "Admin logged in",
+
     })
 });
 
@@ -246,6 +250,7 @@ myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
 
+
 //get admin dashboard page
 myapp.get('/admindashboard', function(req, res) {
     res.render('admin/admindashboard');
@@ -290,6 +295,11 @@ myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
 // get course add form
 myapp.get('/teacher/courses', function(req, res) {
     res.render('teacher/teachercourses');
+})
+
+// get courseDescription page
+myapp.get('/coursedescription', function(req, res) {
+    res.render('course/coursedescription');
 })
 
 
