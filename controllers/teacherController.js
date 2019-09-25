@@ -75,6 +75,22 @@ function deleteTeacher(req, res, next){
         })
 }
 
+//get teacher data
+function getTeacherData(req, res, next){
+	teachermodel.findOne({
+            where: { id: req.params.id }
+            // raw: true
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.allUser = result;
+            next();
+            // console.log(result);
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
 
 //search teacher
 function searchTeacher(req, res, next){
@@ -142,7 +158,7 @@ function emailCheck(req, res, next) {
 
 // duplicate email Check
 function duplicateEmail(req, res, next) {
-   
+
     studentmodel.findOne({
             where: { email: req.body.Email }
         })
@@ -181,6 +197,7 @@ module.exports = {
     teacherRegister,
     deleteTeacher,
     teacherUpdate,
+    getTeacherData,
     searchTeacher,
     token,
     emailCheck,

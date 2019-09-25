@@ -1,0 +1,26 @@
+*{
+	box-sizing: border-box;
+}
+
+.container-fluid{
+	position: relative;
+}
+
+.position-absolute{
+	width: 30%;
+	border:1px solid red;
+	background-color: pink;
+	position: absolute;
+	top:20px;
+	right: 20px;
+	padding:10px;
+}
+
+
+.position-absolute img{
+	width:100%;
+}
+
+.coursePrice{
+	font-size: 175%;
+}
