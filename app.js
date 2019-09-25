@@ -120,6 +120,13 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
 });
 
 
+//techer login
+myapp.post('/teacher/login', authController.teachervalidator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher logged in"
+    })
+});
 
 // teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
@@ -127,12 +134,13 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
     res.send({
         "status": 200,
         "message": "teacher data updated",
-        "info": req.userInfoo
+        "info": req.userInfoo,
+        "token": req.genToken,
     })
 });
 
 // delete student data
-myapp.delete('/student/delete/:id', studentController.deleteStudent, function(req, res) {
+myapp.get('/student/delete/:id', studentController.deleteStudent, function(req, res) {
     res.send({
         "status": 200,
         "message": "Student deleted"
@@ -140,7 +148,7 @@ myapp.delete('/student/delete/:id', studentController.deleteStudent, function(re
 });
 
 // delete teacher data
-myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
+myapp.get('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
     res.send({
         "status": 200,
         "message": "Teacher deleted"
@@ -149,7 +157,7 @@ myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(re
 
 
 // delete Courses data
-myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, res) {
+myapp.get('/course/delete/:id', courseController.deleteCourse, function(req, res) {
     res.send({
         "status": 200,
         "message": "Courses deleted"
@@ -168,6 +176,14 @@ myapp.get('/get/student/:id', studentController.getStudentData, function(req, re
 });
 
 
+// fetch teacher data
+myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher data fetched",
+        "info": req.allUser
+    })
+});
 
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
@@ -215,7 +231,7 @@ myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, func
     res.send({
         "status":200,
         "message":"New course type registered",
-        "token":req.genToken    
+        "token":req.genToken
     })
 });
 
@@ -240,6 +256,7 @@ myapp.get('/index', function(req, res) {
 myapp.get('/admin', function(req, res) {
     res.render('admin/admin');
 })
+
 
 //get admin dashboard page
 myapp.get('/admindashboard', function(req, res) {
@@ -282,9 +299,14 @@ myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
 });
 
 
-// get course add form 
+// get course add form
 myapp.get('/teacher/courses', function(req, res) {
     res.render('teacher/teachercourses');
+})
+
+// get courseDescription page
+myapp.get('/coursedescription', function(req, res) {
+    res.render('course/coursedescription');
 })
 
 
