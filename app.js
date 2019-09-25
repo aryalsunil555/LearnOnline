@@ -136,6 +136,7 @@ myapp.post('/admin/login', authController.adminValidator, authController.checkPa
     res.send({
         "status": 200,
         "message": "Admin logged in",
+        "token" : req.genToken,
     })
 });
 
@@ -149,7 +150,7 @@ myapp.delete('/student/delete/:id', studentController.deleteStudent, function(re
 });
 
 // delete teacher data
-myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
+myapp.get('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
     res.send({
         "status": 200,
         "message": "Teacher deleted"
