@@ -124,7 +124,6 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
         "status": 200,
         "message": "Teacher logged in"
     })
-
 });
 
 // teacher Update
@@ -132,12 +131,9 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
 
     res.send({
         "status": 200,
-
         "message": "teacher data updated",
         "info": req.userInfoo,
         "token": req.genToken,
-        "message": "Admin logged in",
-
     })
 });
 
@@ -175,6 +171,7 @@ myapp.get('/get/student/:id', studentController.getStudentData, function(req, re
         "info": req.allUser
     })
 });
+
 
 // fetch teacher data
 myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, res) {
