@@ -138,7 +138,7 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
 });
 
 // delete student data
-myapp.delete('/student/delete/:id', studentController.deleteStudent, function(req, res) {
+myapp.get('/student/delete/:id', studentController.deleteStudent, function(req, res) {
     res.send({
         "status": 200,
         "message": "Student deleted"
@@ -146,28 +146,21 @@ myapp.delete('/student/delete/:id', studentController.deleteStudent, function(re
 });
 
 // delete teacher data
-myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
+myapp.get('/teacher/delete/:id', teacherController.deleteTeacher, function(req, res) {
     res.send({
         "status": 200,
         "message": "Teacher deleted"
     })
 });
 
-<<<<<<< HEAD
+
 // delete Courses data
-myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, res) {
+myapp.get('/course/delete/:id', courseController.deleteCourse, function(req, res) {
     res.send({
         "status": 200,
         "message": "Courses deleted"
     })
 });
-
-// teacher Update
-myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
-=======
->>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
-
-
 
 
 // fetch student data
@@ -227,7 +220,7 @@ myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, func
     res.send({
         "status":200,
         "message":"New course type registered",
-        "token":req.genToken    
+        "token":req.genToken
     })
 });
 
@@ -265,7 +258,7 @@ myapp.get('/teacher/register', function(req, res) {
     res.render('teacher/teacher');
 })
 
-<<<<<<< HEAD
+
 //  student search
 myapp.post('/Student/search', studentController.searchStudent, function(req, res) {
     res.send({
@@ -293,8 +286,8 @@ myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
     })
 });
 
-=======
-// get course add form 
+
+// get course add form
 myapp.get('/teacher/courses', function(req, res) {
     res.render('teacher/teachercourses');
 })
@@ -305,7 +298,7 @@ myapp.get('/teacher/courses', function(req, res) {
 myapp.get('/courses', function(req,res) {
     res.render('pages/courses/courses');
 })
->>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
+
 
 myapp.use(function(err, req, res, next) {
     console.log(err);
