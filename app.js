@@ -134,7 +134,7 @@ myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, 
         "status": 200,
 
         "message": "teacher data updated",
-        "info": req.userInfoo
+        "info": req.userInfoo,
         "token": req.genToken,
         "message": "Admin logged in",
 
@@ -176,7 +176,14 @@ myapp.get('/get/student/:id', studentController.getStudentData, function(req, re
     })
 });
 
-
+// fetch teacher data
+myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher data fetched",
+        "info": req.allUser
+    })
+});
 
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
