@@ -1,12 +1,14 @@
 var mysequelize = require('../configs/dbconfigs')
 const myUsers = mysequelize.sequelize.define('myUsers',
 {
-	id: {
+	
+	coursetype_id: {
 		type: mysequelize.Sequelize.BIGINT,
 		primaryKey: true,
 		autoIncrement: true,
 		allowNull : false
 	},
+	
 	
 	coursetype_title: {
 		type: mysequelize.Sequelize.STRING,

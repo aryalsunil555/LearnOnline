@@ -9,21 +9,63 @@ const Op = Sequelize.Op;
 function courseRegister(req, res, next) {
     // console.log(req.body);
     coursemodel.create({
-             
+
         title: req.body.Title,
         description: req.body.Description,
         credit: req.body.Credit,
         fee: req.body.Fee,
         course_image: req.body.CourseImage,
         start_date: req.body.StartDate,
-        end_date: req.body.EndDate
+        end_date: req.body.EndDate,
+        teacher_id:req.body.TeacherID
+
         })
         .then(function(result) {
-       
+
+            next();
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
+//delete course
+function deleteCourse(req, res, next){
+	coursemodel.destroy({
+            where: {
+                id: req.params.id
+            },
+            raw: true
+        })
+        .then(function(result) {
             next();
         })
         .catch(function(err) {
             next({ "status": 500, "message": "course DB Error" });
+        })
+}
+
+//search Courses
+function searchCourse(req, res, next){
+	var search = req.body.search
+//console.log(search)
+    coursemodel.findAll({
+            where: {
+                title: {
+                    [Op.like]: '%' + search + '%'
+                }
+            },
+            raw: true
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.User = result;
+            // console.log(req.allUser);
+            next();
+            // console.log(result);
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
         })
 }
 
@@ -36,7 +78,9 @@ if (req.body.id != '') {
         credit: req.body.Credit,
         fee: req.body.Fee,
         start_date: req.body.StartDate,
-        end_date: req.body.EndDate
+        end_date: req.body.EndDate,
+        teacher_id:req.body.TeacherID
+
         }, {
             where: { id: req.params.id }
         })
@@ -51,6 +95,8 @@ if (req.body.id != '') {
 
     }
           }
+
+
 
 
 // token
@@ -81,8 +127,10 @@ function token(req, res, next) {
 
 module.exports = {
     courseRegister,
+    deleteCourse,
     courseUpdate,
+    searchCourse,
        token,
-  
+
 
 }

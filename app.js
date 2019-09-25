@@ -67,22 +67,18 @@ var courseController = require('./controllers/courseController');
 var coursetypeController = require('./controllers/coursetypeController');
 
 
-// routes
-// var adminRoutes = require('./routes/adminRoutes')(myapp);
-//var userRoutes = require('./routes/userRoutes')(myapp);
-
-//upload register profile photo
-myapp.post('/user/register/userPhoto', upload.single('UserPhoto'), function(req, res) {
-    res.send({
+// upload student profile Image
+myapp.post('/student/register/studentImage', upload.single('studentImage'), function(req, res) {
+       res.send({
         "status": 200,
-        "message": "Profile Image Registered",
+        "message": "Student Profile Image Registered",
         "name": req.testVall
     })
 });
 
 
 //Student Register
-myapp.post('/student/register', studentController.emailCheck, studentController.passwordHash, studentController.studentRegister,authController.jwtTokenGen, function(req, res) {
+myapp.post('/student/register', studentController.duplicateEmail, studentController.emailCheck, studentController.passwordHash, studentController.studentRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Student Registered",
@@ -114,7 +110,7 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
 
 
 //Teacher Register
-  myapp.post('/teacher/register', teacherController.emailCheck, teacherController.passwordHash, teacherController.teacherRegister,authController.jwtTokenGen, function(req, res) {
+  myapp.post('/teacher/register', teacherController.duplicateEmail, teacherController.emailCheck, teacherController.passwordHash, teacherController.teacherRegister,authController.jwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
         "message": "New Teacher Registered",
@@ -130,16 +126,20 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
     })
 });
 
+// teacher Update
+myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
 
-// admin login route
-myapp.post('/admin/login', authController.adminValidator, authController.checkPasswordMatch, authController.adminjwtTokenGen, function(req, res) {
     res.send({
         "status": 200,
+<<<<<<< HEAD
         "message": "Admin logged in",
         "token" : req.genToken,
+=======
+        "message": "teacher data updated",
+        "info": req.userInfoo
+>>>>>>> 6689b582f353e6aaf6160264cfbbf53f821f396e
     })
 });
-
 
 // delete student data
 myapp.delete('/student/delete/:id', studentController.deleteStudent, function(req, res) {
@@ -157,15 +157,32 @@ myapp.get('/teacher/delete/:id', teacherController.deleteTeacher, function(req, 
     })
 });
 
-// teacher Update
-myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
-
+<<<<<<< HEAD
+// delete Courses data
+myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, res) {
     res.send({
         "status": 200,
-        "message": "teacher data updated",
-        "info": req.userInfoo
+        "message": "Courses deleted"
     })
 });
+
+// teacher Update
+myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
+=======
+>>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
+
+
+
+
+// fetch student data
+myapp.get('/get/student/:id', studentController.getStudentData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Student data fetched",
+        "info": req.allUser
+    })
+});
+
 
 
 //adminRegister
@@ -193,7 +210,7 @@ myapp.post('/admin/login', authController.adminValidator,authController.checkPas
 myapp.post('/course/register', courseController.courseRegister, function(req, res) {
     res.send({
         "status": 200,
-        "message": "New Course Date Registered",
+        "message": "New Course Data Registered",
         "token": req.genToken
     })
 });
@@ -213,10 +230,20 @@ myapp.put('/course/update/:id', courseController.courseUpdate, function(req, res
 myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, function(req, res) {
     res.send({
         "status":200,
-        "message":"New coourse type registered",
+        "message":"New course type registered",
         "token":req.genToken    
     })
 });
+
+//CourseType Update
+myapp.put('/coursetype/update/:coursetype_id', coursetypeController.coursetypeUpdate, function(req, res){
+    res.send({
+        "status":200,
+        "message":"coursetype data updated",
+        "info":req.userInfo
+    })
+});
+
 
 
 // get home page
@@ -237,11 +264,41 @@ myapp.get('/admindashboard', function(req, res) {
 })
 
 
+
 // get teacher signup
 myapp.get('/teacher/register', function(req, res) {
     res.render('teacher/teacher');
 })
 
+<<<<<<< HEAD
+//  student search
+myapp.post('/Student/search', studentController.searchStudent, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Student searched",
+        "info": req.User
+    })
+});
+
+//  teacher search
+myapp.post('/Teacher/search', teacherController.searchTeacher, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Teacher searched",
+        "info": req.User
+    })
+});
+
+//  courses search
+myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Courses searched",
+        "info": req.User
+    })
+});
+
+=======
 // get course add form 
 myapp.get('/teacher/courses', function(req, res) {
     res.render('teacher/teachercourses');
@@ -253,6 +310,7 @@ myapp.get('/teacher/courses', function(req, res) {
 myapp.get('/courses', function(req,res) {
     res.render('pages/courses/courses');
 })
+>>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
 
 myapp.use(function(err, req, res, next) {
     console.log(err);

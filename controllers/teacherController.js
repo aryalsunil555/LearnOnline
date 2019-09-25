@@ -1,4 +1,5 @@
 var teachermodel = require('../models/teacherModel');
+var studentmodel = require('../models/studentModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -75,6 +76,30 @@ function deleteTeacher(req, res, next){
 }
 
 
+//search teacher
+function searchTeacher(req, res, next){
+	var search = req.body.search
+console.log(search)
+    teachermodel.findAll({
+            where: {
+                first_name: {
+                    [Op.like]: '%' + search + '%'
+                }
+            },
+            raw: true
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.User = result;
+            // console.log(req.allUser);
+            next();
+            // console.log(result);
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
 // token
 function token(req, res, next) {
     jwt.sign({ username: req.body.username, accesslevel: 'superadmin' }, 'thisissecretkey', { expiresIn: '10h' },
@@ -115,7 +140,26 @@ function emailCheck(req, res, next) {
 }
 
 
-
+// duplicate email Check
+function duplicateEmail(req, res, next) {
+   
+    studentmodel.findOne({
+            where: { email: req.body.Email }
+        })
+        .then(function(result) {
+            if (result.dataValues != '') {
+                var fs = require('fs');
+                // fs.unlinkSync('./resources/images/profile/' + photo);
+                next({
+                    "status": 409,
+                    "message": "Email already exists"
+                });
+            }
+        })
+        .catch(function(result) {
+            next();
+        })
+}
 
 // has password
 function passwordHash(req, res, next) {
@@ -137,8 +181,10 @@ module.exports = {
     teacherRegister,
     deleteTeacher,
     teacherUpdate,
+    searchTeacher,
     token,
     emailCheck,
+    duplicateEmail,
     passwordHash,
 
 }

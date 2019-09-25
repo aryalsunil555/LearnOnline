@@ -8,7 +8,7 @@ const Op = Sequelize.Op;
 
 function coursetypeRegister(req, res, next) {
     // console.log(req.body);
-    coursemodel.create({
+    coursetypemodel.create({
              
         coursetype_title: req.body.CoursetypeTitle
         })
@@ -21,25 +21,26 @@ function coursetypeRegister(req, res, next) {
         })
 }
 
-//course update
+//coursetype update
 function coursetypeUpdate(req, res, next) {
-if (req.body.id != '') {
-    coursetypemodel.update({
-        coursetype_title: req.body.CoursetypeTitle
-        }, {
-            where: { id: req.params.id }
-        })
-        .then(function(result) {
-            next();
-        })
-        .catch(function(err) {
-            next({ "status":500, "message": "DB Error" });
-        })
-    } else {
-        next({ "status": 500, "message":"Invalid coursetype data" });
-
-    }
-          }
+    if (req.body.coursetype_id != '') {
+        coursetypemodel.update({
+            coursetype_title: req.body.CoursetypeTitle
+          
+            }, {
+                where: { coursetype_id: req.params.coursetype_id }
+            })
+            .then(function(result) {
+                next();
+            })
+            .catch(function(err) {
+                next({ "status":500, "message": "DB Error in coursetype data" });
+            })
+        } else {
+            next({ "status": 500, "message":"Invalid coursetype data" });
+    
+        }
+              }
 
 
 // token
