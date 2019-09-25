@@ -87,11 +87,12 @@ myapp.post('/student/register', studentController.duplicateEmail, studentControl
 });
 
 
-// student login route
-myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
-    res.send({
+// student and teacher login route
+myapp.post('/student/login', authController.StudentTeacherEmailCheck, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {   
+res.send({
         "status": 200,
-        "message": "student logged in",
+        "message": "logged in",
+        "usertype": req.usertype,
         "token": req.genToken,
         "info": req.userInfo
     })
@@ -118,14 +119,7 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
     })
 });
 
-//techer login
-myapp.post('/teacher/login', authController.teachervalidator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
-    res.send({
-        "status": 200,
-        "message": "Teacher logged in"
-    })
 
-});
 
 // teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
@@ -153,7 +147,7 @@ myapp.delete('/teacher/delete/:id', teacherController.deleteTeacher, function(re
     })
 });
 
-<<<<<<< HEAD
+
 // delete Courses data
 myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, res) {
     res.send({
@@ -161,12 +155,6 @@ myapp.delete('/course/delete/:id', courseController.deleteCourse, function(req, 
         "message": "Courses deleted"
     })
 });
-
-// teacher Update
-myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
-=======
->>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
-
 
 
 
@@ -265,7 +253,7 @@ myapp.get('/teacher/register', function(req, res) {
     res.render('teacher/teacher');
 })
 
-<<<<<<< HEAD
+
 //  student search
 myapp.post('/Student/search', studentController.searchStudent, function(req, res) {
     res.send({
@@ -293,7 +281,7 @@ myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
     })
 });
 
-=======
+
 // get course add form 
 myapp.get('/teacher/courses', function(req, res) {
     res.render('teacher/teachercourses');
@@ -305,7 +293,7 @@ myapp.get('/teacher/courses', function(req, res) {
 myapp.get('/courses', function(req,res) {
     res.render('pages/courses/courses');
 })
->>>>>>> d467afc6b7564aad8dee47aedcdb724024c8795f
+
 
 myapp.use(function(err, req, res, next) {
     console.log(err);
