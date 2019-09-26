@@ -65,6 +65,7 @@ var teacherController = require('./controllers/teacherController');
 var adminController = require('./controllers/adminController');
 var courseController = require('./controllers/courseController');
 var coursetypeController = require('./controllers/coursetypeController');
+var ratingController = require('./controllers/ratingController');
 
 
 // upload student profile Image
@@ -234,7 +235,7 @@ myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, func
 });
 
 //CourseType Update
-myapp.put('/coursetype/update/:coursetype_id', coursetypeController.coursetypeUpdate, function(req, res){
+myapp.put('/coursetype/update/:id', coursetypeController.coursetypeUpdate, function(req, res){
     res.send({
         "status":200,
         "message":"coursetype data updated",
@@ -242,6 +243,23 @@ myapp.put('/coursetype/update/:coursetype_id', coursetypeController.coursetypeUp
     })
 });
 
+//Rating Table Register
+myapp.post('/rating/register', ratingController.ratingRegister, function(req, res){
+    res.send({
+        "status":200,
+        "message":"New Rating Data Registered",
+        "token":req.genToken
+    })
+});
+
+//Rating Table Update
+myapp.put('/rating/update/:id', ratingController.ratingUpdate, function(req, res){
+    res.send({
+        "status":200,
+        "message":"Rating Table Data Updated",
+        "info":req.userInfo
+    })
+});
 
 
 // get home page

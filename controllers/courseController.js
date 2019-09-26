@@ -17,7 +17,8 @@ function courseRegister(req, res, next) {
         course_image: req.body.CourseImage,
         start_date: req.body.StartDate,
         end_date: req.body.EndDate,
-        teacher_id:req.body.TeacherID
+        teacher_id:req.body.TeacherID,
+        coursetype_id:req.body.CourseTypeID
 
         })
         .then(function(result) {
@@ -79,7 +80,8 @@ if (req.body.id != '') {
         fee: req.body.Fee,
         start_date: req.body.StartDate,
         end_date: req.body.EndDate,
-        teacher_id:req.body.TeacherID
+        teacher_id:req.body.TeacherID,
+        coursetype_id:req.body.CourseTypeID
 
         }, {
             where: { id: req.params.id }

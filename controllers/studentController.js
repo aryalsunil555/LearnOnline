@@ -1,4 +1,4 @@
-var usermodel = require('../models/studentModel');
+var studentmodel = require('../models/studentModel');
 var teachermodel = require('../models/teacherModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
@@ -9,7 +9,7 @@ const Op = Sequelize.Op;
 
 function studentRegister(req, res, next) {
     // console.log(req.body);
-    usermodel.create({
+    studentmodel.create({
 
         first_name: req.body.FirstName,
         last_name: req.body.LastName,
@@ -32,7 +32,7 @@ function studentRegister(req, res, next) {
 
 //delete student
 function deleteStudent(req, res, next){
-	usermodel.destroy({
+	studentmodel.destroy({
             where: {
                 id: req.params.id
             },
@@ -77,7 +77,7 @@ function deleteStudent(req, res, next){
 function studentUpdate(req, res, next) {
     // console.log(req.body);
     if (req.body.id != '') {
-        usermodel.update({
+        studentmodel.update({
                 first_name: req.body.FirstName,
                 last_name: req.body.LastName,
                 address: req.body.Address,
@@ -103,7 +103,7 @@ function studentUpdate(req, res, next) {
 
 //get student data
 function getStudentData(req, res, next){
-	usermodel.findOne({
+	studentmodel.findOne({
             where: { id: req.params.id }
             // raw: true
         })
@@ -122,7 +122,7 @@ function getStudentData(req, res, next){
 function searchStudent(req, res, next){
 	var search = req.body.search
 //console.log(search)
-    usermodel.findAll({
+    studentmodel.findAll({
             where: {
                 first_name: {
                     [Op.like]: '%' + search + '%'
@@ -163,7 +163,7 @@ function token(req, res, next) {
 // email Check
 function emailCheck(req, res, next) {
     // var photo = req.body.Photo;
-    usermodel.findOne({
+    studentmodel.findOne({
             where: { email: req.body.Email }
         })
         .then(function(result) {

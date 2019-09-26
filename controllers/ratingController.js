@@ -1,4 +1,4 @@
-var coursetypemodel = require('../models/coursetypeModel');
+var ratingmodel = require('../models/ratingModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
@@ -6,14 +6,17 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-function coursetypeRegister(req, res, next) {
+function ratingRegister(req, res, next) {
     // console.log(req.body);
-    coursetypemodel.create({
-             
-        coursetype_title: req.body.CoursetypeTitle
+    ratingmodel.create({
+
+        rating: req.body.Rating,
+        courseID: req.body.CourseID,
+        studentID: req.body.StudentID
+       
         })
         .then(function(result) {
-       
+
             next();
         })
         .catch(function(err) {
@@ -21,26 +24,32 @@ function coursetypeRegister(req, res, next) {
         })
 }
 
-//coursetype update
-function coursetypeUpdate(req, res, next) {
-    if (req.body.id != '') {
-        coursetypemodel.update({
-            coursetype_title: req.body.CoursetypeTitle
-          
-            }, {
-                where: { id: req.params.id }
-            })
-            .then(function(result) {
-                next();
-            })
-            .catch(function(err) {
-                next({ "status":500, "message": "DB Error in coursetype data" });
-            })
-        } else {
-            next({ "status": 500, "message":"Invalid coursetype data" });
-    
-        }
-              }
+
+
+//Rating data update
+function ratingUpdate(req, res, next) {
+if (req.body.id != '') {
+    ratingmodel.update({
+        rating: req.body.Rating,
+        courseID: req.body.CourseID,
+        studentID: req.body.StudentID
+
+        }, {
+            where: { id: req.params.id }
+        })
+        .then(function(result) {
+            next();
+        })
+        .catch(function(err) {
+            next({ "status":500, "message": "DB Error" });
+        })
+    } else {
+        next({ "status": 500, "message":"Invalid Rating data" });
+
+    }
+          }
+
+
 
 
 // token
@@ -70,9 +79,11 @@ function token(req, res, next) {
 
 
 module.exports = {
-    coursetypeRegister,
-    coursetypeUpdate,
+    ratingRegister,
+ 
+    ratingUpdate,
+
        token,
-  
+
 
 }
