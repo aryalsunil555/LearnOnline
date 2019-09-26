@@ -23,12 +23,12 @@ function coursetypeRegister(req, res, next) {
 
 //coursetype update
 function coursetypeUpdate(req, res, next) {
-    if (req.body.coursetype_id != '') {
+    if (req.body.id != '') {
         coursetypemodel.update({
             coursetype_title: req.body.CoursetypeTitle
           
             }, {
-                where: { coursetype_id: req.params.coursetype_id }
+                where: { id: req.params.id }
             })
             .then(function(result) {
                 next();

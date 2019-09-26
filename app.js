@@ -237,7 +237,7 @@ myapp.post('/coursetype/register', coursetypeController.coursetypeRegister, func
 });
 
 //CourseType Update
-myapp.put('/coursetype/update/:coursetype_id', coursetypeController.coursetypeUpdate, function(req, res){
+myapp.put('/coursetype/update/:id', coursetypeController.coursetypeUpdate, function(req, res){
     res.send({
         "status":200,
         "message":"coursetype data updated",

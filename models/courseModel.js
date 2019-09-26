@@ -42,6 +42,13 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 	},
 
 
+
+coursetype_id: {
+	type: mysequelize.Sequelize.BIGINT,
+	allowNull : false
+},
+
+
 teacher_id: {
 	type: mysequelize.Sequelize.BIGINT,
 	allowNull : false
