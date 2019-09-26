@@ -38,6 +38,22 @@ function getCoursetypeData(req, res, next){
         })
 }
 
+//delete course type
+function deleteCoursetype(req, res, next){
+	coursetypemodel.destroy({
+            where: {
+                id: req.params.id
+            },
+            raw: true
+        })
+        .then(function(result) {
+            next();
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
 //coursetype update
 function coursetypeUpdate(req, res, next) {
     if (req.body.id != '') {
@@ -58,6 +74,7 @@ function coursetypeUpdate(req, res, next) {
 
         }
               }
+
 
 
 // token
@@ -89,6 +106,7 @@ function token(req, res, next) {
 module.exports = {
     coursetypeRegister,
     getCoursetypeData,
+    deleteCoursetype,
     coursetypeUpdate,
        token,
 

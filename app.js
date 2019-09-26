@@ -165,7 +165,13 @@ myapp.get('/course/delete/:id', courseController.deleteCourse, function(req, res
     })
 });
 
-
+// delete Course type data
+myapp.get('/coursetype/delete/:id', coursetypeController.deleteCoursetype, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Course Type deleted"
+    })
+});
 
 // fetch student data
 myapp.get('/get/student/:id', studentController.getStudentData, function(req, res) {
