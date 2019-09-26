@@ -19,7 +19,8 @@ function teacherRegister(req, res, next) {
         address:req.body.Address,
         email: req.body.Email,
         bio:req.body.Bio,
-        password: req.hashValue
+        password: req.hashValue,
+        studentID:req.body.studentID,
         })
         .then(function(result) {
             //console.log('data added');
@@ -43,7 +44,8 @@ function teacherUpdate(req, res, next) {
                 phone: req.body.Phone,
                 gender:req.body.Gender,
                 bio:req.body.Bio,
-                email:req.body.Email
+                email:req.body.Email,
+                studentID:req.body.studentID
             }, {
                 where: { id: req.params.id }
             })
