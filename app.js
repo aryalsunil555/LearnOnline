@@ -87,11 +87,12 @@ myapp.post('/student/register', studentController.duplicateEmail, studentControl
 });
 
 
-// student login route
-myapp.post('/student/login', authController.studentvalidator, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
-    res.send({
+// student and teacher login route
+myapp.post('/student/login', authController.StudentTeacherEmailCheck, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {   
+res.send({
         "status": 200,
-        "message": "student logged in",
+        "message": "logged in",
+        "usertype": req.usertype,
         "token": req.genToken,
         "info": req.userInfo
     })
@@ -118,6 +119,7 @@ myapp.put('/student/update/:id', studentController.studentUpdate, function(req, 
     })
 });
 
+
 //techer login
 myapp.post('/teacher/login', authController.teachervalidator,authController.checkPasswordMatch,authController.jwtTokenGen, function(req, res) {
     res.send({
@@ -128,16 +130,10 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
 
 // teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
-
     res.send({
         "status": 200,
         "token" : req.genToken,
-
-        "message": "teacher data updated",
         "info": req.userInfoo,
-        "token": req.genToken,
-        "message": "Admin logged in",
-
     })
 });
 
@@ -168,7 +164,6 @@ myapp.get('/course/delete/:id', courseController.deleteCourse, function(req, res
 
 
 
-
 // fetch student data
 myapp.get('/get/student/:id', studentController.getStudentData, function(req, res) {
     res.send({
@@ -177,6 +172,7 @@ myapp.get('/get/student/:id', studentController.getStudentData, function(req, re
         "info": req.allUser
     })
 });
+
 
 // fetch teacher data
 myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, res) {

@@ -10,4 +10,4 @@ Steps:
     * Get the service api "<URL>" and i should get the '<expectval>'
     Examples: 
       | URL                                 | expectval                                         |
-      | http://localhost:3000/get/student/1 | { "status": 200,"message": "Student data fetched","info": {"id": 1,"profile_image": null,"first_name": "Robin","last_name": "Rai","address": "Jorpati","phone": "9817849333","dob": "1995-03-02T00:00:00.000Z","gender": "male","verify": "0","email": "rai@gmail.com","password": "$2b$10$/9EVxYm74Va9a7q/cIuh7uyySOb2K3O0M34AlLYE7.h1iOFGDPAci","createdAt": "2019-09-23T12:48:27.000Z","updatedAt": "2019-09-23T12:48:27.000Z"} } |
+      | http://localhost:3000/get/student/1 | {"status": 200,"message": "Student data fetched","info": {"id": 1,"profile_image": null,"first_name": "Robin","last_name": "Rai","address": "Jorpati","phone": "9817849333","dob": "1995-03-02T00:00:00.000Z","gender": "male","verify": "0","email": "rai@gmail.com","password": "$2b$10$y.JLn/RaQkztzfnh0JHxiOvIB6aTPIxV.QYV3j6aFq8e9kF4PJ5vq","createdAt": "2019-09-25T08:31:10.000Z","updatedAt": "2019-09-25T08:31:10.000Z"}}|
