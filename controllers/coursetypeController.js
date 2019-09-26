@@ -9,12 +9,29 @@ const Op = Sequelize.Op;
 function coursetypeRegister(req, res, next) {
     // console.log(req.body);
     coursetypemodel.create({
-             
+
         coursetype_title: req.body.CoursetypeTitle
         })
         .then(function(result) {
-       
+
             next();
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
+//get course type data
+function getCoursetypeData(req, res, next){
+	coursetypemodel.findOne({
+            where: { id: req.params.id }
+            // raw: true
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.allUser = result;
+            next();
+            // console.log(result);
         })
         .catch(function(err) {
             next({ "status": 500, "message": "DB Error" });
@@ -26,7 +43,7 @@ function coursetypeUpdate(req, res, next) {
     if (req.body.id != '') {
         coursetypemodel.update({
             coursetype_title: req.body.CoursetypeTitle
-          
+
             }, {
                 where: { id: req.params.id }
             })
@@ -38,7 +55,7 @@ function coursetypeUpdate(req, res, next) {
             })
         } else {
             next({ "status": 500, "message":"Invalid coursetype data" });
-    
+
         }
               }
 
@@ -71,8 +88,9 @@ function token(req, res, next) {
 
 module.exports = {
     coursetypeRegister,
+    getCoursetypeData,
     coursetypeUpdate,
        token,
-  
+
 
 }

@@ -89,7 +89,7 @@ myapp.post('/student/register', studentController.duplicateEmail, studentControl
 
 
 // student and teacher login route
-myapp.post('/student/login', authController.StudentTeacherEmailCheck, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {   
+myapp.post('/student/login', authController.StudentTeacherEmailCheck, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
 res.send({
         "status": 200,
         "message": "logged in",
@@ -182,6 +182,15 @@ myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, re
     res.send({
         "status": 200,
         "message": "Teacher data fetched",
+        "info": req.allUser
+    })
+});
+
+// fetch teacher data
+myapp.get('/get/coursetype/:id', coursetypeController.getCoursetypeData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Course Type data fetched",
         "info": req.allUser
     })
 });
