@@ -182,6 +182,15 @@ myapp.get('/get/student/:id', studentController.getStudentData, function(req, re
     })
 });
 
+// // fetch course data
+// myapp.get('/get/course/:id', courseController.getCourseData, function(req, res) {
+//     res.send({
+//         "status": 200,
+//         "message": "Course data fetched",
+//         "info": req.allUser
+//     })
+// });
+
 
 // fetch teacher data
 myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, res) {
@@ -192,7 +201,7 @@ myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, re
     })
 });
 
-// fetch teacher data
+// fetch coursetype data
 myapp.get('/get/coursetype/:id', coursetypeController.getCoursetypeData, function(req, res) {
     res.send({
         "status": 200,
@@ -200,6 +209,17 @@ myapp.get('/get/coursetype/:id', coursetypeController.getCoursetypeData, functio
         "info": req.allUser
     })
 });
+
+// fetch course data
+myapp.get('/get/courset', courseController.getCourseDatabyteacher, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "courses data fetched",
+        "info": req.allUser
+    })
+});
+
+
 
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
