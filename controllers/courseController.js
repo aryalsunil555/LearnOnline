@@ -1,10 +1,11 @@
 var coursemodel = require('../models/courseModel');
+var coursetypemodel = require('../models/coursetypeModel');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-
+var mySeq = require('../configs/dbconfigs')
 
 function courseRegister(req, res, next) {
     // console.log(req.body);
@@ -70,6 +71,59 @@ function searchCourse(req, res, next){
         })
 }
 
+// //get Course data
+// function getCourseData(req, res, next){
+// 	coursemodel.findOne({
+//             where: { id: req.params.id }
+//             // raw: true
+//
+//         })
+//         .then(function(result) {
+//             // console.log(result[1].dataValues);
+//             req.allUser = result;
+//
+//             next();
+//             // console.log(result);
+//         })
+//         .catch(function(err) {
+//             next({ "status": 500, "message": "DB Error" });
+//         })
+// }
+
+//get courses by teacher name
+// function getCourseDatabyteacher(req, res, next){
+// 	coursemodel.findOne({
+//             where: { id: req.params.id }
+//             // raw: true
+//         })
+//         .then(function(result) {
+//             // console.log(result[1].dataValues);
+//             req.allUser = result;
+//             next();
+//             // console.log(result);
+//         })
+//         .catch(function(err) {
+//             next({ "status": 500, "message": "DB Error" });
+//         })
+// }
+
+
+//get courses by teacher names
+function getCourseDatabyteacher(req, res, next){
+	mySeq.sequelize.query(
+    "SELECT t.first_name,c.title,ct.coursetype_title,c.`description`,c.`credit`,c.`fee`,c.`course_image`,c.`start_date`,c.`end_date` \
+    FROM coursetype ct,teacher t,course c WHERE ct.id = c.coursetype_id AND t.id = c.teacher_id ",
+            {type:mySeq.sequelize.QueryTypes.SELECT})
+  .then(result =>{
+res.status(200)
+    res.json(result);
+
+  }).catch(err => {
+       next({ "status": 500, "message": err });
+  })
+}
+
+
 //course update
 function courseUpdate(req, res, next) {
 if (req.body.id != '') {
@@ -130,6 +184,7 @@ function token(req, res, next) {
 module.exports = {
     courseRegister,
     deleteCourse,
+    getCourseDatabyteacher,
     courseUpdate,
     searchCourse,
        token,

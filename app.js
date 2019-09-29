@@ -89,7 +89,7 @@ myapp.post('/student/register', studentController.duplicateEmail, studentControl
 
 
 // student and teacher login route
-myapp.post('/student/login', authController.StudentTeacherEmailCheck, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {   
+myapp.post('/student/login', authController.StudentTeacherEmailCheck, authController.checkPasswordMatch, authController.jwtTokenGen, function(req, res) {
 res.send({
         "status": 200,
         "message": "logged in",
@@ -163,7 +163,13 @@ myapp.get('/course/delete/:id', courseController.deleteCourse, function(req, res
     })
 });
 
-
+// delete Course type data
+myapp.get('/coursetype/delete/:id', coursetypeController.deleteCoursetype, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Course Type deleted"
+    })
+});
 
 // fetch student data
 myapp.get('/get/student/:id', studentController.getStudentData, function(req, res) {
@@ -174,6 +180,15 @@ myapp.get('/get/student/:id', studentController.getStudentData, function(req, re
     })
 });
 
+// // fetch course data
+// myapp.get('/get/course/:id', courseController.getCourseData, function(req, res) {
+//     res.send({
+//         "status": 200,
+//         "message": "Course data fetched",
+//         "info": req.allUser
+//     })
+// });
+
 
 // fetch teacher data
 myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, res) {
@@ -183,6 +198,26 @@ myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, re
         "info": req.allUser
     })
 });
+
+// fetch coursetype data
+myapp.get('/get/coursetype/:id', coursetypeController.getCoursetypeData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Course Type data fetched",
+        "info": req.allUser
+    })
+});
+
+// fetch course data
+myapp.get('/get/courset', courseController.getCourseDatabyteacher, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "courses data fetched",
+        "info": req.allUser
+    })
+});
+
+
 
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {
