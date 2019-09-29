@@ -10,4 +10,4 @@ Steps:
     * Get the service api "<URL>" and i should get the '<expectval>'
     Examples: 
       | URL                                 | expectval                                                                                                                                                                                                                                                                                                                           |
-      | http://localhost:3000/get/coursetype/1 | { "status": 200,"message": "Course data fetched","info": {"coursetype_id": 1,"coursetype_title":"Java","createdAt": "2019-09-23T13:03:47.000Z","updatedAt": "2019-09-23T13:03:47.000Z"} |
+      | http://localhost:3000/get/coursetype/1 | { "status": 200,"message": "Course data fetched","info": {"id": 1,"course_title":"Java","createdAt": "2019-09-23T13:03:47.000Z","updatedAt": "2019-09-23T13:03:47.000Z"} |
