@@ -66,6 +66,7 @@ var adminController = require('./controllers/adminController');
 var courseController = require('./controllers/courseController');
 var coursetypeController = require('./controllers/coursetypeController');
 var ratingController = require('./controllers/ratingController');
+var videoController = require('./controllers/videoController');
 
 
 // upload student profile Image
@@ -295,6 +296,26 @@ myapp.put('/rating/update/:id', ratingController.ratingUpdate, function(req, res
         "status":200,
         "message":"Rating Table Data Updated",
         "info":req.userInfo
+    })
+});
+
+//Video Table Register
+myapp.post('/video/register', videoController.videoRegister, function(req, res){
+    res.send({
+        "status":200,
+        "message": "New Video Data registered",
+        "token": req.genToken
+    })
+});
+
+// video table data Update
+myapp.put('/video/update/:id', videoController.videoUpdate, function(req, res) {
+
+    res.send({
+        "status": 200,
+        "message": "video data updated",
+        "info": req.userInfoo,
+        "token": req.genToken,
     })
 });
 
