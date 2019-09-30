@@ -20,7 +20,8 @@ function teacherRegister(req, res, next) {
         email: req.body.Email,
         bio:req.body.Bio,
         password: req.hashValue,
-        studentID:req.body.studentID,
+
+        studentID:req.body.StudentID
         })
         .then(function(result) {
             //console.log('data added');

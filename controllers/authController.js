@@ -40,6 +40,9 @@ function StudentTeacherEmailCheck(req, res, next){
     })
      })
 }      
+
+
+
     
       
     
