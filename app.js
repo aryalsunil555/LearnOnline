@@ -215,7 +215,7 @@ myapp.get('/get/courset', courseController.getCourseDatabyteacher, function(req,
     res.send({
         "status": 200,
         "message": "courses data fetched",
-        "info": req.allUser
+        "info": req.CourseData
     })
 });
 

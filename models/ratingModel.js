@@ -16,7 +16,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 	courseID: {
 		type: mysequelize.Sequelize.BIGINT,
         allowNull : false
-    
+
 	},
     studentID: {
 		type: mysequelize.Sequelize.BIGINT,
