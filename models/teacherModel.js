@@ -75,11 +75,6 @@ studentID: {
 )
 
 myUsers.sync({force:false})
-// .then(function(){
-// console.log('admin table created')
-// })
-// .catch(function(){
-// 	console.log('err creating admin table')
-// })
+
 
 module.exports = myUsers;
