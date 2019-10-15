@@ -9,6 +9,5 @@ Steps:
   Scenario Outline: Delete course
     * Delete the service api "<URL>" and i should get the '<expectval>'
     Examples: 
-      | URL                                    | expectval                                    |
-      | http://localhost:3000/course/delete/1 | { "status":200,"message":"Course deleted" } |
-
+      | URL                                   | expectval                                    |
+      | http://localhost:3000/course/delete/1 | { "status":200,"message":"Courses deleted" } |

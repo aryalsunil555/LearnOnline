@@ -10,4 +10,4 @@ Steps:
     * Post to service api "<URL>" with '<data>' and I should get the '<expectval>'
     Examples: 
       | URL                                    | data                                                                                                                                                                              | expectval                                             |
-      | http://localhost:3000/course/register | { "Title":"Android","Description":"loremipsum","Credit":"110","Fee":"25000","CourseImage":"asd.jpg","StartDate":"2019-10-06","EndDate":"2019-10-09" } | { "status": 200, "message": "New Course Date Registered"} |
+      | http://localhost:3000/course/register | { "Title":"Android","Description":"loremipsum","Credit":"110","Fee":"25000","CourseImage":"asd.jpg","StartDate":"2019-10-06","EndDate":"2019-10-09","CourseTypeID":"1","TeacherID":"1"} | { "status": 200, "message": "New Course Date Registered"} |
