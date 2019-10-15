@@ -46,7 +46,7 @@ function teacherUpdate(req, res, next) {
                 gender:req.body.Gender,
                 bio:req.body.Bio,
                 email:req.body.Email,
-                studentID:req.body.studentID
+                studentID:req.body.StudentID
             }, {
                 where: { id: req.params.id }
             })

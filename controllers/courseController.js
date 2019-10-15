@@ -111,18 +111,23 @@ function searchCourse(req, res, next){
 //get courses by teacher names
 function getCourseDatabyteacher(req, res, next){
 	mySeq.sequelize.query(
-    "SELECT t.first_name,c.title,ct.coursetype_title,c.`description`,c.`credit`,c.`fee`,c.`course_image`,c.`start_date`,c.`end_date` \
+    "SELECT c.id,t.first_name,t.last_name,c.title,ct.coursetype_title,c.`description`,c.`credit`,c.`fee`,c.`course_image`,c.`start_date`,c.`end_date` \
     FROM coursetype ct,teacher t,course c WHERE ct.id = c.coursetype_id AND t.id = c.teacher_id ",
             {type:mySeq.sequelize.QueryTypes.SELECT})
-  .then(result =>{
+            .then(result =>{
 res.status(200)
-    res.json(result);
-
+    // res.json(result);
+    req.CourseData = result;
+    next();
   }).catch(err => {
        next({ "status": 500, "message": err });
   })
 }
 
+//get Rating for all Courses
+function rating(req,res, next){
+  
+}
 
 //course update
 function courseUpdate(req, res, next) {
