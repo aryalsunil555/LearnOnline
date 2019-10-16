@@ -8,9 +8,8 @@ var mySeq = require('../configs/dbconfigs')
 
 function videoRegister(req, res, next) {
     videomodel.create({
-
         caption: req.body.Caption,
-        name: req.body.Name,
+        name: req.testVall,
         description: req.body.Description,
         title: req.body.Title,
         courseID: req.body.CourseID

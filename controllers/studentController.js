@@ -11,6 +11,7 @@ function studentRegister(req, res, next) {
     // console.log(req.body);
     studentmodel.create({
 
+        profileImage: req.testVall,
         first_name: req.body.FirstName,
         last_name: req.body.LastName,
         address: req.body.Address,
@@ -45,6 +46,9 @@ function deleteStudent(req, res, next){
             next({ "status": 500, "message": "DB Error" });
         })
 }
+
+
+
 
 //search Student by FirstName
 // function searchStudent(req, res, next){
@@ -97,6 +101,28 @@ function studentUpdate(req, res, next) {
             })
     } else {
         next({ "status": 500, "message": "Invalid Student" });
+    }
+}
+
+//profile image update
+
+function studentImageUpdate(req, res, next) {
+    // console.log(req.body);
+    if (req.body.id != '') {
+        studentmodel.update({
+            profile_image: req.testVall
+            }, {
+                where: { id: req.body.id }
+            })
+            .then(function(result) {
+                // console.log('data added');
+                next();
+            })
+            .catch(function(err) {
+                next({ "status": 500, "message": "DB Error" });
+            })
+    } else {
+        next({ "status": 500, "message": "Invalid Profile Image" });
     }
 }
 
@@ -223,6 +249,7 @@ function passwordHash(req, res, next) {
 
 module.exports = {
     studentRegister,
+    studentImageUpdate,
     duplicateEmail,
     deleteStudent,
     studentUpdate,

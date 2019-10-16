@@ -124,6 +124,20 @@ res.status(200)
   })
 }
 
+function getCourseAverageRating(req, res, next){
+    mySeq.sequelize.query(
+        "SELECT AVG(rating), courseID FROM rating GROUP BY courseID",
+                {type:mySeq.sequelize.QueryTypes.SELECT})
+                .then(result =>{
+    res.status(200)
+        // res.json(result);
+        req.AvgCourseRating = result;
+        next();
+      }).catch(err => {
+           next({ "status": 500, "message": err });
+      })
+}
+
 //get Rating for all Courses
 function rating(req,res, next){
   
@@ -193,6 +207,7 @@ module.exports = {
     courseUpdate,
     searchCourse,
        token,
+       getCourseAverageRating
 
 
 }
