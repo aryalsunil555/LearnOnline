@@ -158,12 +158,10 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
 
 // teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
-
     res.send({
         "status": 200,
-        "message": "teacher data updated",
+        "token" : req.genToken,
         "info": req.userInfoo,
-        "token": req.genToken,
     })
 });
 
@@ -392,6 +390,7 @@ myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
     })
 });
 
+// get course add form 
 
 // get course add form
 myapp.get('/teacher/courses', function(req, res) {

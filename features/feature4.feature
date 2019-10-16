@@ -9,5 +9,5 @@ Steps:
   Scenario Outline: Post teacher register
     * Post to service api "<URL>" with '<data>' and I should get the '<expectval>'
     Examples: 
-      | URL                                    | data                                         | expectval                                        |
-      | http://localhost:3000/teacher/register | { "Email":"rai@gmail.com","Password":"asd","FirstName":"Robiin","LastName":"Rai","DOB":"1999-12-03","Gender":"male","Phone":"9817849333","Address":"Jorpati","Bio":"Loremipsum" } | { "status": 200, "message": "New Teacher Registered"} |
+      | URL                                    | data                                                                                                                                                                                               | expectval                                             |
+      | http://localhost:3000/teacher/register | { "Email":"rai@gmail.com","Password":"asd","FirstName":"Robiin","LastName":"Rai","DOB":"1999-12-03","Gender":"male","Phone":"9817849333","Address":"Jorpati","Bio":"Loremipsum", "StudentID":"1" } | { "status": 200, "message": "New Teacher Registered"} |
