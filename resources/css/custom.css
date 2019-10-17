@@ -1,4 +1,8 @@
 
+*{
+  box-sizing: border-box;
+}
+
 
 body{
   /* background-color: lightblue; */
@@ -155,71 +159,58 @@ border-left: 5px solid purple;
 
 .coursesContainer{
   display: grid;
-  grid-gap:10px;
-  grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+  grid-gap:30px;
+  grid-template-columns: repeat(auto-fill,minmax(231px,1fr));
+  padding:0% 5% ;
 }
 
-.coursesContainer a{
+
+.courseBlockContainer{
+  background-color:  #F2F3F4;
+  border:1px solid lightgrey;
+  border-radius: 15px;
+  padding:10px;
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  text-decoration: none;
+  transition: box-shadow 0.25s  0.25s;
+}
+
+.courseBlockContainer:hover{
+  box-shadow: 0px 10px 14px -1px rgba(0,0,0,0.75);
+
+}
+
+.courseBlockContainer img{
+  width: 100%;
+}
+
+
+.courseBlock{
   text-decoration: none;
   color:black;
   display: grid;
 
 }
-
-
-.courseBlock{
-  border:2px solid lightgrey;
-  text-decoration: none;
-
-  min-height: 200px;
-  transition: box-shadow 0.2s linear 0.2s;
-  box-shadow: 0px 12px 0px -6px  #d7dbdd ,0px 24px 0px -12px  #e5e7e9 ;
-}
-
-
 .courseBlock:hover{
-  box-shadow: 0px 15px 0px -6px  #aab7b8 ,0px 30px 0px -12px  #bfc9ca ;
+  text-decoration: none;
 }
 
 .courseTitle{
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 20px;  
 }
-
-.courseTeacherLabel{
-  font-weight: bold;
+.courseCredit{
+  font-weight: 400;
 }
-
-.coursePriceLabel{
-  font-weight: bold;
+.courseTeacher{
+  font-weight: 400;
 }
-
 .coursePrice{
+  font-weight: 600;
   font-size: 20px;
 }
 
 
-.courseBlock h6{
-  background-color: purple;
-  color:white;
-  height: 50px;
-  padding:5px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.courseCredit{
-  font-size: 100%;
-  color:green;
-  font-weight: bold;
-}
-
-
-.courseDesc{
-  padding:3px;
-
-}
 
 
 .categories{
