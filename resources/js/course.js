@@ -13,7 +13,7 @@ $.ajax({
          $('#coursesContainerID').append(
           `
           <div class="courseBlockContainer">
-            <a href="" class="courseBlock ">
+            <a href="" class="courseBlock" data-id="${result.info[key].id}">
               <div class="courseImage">
                 <img src="image/bargraph.png">
               </div>
@@ -122,4 +122,22 @@ $.ajax({
 
 getCourseData();
 
+
+$(document).on('click', '.courseBlock', function(e){
+  e.preventDefault();
+  var id = $(this).attr('data-id');
+  $.ajax({
+       url: 'http://localhost:3000/course/description/'+id,
+       method: 'get',
+       dataType: 'json',
+       success: function(result, status) {
+        
+       },
+       error: function(jqXHR, status) {
+        console.log(jqXHR);
+       }
+     });
+
+  // alert(id);
+});
 
