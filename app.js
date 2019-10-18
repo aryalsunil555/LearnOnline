@@ -360,6 +360,11 @@ myapp.get('/coursedashboard', function(req, res) {
     res.render('admin/coursedashboard');
 })
 
+//get admin teacherdashboard page
+myapp.get('/adminteacherdashboard', function(req, res) {
+    res.render('admin/adminteacherdashboard');
+})
+
 
 
 // get teacher signup
