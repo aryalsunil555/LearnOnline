@@ -42,10 +42,10 @@ var mysequelize = require('./models/studentModel.js');
 var mysequelize = require('./models/teacherModel.js');
 
 
-// multer storage video
+// multer storage
 var mystorage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'resources/videos/courses')
+        cb(null, 'resources/images/profile')
     },
     filename: function(req, file, cb) {
         var name = 'asdasd' + (Math.floor(100000 + Math.random() * 900000)) + file.originalname;
@@ -57,21 +57,6 @@ var mystorage = multer.diskStorage({
 
 var upload = multer({ storage: mystorage });
 
-//profile Image upload
-var mystoragee = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'resources/videos/profileImage')
-    },
-    filename: function(req, file, cb) {
-        var name = 'asdasd' + (Math.floor(100000 + Math.random() * 900000)) + file.originalname;
-        cb(null, name);
-        req.testVall = name;
-    }
-});
-
-
-var uploadImage = multer({ storage: mystoragee });
-
 
 // controllers require
 var authController = require('./controllers/authController');
@@ -81,22 +66,10 @@ var adminController = require('./controllers/adminController');
 var courseController = require('./controllers/courseController');
 var coursetypeController = require('./controllers/coursetypeController');
 var ratingController = require('./controllers/ratingController');
-var videoController = require('./controllers/videoController');
-
-
-//Video Table Register
-myapp.post('/video/register', upload.single('courseVideo'), videoController.videoRegister, function(req, res){
-// myapp.post('/video/register', upload.single('courseVideo'), function(req, res){
-    res.send({
-        "status":200,
-        "message": "New Video Data registered"
-        // "token": req.genToken
-    })
-});
 
 
 // upload student profile Image
-myapp.post('/student/register/studentImage', uploadImage.single('studentImage'), studentController.studentImageUpdate, function(req, res) {
+myapp.post('/student/register/studentImage', upload.single('studentImage'), function(req, res) {
        res.send({
         "status": 200,
         "message": "Student Profile Image Registered",
@@ -158,10 +131,12 @@ myapp.post('/teacher/login', authController.teachervalidator,authController.chec
 
 // teacher Update
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function(req, res) {
+
     res.send({
         "status": 200,
-        "token" : req.genToken,
+        "message": "teacher data updated",
         "info": req.userInfoo,
+        "token": req.genToken,
     })
 });
 
@@ -207,6 +182,15 @@ myapp.get('/get/student/:id', studentController.getStudentData, function(req, re
     })
 });
 
+// fetch all student data
+myapp.get('/get/student', studentController.getStudentAllData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "All Student data fetched",
+        "info": req.allUser
+    })
+});
+
 // // fetch course data
 // myapp.get('/get/course/:id', courseController.getCourseData, function(req, res) {
 //     res.send({
@@ -226,6 +210,15 @@ myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, re
     })
 });
 
+// fetch all teacher data
+myapp.get('/get/teacher', teacherController.getTeacherAllData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "All Teacher data fetched",
+        "info": req.allUser
+    })
+});
+
 // fetch coursetype data
 myapp.get('/get/coursetype/:id', coursetypeController.getCoursetypeData, function(req, res) {
     res.send({
@@ -236,12 +229,11 @@ myapp.get('/get/coursetype/:id', coursetypeController.getCoursetypeData, functio
 });
 
 // fetch course data
-myapp.get('/get/courset/', courseController.getCourseDatabyteacher, courseController.getCourseAverageRating, function(req, res) {
+myapp.get('/get/courset', courseController.getCourseDatabyteacher, function(req, res) {
     res.send({
         "status": 200,
         "message": "courses data fetched",
-        "info": req.CourseData,
-        "average": req.AvgCourseRating
+        "info": req.CourseData
     })
 });
 
@@ -325,19 +317,6 @@ myapp.put('/rating/update/:id', ratingController.ratingUpdate, function(req, res
 });
 
 
-
-// video table data Update
-myapp.put('/video/update/:id', videoController.videoUpdate, function(req, res) {
-
-    res.send({
-        "status": 200,
-        "message": "video data updated",
-        "info": req.userInfoo,
-        "token": req.genToken,
-    })
-});
-
-
 // get home page
 myapp.get('/index', function(req, res) {
     res.render('pages/index');
@@ -353,11 +332,6 @@ myapp.get('/admin', function(req, res) {
 //get admin dashboard page
 myapp.get('/admindashboard', function(req, res) {
     res.render('admin/admindashboard');
-})
-
-//get admin coursedashboard page
-myapp.get('/coursedashboard', function(req, res) {
-    res.render('admin/coursedashboard');
 })
 
 
@@ -395,7 +369,6 @@ myapp.post('/Course/search', courseController.searchCourse, function(req, res) {
     })
 });
 
-// get course add form 
 
 // get course add form
 myapp.get('/teacher/courses', function(req, res) {
