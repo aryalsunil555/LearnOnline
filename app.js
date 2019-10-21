@@ -201,6 +201,13 @@ myapp.get('/get/student', studentController.getStudentAllData, function(req, res
 //         "info": req.allUser
 //     })
 // });
+myapp.get('/get/course/:id', courseController.getCourseData, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Course data fetched",
+        "info": req.allUser
+    })
+});
 
 
 // fetch teacher data

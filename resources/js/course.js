@@ -126,18 +126,7 @@ getCourseData();
 $(document).on('click', '.courseBlock', function(e){
   e.preventDefault();
   var id = $(this).attr('data-id');
-  $.ajax({
-       url: 'http://localhost:3000/course/description/'+id,
-       method: 'get',
-       dataType: 'json',
-       success: function(result, status) {
-        console.log(result);
-       },
-       error: function(jqXHR, status) {
-        console.log(jqXHR);
-       }
-     });
-
-  // alert(id);
+  window.sessionStorage.setItem('course_id', id);
+  window.location.href = "coursedescription";
 });
 
