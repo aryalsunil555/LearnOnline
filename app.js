@@ -193,7 +193,7 @@ myapp.get('/get/student', studentController.getStudentAllData, function(req, res
     })
 });
 
-// // fetch course data
+// fetch course data
 // myapp.get('/get/course/:id', courseController.getCourseData, function(req, res) {
 //     res.send({
 //         "status": 200,

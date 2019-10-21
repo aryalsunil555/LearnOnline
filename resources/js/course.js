@@ -131,7 +131,7 @@ $(document).on('click', '.courseBlock', function(e){
        method: 'get',
        dataType: 'json',
        success: function(result, status) {
-        
+        console.log(result);
        },
        error: function(jqXHR, status) {
         console.log(jqXHR);
