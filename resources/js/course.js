@@ -1,5 +1,4 @@
 
-alert("BOOM");
 
 
 function getCourseData(){
@@ -10,6 +9,7 @@ $.ajax({
        success: function(result, status) {
         $('#coursesContainerID').empty();
         for(key in result.info){
+          // console.log(result.info[key]);
          $('#coursesContainerID').append(
           `
           <div class="courseBlockContainer">
@@ -47,7 +47,7 @@ $.ajax({
           );
         }
         for(key in result.average){
-          // console.log(result.average[key].courseID);
+          // console.log(result.average[key]);
           var rating = Math.floor(result.average[key].rating);
           if(rating >= 1){$('#b1'+result.average[key].courseID).html('<span class="fa fa-star checked"></span>');}
           else{$('#b1').html('<span class="fa fa-star"></span>')}
@@ -59,59 +59,7 @@ $.ajax({
           else{$('#b4').html('<span class="fa fa-star"></span>')}
             if(rating >= 5){$('#b5'+result.average[key].courseID).html('<span class="fa fa-star checked"></span>');}
           else{$('#b5').html('<span class="fa fa-star"></span>')}
-
-          console.log(rating);
-
-
-          // if (rating===1) {
-          //   $('#'+result.average[key].courseID).html('<span class="ratingDynamic">\
-          //        <span class="fa fa-star checked"></span>\
-          //       <span class="fa fa-star"></span>\
-          //      <span class="fa fa-star"></span>\
-          //        <span class="fa fa-star"></span>\
-          //       <span class="fa fa-star"></span> \
-          //     </span>'); 
-          // }
-          // else if(rating===2){
-          //    $('#'+result.average[key].courseID).html('<span class="ratingDynamic">\
-          //        <span class="fa fa-star checked"></span>\
-          //       <span class="fa fa-star checked"></span>\
-          //      <span class="fa fa-star"></span>\
-          //        <span class="fa fa-star"></span>\
-          //       <span class="fa fa-star"></span> \
-          //     </span>');
-
-          // }
-          // else if(rating===3){
-          //    $('#'+result.average[key].courseID).html('<span class="ratingDynamic">\
-          //        <span class="fa fa-star checked"></span>\
-          //       <span class="fa fa-star checked"></span>\
-          //      <span class="fa fa-star checked"></span>\
-          //        <span class="fa fa-star"></span>\
-          //       <span class="fa fa-star"></span> \
-          //     </span>');
-
-          // }
-          // else if(rating===4){
-          //    $('#'+result.average[key].courseID).html('<span class="ratingDynamic">\
-          //        <span class="fa fa-star checked"></span>\
-          //       <span class="fa fa-star checked"></span>\
-          //      <span class="fa fa-star checked"></span>\
-          //        <span class="fa fa-star checked"></span>\
-          //       <span class="fa fa-star"></span> \
-          //     </span>');
-
-          // } 
-          // else if(rating===5){
-          //    $('#'+result.average[key].courseID).html('<span class="ratingDynamic">\
-          //        <span class="fa fa-star checked"></span>\
-          //       <span class="fa fa-star checked"></span>\
-          //      <span class="fa fa-star checked"></span>\
-          //        <span class="fa fa-star checked"></span>\
-          //       <span class="fa fa-star checked"></span> \
-          //     </span>');
-
-          // }
+          // console.log(rating);
         }
        },
        error: function(jqXHR, status) {

@@ -238,11 +238,12 @@ myapp.get('/get/coursetype/:id', coursetypeController.getCoursetypeData, functio
 });
 
 // fetch course data
-myapp.get('/get/courset', courseController.getCourseDatabyteacher, function(req, res) {
+myapp.get('/get/courset', courseController.getCourseDatabyteacher, courseController.getCourseAverageRating, function(req, res) {
     res.send({
         "status": 200,
         "message": "courses data fetched",
-        "info": req.CourseData
+        "info": req.CourseData,
+        "average": req.AvgCourseRating
     })
 });
 
