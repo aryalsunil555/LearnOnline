@@ -212,11 +212,11 @@ myapp.get('/get/teacher/:id', teacherController.getTeacherData, function(req, re
     })
 });
 
-// fetch all teacher data
+// fetch all teachers data
 myapp.get('/get/teacher', teacherController.getTeacherAllData, function(req, res) {
     res.send({
         "status": 200,
-        "message": "All Teacher data fetched",
+        "message": "All Teachers data fetched",
         "info": req.allUser
     })
 });
