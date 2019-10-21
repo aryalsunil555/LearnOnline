@@ -1,7 +1,7 @@
 
-alert("BOOM BOOM BOOM");
+alert("TEACHER TEACHER");
 
-function getTeacherList(){
+function getCoursesList(){
 $.ajax({
        url: 'http://localhost:3000/get/courset',
        method: 'get',
@@ -9,9 +9,9 @@ $.ajax({
        headers: { authorization: 'Bearer '+window.localStorage.getItem('token') },
        success: function(result, status) {
         console.log(result.info);
-        $('#coursesListBody').empty();
+        $('#teachersListBody').empty();
         for(key in result.info){
-          $('#coursesListBody').append(            
+          $('#teachersListBody').append(            
           `
         <tr>
           <th scope="row"> ${result.info[key].id}</th>
@@ -35,4 +35,4 @@ $.ajax({
    })
 }
 
-getTeacherList();
+getCoursesList();

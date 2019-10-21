@@ -95,6 +95,22 @@ function getTeacherData(req, res, next){
         })
 }
 
+//get all teachers data
+function getTeacherAllData(req, res, next){
+  teachermodel.findAll({
+
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.allUser = result;
+            next();
+            // console.log(result);
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
 //search teacher
 function searchTeacher(req, res, next){
 	var search = req.body.search
@@ -201,6 +217,7 @@ module.exports = {
     deleteTeacher,
     teacherUpdate,
     getTeacherData,
+    getTeacherAllData,
     searchTeacher,
     token,
     emailCheck,

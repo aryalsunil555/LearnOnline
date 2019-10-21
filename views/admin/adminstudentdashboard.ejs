@@ -20,7 +20,7 @@
   <script type="text/javascript" src="bootstrap/js/bootstrap.min.js">
   </script>
 
-  <script type="text/javascript" src="js/adminteacherdashboard.js"></script>
+  <script type="text/javascript" src="js/adminstudentdashboard.js"></script>
 </head>
 <body>
 
@@ -42,31 +42,30 @@
   </div>
 </nav>
 
-  <h1>Teacher Dashboard</h1>
-  <h3 id="totalTeacherNumber">Total teachers: </h3>
+  <h1>Students Dashboard</h1>
+  <h3 id="totalStudentsNumber">Total students: 
+    <script type="text/javascript" src="js/adminstudentdashboard.js"> document.write(studentCounter)</script>
+     </h3>
   <!-- <button id="editt">sdf</button> -->
 
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">Teacher ID</th>
+      <th scope="col">Student ID</th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
-      <th scope="col">DOB</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Phone</th>
       <th scope="col">Address</th>
-      <th scope="col">Email</th>
-      <th scope="col">Profile Image</th>
-      <th scope="col">Bio</th>
-      <th scope="col">Verify</th>
-
-          
+      <th scope="col">Phone</th>
+      <th scope="col">DOB</th>      
+      <th scope="col">Gender</th>      
+      <th scope="col">Profile Pic</th>      
+      <th scope="col">Email</th>      
+      <th scope="col">Verify</th>      
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
-  <tbody id="teachersListBody">
+  <tbody id="studentsListBody">
 
     <tr>
       <th scope="row">1</th>
@@ -102,27 +101,27 @@
 <!-- <legend>Registration</legend> -->
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Course Title</label>
+  <label class="col-md-4 control-label" for="textinput">First Name</label>
   <div class="col-md-4">
   <input id="username" name="username" type="text" placeholder="username" class="form-control input-md">
   </div>
 
-  <label class="col-md-4 control-label" for="textinput">Course Description</label>
+  <label class="col-md-4 control-label" for="textinput">Last Name</label>
   <div class="col-md-4">
   <input id="username" name="username" type="text" placeholder="username" class="form-control input-md">
   </div>
 
-  <label class="col-md-4 control-label" for="textinput">Credit</label>
+  <label class="col-md-4 control-label" for="textinput">Address</label>
   <div class="col-md-4">
   <input id="username" name="username" type="text" placeholder="username" class="form-control input-md">
   </div>
 
-  <label class="col-md-4 control-label" for="textinput">Fee</label>
+  <label class="col-md-4 control-label" for="textinput">Phone</label>
   <div class="col-md-4">
   <input id="username" name="username" type="text" placeholder="username" class="form-control input-md">
   </div>
 
-  <label class="col-md-4 control-label" for="textinput">Course Image</label>
+  <label class="col-md-4 control-label" for="textinput">DOB</label>
   <div class="col-md-4">
   <input id="username" name="username" type="text" placeholder="username" class="form-control input-md">
   </div>
