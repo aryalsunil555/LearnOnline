@@ -9,14 +9,17 @@ $.ajax({
        success: function(result, status) {
         $('#coursesContainerID').empty();
         for(key in result.info){
-          // console.log(result.info[key]);
+          console.log(result.info[key]);
+          // $('#courseImage').attr('src','http://localhost:3000/image/course/'+result.info.course_image+'');
+
          $('#coursesContainerID').append(
           `
           <div class="courseBlockContainer">
             <a href="" class="courseBlock" data-id="${result.info[key].id}">
               <div class="courseImage">
-                <img src="image/bargraph.png">
+                <img style="height:175px" src="http://localhost:3000/image/course/${result.info[key].course_image}">   
               </div>
+
               <div class="courseTitle">
                 ${result.info[key].title} 
               </div>

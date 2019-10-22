@@ -238,14 +238,12 @@ border-left: 5px solid purple;
 /*-----------------------------------ADMINDASHBOARD-START------------------*/
 
 .adminContainer{
-  background-color: lightblue;
   display: flex;
   flex-direction: column;
 }
 
 .graphContainer{
-  background-color: lightyellow;
-  display: flex;
+  display: grid;
   flex-direction: column;
   justify-content: space-around;
 
@@ -253,7 +251,7 @@ border-left: 5px solid purple;
 
 .graphContainer section{
   border-bottom: 2px solid red;
-  height: 250px;
+  /*height: 250px;*/
 }
 
 
@@ -273,6 +271,33 @@ border-left: 5px solid purple;
   border: 2px solid blue;
   margin-left:10px;
   text-decoration:none;
+}
+
+#adminteacherdashboard{
+  background-image: url('../image/adminTeacherCover.jpg');
+  background-size: cover;
+  background-origin: center;
+  background-repeat: no-repeat;
+
+  color:white;
+}
+
+#adminstudentdashboard{
+  background-image: url('../image/adminStudentCover.jpg');
+  background-size: cover;
+  background-origin: center;
+  background-repeat: no-repeat;
+    color:white;
+
+}
+
+#admincoursedashboard{
+  background-image: url('../image/adminCoursesCover.jpg');
+  background-size: cover;
+  background-origin: center;
+  background-repeat: no-repeat;
+  color:white;
+
 }
 
 
@@ -353,23 +378,24 @@ border-left: 5px solid purple;
 /*-----------------------------------ADMINDASHBOARD-START------------------*/
 
 .adminContainer{
-  background-color: pink;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
 .graphContainer{
-  background-color: lightyellow;
-  display: flex;
+  /*display: flex;*/
   flex-direction: row;
   justify-content: flex-start;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
 }
 
 .graphContainer section{
   border-bottom: 2px solid red;
-  height: 250px;
+  /*height: 250px;*/
   border:1px solid red;
   flex-grow: 1;
   padding: 20px;

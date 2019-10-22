@@ -1,5 +1,4 @@
 
-alert("BOOM BOOM BOOM");
 
 function getCoursesList(){
 $.ajax({

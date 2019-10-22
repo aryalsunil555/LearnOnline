@@ -1,9 +1,8 @@
 
-alert("TEACHER TEACHER");
 
 function getCoursesList(){
 $.ajax({
-       url: 'http://localhost:3000/get/courset',
+       url: 'http://localhost:3000/get/teacher',
        method: 'get',
        dataType: 'json',
        headers: { authorization: 'Bearer '+window.localStorage.getItem('token') },
@@ -15,13 +14,16 @@ $.ajax({
           `
         <tr>
           <th scope="row"> ${result.info[key].id}</th>
-          <td>${result.info[key].title}</td>
-          <td>${result.info[key].description}</td>
-          <td>${result.info[key].credit} Hrs</td>
-          <td>$ ${result.info[key].fee}</td>
-          <td>${result.info[key].course_image}</td>
-          <td>${result.info[key].coursetype_title}</td>
-          <td>${result.info[key].first_name} ${result.info[key].last_name}</td>
+          <td>${result.info[key].first_name}</td>
+          <td>${result.info[key].last_name}</td>
+          <td>${result.info[key].dob} </td>
+          <td>${result.info[key].gender}</td>
+          <td>${result.info[key].phone}</td>
+          <td>${result.info[key].address}</td>
+          <td>${result.info[key].email}</td>
+          <td>${result.info[key].profile_image}</td>
+          <td>${result.info[key].bio}</td>
+          <td>${result.info[key].verify}</td>
           <td><button type="button" id="edit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Edit</button></td>
           <td><button type="button" id="delete" class="btn btn-danger">Delete</button></td>
         </tr>

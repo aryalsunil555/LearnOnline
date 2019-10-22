@@ -61,7 +61,7 @@ $(document).ready(function() {
                 data: JSON.stringify(teacherRegisterFormData),
                 success: function(result, status) {
                    
-                alert(result.message);
+                // alert(result.message);
            
 	            $("input[name='gender']").prop("unchecked",true);
 	            $("#signupForm").css("display", "none");
@@ -106,16 +106,10 @@ $(document).ready(function() {
             //console.log(result)
              window.localStorage.setItem('token', result.token);
              // if(result.userInfo.id==1){
-             //    alert('LOGGED IN SUCCESSFULLY');
-             // // window.location.href = "./dashboard/dashboard.html";
-             // }
-             // else{
-             // // window.location.href = "./dashboard/userDashboard.html";
-             // alert('FAILED');
-             // }
-
-             alert('LOGGED IN SUCCESSFULLY');
-             window.location.href="courses";
+            
+             // alert('LOGGED IN SUCCESSFULLY');
+             alert("I M TEACHER");
+             // window.location.href="teachercourses";
              $('#login').text("LogOut");
           },
           error: function(jqXHR, status) {

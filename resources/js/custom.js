@@ -13,8 +13,7 @@ document.addEventListener('click', (e) => {
 
 
 $(document).ready(function() {
-    // let signupForm=$('signupForm').val();
-    // let loginForm=$('loginForm').val();
+    
 
     let signupForm = $('#signupForm');
     let loginForm = $('#loginForm');
@@ -53,7 +52,6 @@ $(document).ready(function() {
                 success: function(result, status) {
                     
                     var message = result.message;
-                    alert(message);
                  
                     //TO CHANGE THE INPUT FIELDS BLANK AFTER REGISTRATION//
                     for (var i = 0; i < signupInputs.length; i++) {
@@ -94,21 +92,15 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify(myFormData),
             success: function(result, status) {
-                //console.log(result)
                 window.localStorage.setItem('token', result.token);
-                // if(result.userInfo.id==1){
-                //    alert('LOGGED IN SUCCESSFULLY');
-                // // window.location.href = "./dashboard/dashboard.html";
-                // }
-                // else{
-                // // window.location.href = "./dashboard/userDashboard.html";
-                // alert('FAILED');
-                // }
-
-                // alert('LOGGED IN SUCCESSFULLY');
-                alert(result.message);
-                window.location.href = "courses";
-                // $('#login').text("LogOut");
+                // alert(result.message);
+                // console.log(result);
+                if(result.usertype=='teacher'){
+                window.location.href = "teacher/courses";
+                }
+                else{
+                    window.location.href="courses"
+                }
             },
             error: function(jqXHR, status) {
                 alert(jqXHR.responseJSON.message);
