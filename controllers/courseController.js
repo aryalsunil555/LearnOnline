@@ -124,6 +124,23 @@ res.status(200)
   })
 }
 
+//get coursse data
+function getCourseData(req, res, next){
+	coursemodel.findOne({
+            where: { id: req.params.id }
+            // raw: true
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.allUser = result;
+            next();
+            // console.log(result);
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
 function getCourseAverageRating(req, res, next){
     mySeq.sequelize.query(
         "SELECT AVG(rating), courseID FROM rating GROUP BY courseID",
@@ -140,7 +157,7 @@ function getCourseAverageRating(req, res, next){
 
 //get Rating for all Courses
 function rating(req,res, next){
-  
+
 }
 
 //course update
@@ -204,6 +221,7 @@ module.exports = {
     courseRegister,
     deleteCourse,
     getCourseDatabyteacher,
+    getCourseData,
     courseUpdate,
     searchCourse,
        token,

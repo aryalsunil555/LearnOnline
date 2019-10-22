@@ -145,6 +145,22 @@ function getStudentData(req, res, next){
         })
 }
 
+//get all students data
+function getStudentAllData(req, res, next){
+  studentmodel.findAll({
+
+        })
+        .then(function(result) {
+            // console.log(result[1].dataValues);
+            req.allUser = result;
+            next();
+            // console.log(result);
+        })
+        .catch(function(err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
 //search student
 function searchStudent(req, res, next){
 	var search = req.body.search
@@ -209,7 +225,7 @@ function emailCheck(req, res, next) {
 }
 // duplicate email Check
 function duplicateEmail(req, res, next) {
-   
+
     teachermodel.findOne({
             where: { email: req.body.Email }
         })
@@ -256,6 +272,7 @@ module.exports = {
   
     studentUpdate,
     getStudentData,
+    getStudentAllData,
     searchStudent,
     token,
     emailCheck,

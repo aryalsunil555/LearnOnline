@@ -58,7 +58,7 @@ const myUsers = mysequelize.sequelize.define('myUsers',
 	password: {
 		type: mysequelize.Sequelize.STRING,
 		allowNull : false
-		
+
 },
 studentID: {
 	type: mysequelize.Sequelize.BIGINT,

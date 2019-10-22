@@ -54,6 +54,12 @@ teacher_id: {
 	//foreign key in teacher table
 	type: mysequelize.Sequelize.BIGINT,
 	allowNull : false
+},
+
+rating_id: {
+	//foreign key in teacher table
+	type: mysequelize.Sequelize.BIGINT,
+	allowNull : false
 }
 },
 
