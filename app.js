@@ -52,7 +52,7 @@ var mystorage = multer.diskStorage({
     },
 
     destination: function (req, file, cb) {
-        cb(null, 'resources/images/profile')
+        cb(null, 'resources/videos/profileImage')
 
     },
     filename: function (req, file, cb) {
@@ -106,7 +106,7 @@ myapp.post('/video/register', upload.single('courseVideo'), videoController.vide
 
 
 // upload student profile Image
-myapp.post('/student/register/studentImage', upload.single('studentImage'), function (req, res) {
+myapp.post('/student/register/studentImage', upload.single('studentImage'), studentController.studentImageUpdate, function (req, res) {
     res.send({
 
         "status": 200,

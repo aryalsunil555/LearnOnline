@@ -20,29 +20,29 @@ function studentRegister(req, res, next) {
         gender: req.body.Gender,
         email: req.body.Email,
         password: req.hashValue
-        })
-        .then(function(result) {
+    })
+        .then(function (result) {
             // console.log('data added');
             req.body.email = req.body.Email;
             next();
         })
-        .catch(function(err) {
+        .catch(function (err) {
             next({ "status": 500, "message": "DB Error" });
         })
 }
 
 //delete student
-function deleteStudent(req, res, next){
-	studentmodel.destroy({
-            where: {
-                id: req.params.id
-            },
-            raw: true
-        })
-        .then(function(result) {
+function deleteStudent(req, res, next) {
+    studentmodel.destroy({
+        where: {
+            id: req.params.id
+        },
+        raw: true
+    })
+        .then(function (result) {
             next();
         })
-        .catch(function(err) {
+        .catch(function (err) {
             next({ "status": 500, "message": "DB Error" });
         })
 }
@@ -83,21 +83,21 @@ function studentUpdate(req, res, next) {
     // console.log(req.body);
     if (req.body.id != '') {
         studentmodel.update({
-                first_name: req.body.FirstName,
-                last_name: req.body.LastName,
-                address: req.body.Address,
-                dob: req.body.DOB,
-                phone: req.body.Phone,
-                gender:req.body.Gender,
-                email:req.body.Email
-            }, {
-                where: { id: req.params.id }
-            })
-            .then(function(result) {
+            first_name: req.body.FirstName,
+            last_name: req.body.LastName,
+            address: req.body.Address,
+            dob: req.body.DOB,
+            phone: req.body.Phone,
+            gender: req.body.Gender,
+            email: req.body.Email
+        }, {
+            where: { id: req.params.id }
+        })
+            .then(function (result) {
                 // console.log('data added');
                 next();
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 next({ "status": 500, "message": "DB Error" });
             })
     } else {
@@ -112,14 +112,14 @@ function studentImageUpdate(req, res, next) {
     if (req.body.id != '') {
         studentmodel.update({
             profile_image: req.testVall
-            }, {
-                where: { id: req.body.id }
-            })
-            .then(function(result) {
+        }, {
+            where: { id: req.body.id }
+        })
+            .then(function (result) {
                 // console.log('data added');
                 next();
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 next({ "status": 500, "message": "DB Error" });
             })
     } else {
@@ -129,58 +129,58 @@ function studentImageUpdate(req, res, next) {
 
 
 //get student data
-function getStudentData(req, res, next){
-	studentmodel.findOne({
-            where: { id: req.params.id }
-            // raw: true
-        })
-        .then(function(result) {
+function getStudentData(req, res, next) {
+    studentmodel.findOne({
+        where: { id: req.params.id }
+        // raw: true
+    })
+        .then(function (result) {
             // console.log(result[1].dataValues);
             req.allUser = result;
             next();
             // console.log(result);
         })
-        .catch(function(err) {
+        .catch(function (err) {
             next({ "status": 500, "message": "DB Error" });
         })
 }
 
 //get all students data
-function getStudentAllData(req, res, next){
-  studentmodel.findAll({
+function getStudentAllData(req, res, next) {
+    studentmodel.findAll({
 
-        })
-        .then(function(result) {
+    })
+        .then(function (result) {
             // console.log(result[1].dataValues);
             req.allUser = result;
             next();
             // console.log(result);
         })
-        .catch(function(err) {
+        .catch(function (err) {
             next({ "status": 500, "message": "DB Error" });
         })
 }
 
 //search student
-function searchStudent(req, res, next){
-	var search = req.body.search
-//console.log(search)
+function searchStudent(req, res, next) {
+    var search = req.body.search
+    //console.log(search)
     studentmodel.findAll({
-            where: {
-                first_name: {
-                    [Op.like]: '%' + search + '%'
-                }
-            },
-            raw: true
-        })
-        .then(function(result) {
+        where: {
+            first_name: {
+                [Op.like]: '%' + search + '%'
+            }
+        },
+        raw: true
+    })
+        .then(function (result) {
             // console.log(result[1].dataValues);
             req.User = result;
             // console.log(req.allUser);
             next();
             // console.log(result);
         })
-        .catch(function(err) {
+        .catch(function (err) {
             next({ "status": 500, "message": "DB Error" });
         })
 }
@@ -188,7 +188,7 @@ function searchStudent(req, res, next){
 // token
 function token(req, res, next) {
     jwt.sign({ username: req.body.username, accesslevel: 'superadmin' }, 'thisissecretkey', { expiresIn: '10h' },
-        function(err, token) {
+        function (err, token) {
             // console.log(token);
             if (err != null || undefined) {
                 console.log(err);
@@ -207,9 +207,9 @@ function token(req, res, next) {
 function emailCheck(req, res, next) {
     // var photo = req.body.Photo;
     studentmodel.findOne({
-            where: { email: req.body.Email }
-        })
-        .then(function(result) {
+        where: { email: req.body.Email }
+    })
+        .then(function (result) {
             if (result.dataValues != '') {
                 var fs = require('fs');
                 // fs.unlinkSync('./resources/images/profile/' + photo);
@@ -219,7 +219,7 @@ function emailCheck(req, res, next) {
                 });
             }
         })
-        .catch(function(result) {
+        .catch(function (result) {
             next();
         })
 }
@@ -227,9 +227,9 @@ function emailCheck(req, res, next) {
 function duplicateEmail(req, res, next) {
 
     teachermodel.findOne({
-            where: { email: req.body.Email }
-        })
-        .then(function(result) {
+        where: { email: req.body.Email }
+    })
+        .then(function (result) {
             if (result.dataValues != '') {
                 var fs = require('fs');
                 // fs.unlinkSync('./resources/images/profile/' + photo);
@@ -239,7 +239,7 @@ function duplicateEmail(req, res, next) {
                 });
             }
         })
-        .catch(function(result) {
+        .catch(function (result) {
             next();
         })
 }
@@ -251,12 +251,12 @@ function duplicateEmail(req, res, next) {
 function passwordHash(req, res, next) {
     // req.body.Password
     bcrypt.hash(req.body.Password, saltRounds)
-        .then(function(hash) {
+        .then(function (hash) {
             req.hashValue = hash;
             // console.log(req.hashValue);
             next();
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.log(err);
         })
 
@@ -269,7 +269,7 @@ module.exports = {
     studentImageUpdate,
     duplicateEmail,
     deleteStudent,
-  
+
     studentUpdate,
     getStudentData,
     getStudentAllData,
