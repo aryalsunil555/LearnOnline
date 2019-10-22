@@ -62,6 +62,28 @@ function teacherUpdate(req, res, next) {
     }
 }
 
+// teacher profile image update
+
+function teacherImageUpdate(req, res, next) {
+    // console.log(req.body);
+    if (req.body.id != '') {
+        teachermodel.update({
+            profile_image: req.testVall
+            }, {
+                where: { id: req.body.id }
+            })
+            .then(function(result) {
+                // console.log('data added');
+                next();
+            })
+            .catch(function(err) {
+                next({ "status": 500, "message": "DB Error" });
+            })
+    } else {
+        next({ "status": 500, "message": "Invalid Profile Image" });
+    }
+}
+
 //delete teacher
 function deleteTeacher(req, res, next){
 	teachermodel.destroy({
@@ -200,6 +222,7 @@ module.exports = {
     teacherRegister,
     deleteTeacher,
     teacherUpdate,
+    teacherImageUpdate,
     getTeacherData,
     searchTeacher,
     token,

@@ -50,6 +50,7 @@ function deleteStudent(req, res, next){
 
 
 
+
 //search Student by FirstName
 // function searchStudent(req, res, next){
 // 	var search = req.body.search
@@ -252,6 +253,7 @@ module.exports = {
     studentImageUpdate,
     duplicateEmail,
     deleteStudent,
+  
     studentUpdate,
     getStudentData,
     searchStudent,
