@@ -14,15 +14,15 @@ function videoRegister(req, res, next) {
         title: req.body.Title,
         courseID: req.body.CourseID
     })
-    .then(function(result) {
-        next();
-    })
-    .catch(function(err) {
-        next({"status":500, "message":"DB Error" });
-    })
+        .then(function (result) {
+            next();
+        })
+        .catch(function (err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
 }
 
-//course update
+//video update
 function videoUpdate(req, res, next) {
     if (req.body.id != '') {
         videomodel.update({
@@ -31,49 +31,66 @@ function videoUpdate(req, res, next) {
             description: req.body.Description,
             title: req.body.title,
             courseID: req.body.CourseID
-    
-            }, {
-                where: { id: req.params.id }
-            })
-            .then(function(result) {
+
+        }, {
+            where: { id: req.params.id }
+        })
+            .then(function (result) {
                 next();
             })
-            .catch(function(err) {
-                next({ "status":500, "message": "DB Error" });
+            .catch(function (err) {
+                next({ "status": 500, "message": "DB Error" });
             })
-        } else {
-            next({ "status": 500, "message":"Invalid video data" });
-    
-        }
-              }
-    
-    
-    
-    
-    // token
-    function token(req, res, next) {
-        jwt.sign({ username: req.body.username, accesslevel: 'superadmin' }, 'thisissecretkey', { expiresIn: '10h' },
-            function(err, token) {
-                // console.log(token);
-                if (err != null || undefined) {
-                    console.log(err);
-                    res.send({ "status": "401", "message": "unauthorized" });
-                } else {
-                    req.genToken = token;
-                    // res.status(200);
-                    // res.json(token);
-                    next();
-                    console.log(token);
-                }
-            });
+    } else {
+        next({ "status": 500, "message": "Invalid video data" });
+
     }
-    
-    
-    
+}
+
+
+//get video data using courseID
+function getAllVideoData(req, res, next) {
+
+    videomodel.findOne({
+        where: { id: req.params.id }
+        // raw: true
+    })
+        .then(function (result) {
+            // console.log(result[1].dataValues);
+            req.allUser = result;
+            next();
+            // console.log(result);
+        })
+        .catch(function (err) {
+            next({ "status": 500, "message": "DB Error" });
+        })
+}
+
+// token
+function token(req, res, next) {
+    jwt.sign({ username: req.body.username, accesslevel: 'superadmin' }, 'thisissecretkey', { expiresIn: '10h' },
+        function (err, token) {
+            // console.log(token);
+            if (err != null || undefined) {
+                console.log(err);
+                res.send({ "status": "401", "message": "unauthorized" });
+            } else {
+                req.genToken = token;
+                // res.status(200);
+                // res.json(token);
+                next();
+                console.log(token);
+            }
+        });
+}
+
+
+
 
 
 
 module.exports = {
     videoRegister,
+    getAllVideoData,
     videoUpdate,
 }

@@ -178,8 +178,6 @@ myapp.post('/teacher/login', authController.teachervalidator, authController.che
 
 // teacher Update
 
-
-
 myapp.put('/teacher/update/:id', teacherController.teacherUpdate, function (req, res) {
 
     res.send({
@@ -265,6 +263,16 @@ myapp.get('/get/teacher/:id', teacherController.getTeacherData, function (req, r
     })
 });
 
+//fetch video data using courseID
+myapp.get('/get/video/:id', videoController.getAllVideoData, function (req, res) {
+    res.send({
+        "status": 200,
+        "message": "Video data fetched",
+        "info": req.allUser
+    })
+});
+
+
 // fetch all teachers data
 myapp.get('/get/teacher', teacherController.getTeacherAllData, function (req, res) {
     res.send({
@@ -297,11 +305,11 @@ myapp.get('/get/courset', courseController.getCourseDatabyteacher, courseControl
 });
 
 // fetch course data
-myapp.get('/get/course/:id', courseController.getCourseData, courseController.getCourseAverageRating, function (req, res) {
+myapp.get('/get/course/:id', courseController.getCourseData, function (req, res) {
     res.send({
         "status": 200,
         "message": "Course data fetched",
-        "info": req.allUser
+        "info": req.CourseData
     })
 });
 
