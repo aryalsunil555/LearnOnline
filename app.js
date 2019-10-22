@@ -42,22 +42,25 @@ var mysequelize = require('./models/studentModel.js');
 var mysequelize = require('./models/teacherModel.js');
 
 
+
+
 // multer storage
 var mystorage = multer.diskStorage({
 
     destination: function (req, file, cb) {
         cb(null, 'resources/videos/courses')
+    },
 
-        destination: function(req, file, cb) {
-            cb(null, 'resources/images/profile')
+    destination: function (req, file, cb) {
+        cb(null, 'resources/images/profile')
 
-        },
-        filename: function (req, file, cb) {
-            var name = 'asdasd' + (Math.floor(100000 + Math.random() * 900000)) + file.originalname;
-            cb(null, name);
-            req.testVall = name;
-        }
-    });
+    },
+    filename: function (req, file, cb) {
+        var name = 'asdasd' + (Math.floor(100000 + Math.random() * 900000)) + file.originalname;
+        cb(null, name);
+        req.testVall = name;
+    }
+});
 
 
 var upload = multer({ storage: mystorage });
@@ -298,8 +301,7 @@ myapp.get('/get/course/:id', courseController.getCourseData, courseController.ge
     res.send({
         "status": 200,
         "message": "Course data fetched",
-        "info": req.allUser,
-        "average": req.AvgCourseRating 
+        "info": req.allUser
     })
 });
 
