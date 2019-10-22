@@ -29,7 +29,7 @@ $.ajax({
           <td>${result.info[key].profile_image}</td>
           <td>${result.info[key].email}</td>
           <td>${result.info[key].verify}</td>
-          <td><button type="button" id="edit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Edit</button></td>
+          <td><button type="button" id="edit" class="editStudent btn-primary" data-id="${result.info[key].id} " data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Edit</button></td>
           <td><button type="button" id="delete" class="btn btn-danger">Delete</button></td>
         </tr>
           `
@@ -47,3 +47,18 @@ $.ajax({
 }
 
 getStudentsList();
+
+// $(document).on('click', '.editStudent', function(e){
+//   e.preventDefault();
+//   var id = $(this).attr('data-id');
+//   // alert(id);
+//   $.ajax({
+//        url: 'http://localhost:3000/get/student/'+id,
+//        method: 'get',
+//        dataType: 'json',
+//        // headers: { authorization: 'Bearer '+window.localStorage.getItem('token') },
+//        success: function(result, status) {
+        
+//        },
+//        error: function(result, status) {}
+// });

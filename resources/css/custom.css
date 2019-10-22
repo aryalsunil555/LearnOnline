@@ -5,7 +5,7 @@
 
 
 body{
-  /* background-color: lightblue; */
+   /*background-color: lightblue; */
 }
 
 
@@ -373,6 +373,35 @@ border-left: 5px solid purple;
 .gender label{
   margin-top:5px;
 }
+
+
+
+/*-----------------------------TEACHER COURSES START--------------------------*/
+#addcourseForm{
+  margin:auto;
+  border:2px solid red;
+  border-radius: 25px;
+  width: 45%;
+  padding:3%;
+}
+
+
+
+#addcourseForm textarea{
+  margin-top: 10px;
+  width: 100%;
+}
+#addcourseForm input{
+  margin-top: 10px;
+}
+
+#addcourseForm div{
+  margin-top: 10px;
+}
+
+
+
+/*-----------------------------TEACHER COURSES END--------------------------*/
 
 
 /*-----------------------------------ADMINDASHBOARD-START------------------*/

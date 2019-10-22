@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/custom.css">
 
 
 <script type="text/javascript" src="../jquery/jquery.min.js">
@@ -11,6 +12,7 @@
   <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../bootstrap/popperjs/popper.min.js"></script>
   <script type="text/javascript" src="../js/addcourse.js"></script>
+
 	
 </head>
 <body>
@@ -42,25 +44,28 @@
 </nav>
 
 
-<div class="teacherContainer">
-  <section class="addcourseFormHolder" id="addcourseFormHolder-id">
-    <form class=""  method="post" id="addcourseForm">
+<div  class="w-100 p-3" style="background-image:url('image/course1.png');">
+  <section class="addcourseFormHolder " id="addcourseFormHolder-id" style="display: flex"> 
+    <form class=""  method="post" id="addcourseForm" >
       <h3>Add Courses</h3>
       <input type="text" name="" value="I am title" id="addCourseTitle" placeholder="Enter the First Name" class="signupInputs form-control">
 
-      <textarea id="addCourseDescription" placeholder="Enter the course Description"></textarea>
+      <textarea id="addCourseDescription" class="form-control" placeholder="Enter the course Description"></textarea>
 
       <input type="text" name="" value="courseCredit" id="addCourseCredit" placeholder="Enter the Last Name" class="signupInputs form-control">
 
-      <input type="text" name="" value="100" id="addCourseFee" class="signupInputs form-control" placeholder="Enter the phone">   
+      <input type="text" name="" value="100" id="addCourseFee" class="signupInputs form-control" placeholder="Enter the phone">
+
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="addCourseImage">
           <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
 
-        <input type="date" class="form-control" name="" id="addCourseStartDate" placeholder="Enter start date">
-        <input type="date" class="form-control" name="" id="addCourseEndDate" placeholder="Enter end date">
-    
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="addCourseImage" multiple>
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+
      
       <button type="submit" name="button" class="btn btn-primary">
         Add Course

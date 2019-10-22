@@ -12,8 +12,40 @@ $.ajax({
         $('#courseLongDescription').html(result.info.description);
         
 
-        $('#coursePrice').html(`Nrs. ${result.info.fee}`);
-        $('#creditHour').html(`Credit: ${result.info.credit} Hours`);
+        $('#coursePrice').text(`Nrs. ${result.info.fee}`);
+        $('#creditHour').html(`Credit:  ${result.info.credit} Hours`);
+
+        $('#ratingDescription').append(
+          `
+         <div class="rating" id="${result.info[key].id}">
+                <span class="ratingDynamic">
+                  <span id="b1${result.info.id}"></span>
+                  <span id="b2${result.info.id}"></span>
+                  <span id="b3${result.info.id}"></span>
+                  <span id="b4${result.info.id}"></span>
+                  <span id="b5${result.info.id}"></span> 
+                </span>
+              </div>
+
+          `
+
+          );
+
+        for(key in result.average){
+          // console.log(result.average[key]);
+          var rating = Math.floor(result.average.rating);
+          if(rating >= 1){$('#b1'+result.average.courseID).html('<span class="fa fa-star checked"></span>');}
+          else{$('#b1').html('<span class="fa fa-star"></span>')}
+            if(rating >= 2){$('#b2'+result.average.courseID).html('<span class="fa fa-star checked"></span>');}
+          else{$('#b2').html('<span class="fa fa-star"></span>')}
+            if(rating >= 3){$('#b3'+result.average.courseID).html('<span class="fa fa-star checked"></span>');}
+          else{$('#b3').html('<span class="fa fa-star"></span>')}
+            if(rating >= 4){$('#b4'+result.average.courseID).html('<span class="fa fa-star checked"></span>');}
+          else{$('#b4').html('<span class="fa fa-star"></span>')}
+            if(rating >= 5){$('#b5'+result.average.courseID).html('<span class="fa fa-star checked"></span>');}
+          else{$('#b5').html('<span class="fa fa-star"></span>')}
+          // console.log(rating);
+        }
 
 
 
@@ -23,6 +55,8 @@ $.ajax({
         console.log(jqXHR);
        }
      });
+
+
 
 $.ajax({
        url: 'http://localhost:3000/get/teacher/'+id,
