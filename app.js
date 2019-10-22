@@ -201,13 +201,7 @@ myapp.get('/get/student', studentController.getStudentAllData, function(req, res
 //         "info": req.allUser
 //     })
 // });
-myapp.get('/get/course/:id', courseController.getCourseData, function(req, res) {
-    res.send({
-        "status": 200,
-        "message": "Course data fetched",
-        "info": req.allUser
-    })
-});
+
 
 
 // fetch teacher data
@@ -247,7 +241,14 @@ myapp.get('/get/courset', courseController.getCourseDatabyteacher, courseControl
     })
 });
 
-
+// fetch course data
+myapp.get('/get/course/:id', courseController.getCourseData, courseController.getCourseAverageRating, function(req, res) {
+    res.send({
+        "status": 200,
+        "message": "Course data fetched",
+        "info": req.allUser
+    })
+});
 
 //adminRegister
 myapp.post('/admin/register', adminController.emailCheck, adminController.passwordHash, adminController.adminRegister, authController.jwtTokenGen,function(req, res) {

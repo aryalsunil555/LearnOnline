@@ -112,7 +112,7 @@ function searchCourse(req, res, next){
 function getCourseDatabyteacher(req, res, next){
 	mySeq.sequelize.query(
     "SELECT c.id,t.first_name,t.last_name,c.title,ct.coursetype_title,c.`description`,c.`credit`,c.`fee`,c.`course_image`,c.`start_date`,c.`end_date` \
-    FROM coursetype ct,teacher t,course c WHERE ct.id = c.coursetype_id AND t.id = c.teacher_id",
+    FROM coursetype ct,teacher t,course c WHERE ct.id = c.coursetype_id AND t.id = c.teacher_id ",
             {type:mySeq.sequelize.QueryTypes.SELECT})
             .then(result =>{
 res.status(200)
@@ -123,7 +123,6 @@ res.status(200)
        next({ "status": 500, "message": err });
   })
 }
-
 
 //get coursse data
 function getCourseData(req, res, next){
@@ -144,12 +143,11 @@ function getCourseData(req, res, next){
 
 function getCourseAverageRating(req, res, next){
     mySeq.sequelize.query(
-        "SELECT AVG(rating) as rating, courseID FROM rating GROUP BY courseID",
+        "SELECT AVG(rating), courseID FROM rating GROUP BY courseID",
                 {type:mySeq.sequelize.QueryTypes.SELECT})
                 .then(result =>{
     res.status(200)
         // res.json(result);
-        // req.AvgCourseRating = result;
         req.AvgCourseRating = result;
         next();
       }).catch(err => {
@@ -210,6 +208,7 @@ function token(req, res, next) {
             }
         });
 }
+
 
 
 
