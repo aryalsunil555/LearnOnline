@@ -143,7 +143,7 @@ function getCourseData(req, res, next){
 
 function getCourseAverageRating(req, res, next){
     mySeq.sequelize.query(
-        "SELECT AVG(rating), courseID FROM rating GROUP BY courseID",
+        "SELECT AVG(rating) as rating, courseID FROM rating GROUP BY courseID",
                 {type:mySeq.sequelize.QueryTypes.SELECT})
                 .then(result =>{
     res.status(200)

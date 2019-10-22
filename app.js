@@ -246,7 +246,8 @@ myapp.get('/get/course/:id', courseController.getCourseData, courseController.ge
     res.send({
         "status": 200,
         "message": "Course data fetched",
-        "info": req.allUser
+        "info": req.allUser,
+        "average": req.AvgCourseRating 
     })
 });
 
