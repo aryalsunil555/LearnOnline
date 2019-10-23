@@ -14,12 +14,12 @@ function courseRegister(req, res, next) {
         title: req.body.Title,
         description: req.body.Description,
         credit: req.body.Credit,
-        fee: req.body.Fee,
-        course_image: req.body.CourseImage,
-        start_date: req.body.StartDate,
-        end_date: req.body.EndDate,
-        teacher_id: req.body.TeacherID,
-        coursetype_id: req.body.CourseTypeID
+        fee: req.body.Fee
+        // course_image: req.body.CourseImage,
+        // start_date: req.body.StartDate,
+        // end_date: req.body.EndDate,
+        // teacher_id: req.body.TeacherID,
+        // coursetype_id: req.body.CourseTypeID
 
     })
         .then(function (result) {

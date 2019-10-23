@@ -149,7 +149,6 @@ myapp.post('/student/login', authController.StudentTeacherEmailCheck, authContro
 
 // Student Update
 myapp.put('/student/update/:id', studentController.studentUpdate, function (req, res) {
-
     res.send({
         "status": 200,
         "message": "student data updated",

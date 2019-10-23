@@ -92,13 +92,13 @@
   
             var courseFormData = {
                 // key         value
-                title: $('#addCourseTitle').val(),
-                description: $('#addCourseDescription').val(),
-                credit: $('#addCourseCredit').val(),
-                fee: $('#addCourseFee').val(),
-                course_image:$('#addCourseImage').val(),
-                start_date:$('#addCourseStartDate').val(),
-                end_date:$('#addCourseEndDate').val()
+                Title: $('#addCourseTitle').val(),
+                Description: $('#addCourseDescription').val(),
+                Credit: $('#addCourseCredit').val(),
+                Fee: $('#addCourseFee').val(),
+                // course_image:$('#addCourseImage').val(),
+                // start_date:$('#addCourseStartDate').val(),
+                // end_date:$('#addCourseEndDate').val()
                
             }
             console.log(courseFormData);

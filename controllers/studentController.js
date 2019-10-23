@@ -89,7 +89,8 @@ function studentUpdate(req, res, next) {
             dob: req.body.DOB,
             phone: req.body.Phone,
             gender: req.body.Gender,
-            email: req.body.Email
+            email: req.body.Email,
+            verify:req.body.Verify
         }, {
             where: { id: req.params.id }
         })
@@ -269,7 +270,6 @@ module.exports = {
     studentImageUpdate,
     duplicateEmail,
     deleteStudent,
-
     studentUpdate,
     getStudentData,
     getStudentAllData,
