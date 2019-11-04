@@ -7,7 +7,7 @@ Website was developed in group of six members. Task was divided to each members:
 Student can browse different course
 Student can book their interested course
 
-# As a Teacher
+## As a Teacher
 Teacher can add/retrive course and video info
 
 # As a Admin
