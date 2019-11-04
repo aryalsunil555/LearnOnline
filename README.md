@@ -3,14 +3,14 @@
 This project is an online learning platform. It allows students to browse different course online and book course according to their interest.
 Website was developed in group of six members. Task was divided to each members: Scrum master, Developers and Testers.
 # Features
-# As a Student
-Student can browse different course
+## As a Student
+Student can browse different course </br>
 Student can book their interested course
 
 ## As a Teacher
 Teacher can add/retrive course and video info
 
-# As a Admin
+## As a Admin
 Admin can add/delete/retrive student info
 Admin can add/delete/retrive teacher info
 Admin can add/delete/retrive course and video info
