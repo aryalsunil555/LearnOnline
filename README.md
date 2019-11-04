@@ -11,9 +11,9 @@ Student can book their interested course
 Teacher can add/retrive course and video info
 
 ## As a Admin
-Admin can add/delete/retrive student info
-Admin can add/delete/retrive teacher info
-Admin can add/delete/retrive course and video info
+Admin can add/delete/retrive student info </br>
+Admin can add/delete/retrive teacher info </br>
+Admin can add/delete/retrive course and video info </br>
 
 # Testing
 Different tools were used in testing. TDD (Test Driven Development) method was applied while developing the website. Tools like cucumber, jenkins
