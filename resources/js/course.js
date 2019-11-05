@@ -48,6 +48,13 @@ $.ajax({
           </div>
           `
           );
+
+         // $('#categoriesList').append(
+         //    `
+         //    <a href="">${result.info[key].coursetype_title}</a>
+
+         //    `
+         //  );
         }
         for(key in result.average){
           // console.log(result.average[key]);
@@ -80,4 +87,8 @@ $(document).on('click', '.courseBlock', function(e){
   window.sessionStorage.setItem('course_id', id);
   window.location.href = "coursedescription";
 });
+
+
+
+
 

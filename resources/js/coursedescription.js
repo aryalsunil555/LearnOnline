@@ -69,12 +69,55 @@ $.ajax({
            <span class="fa fa-star checked"></span>
             `);
         }
+
+        if (result.info[0].id===1) {
+          $('#courseLister').append(`
+             <h6>Introduction to HTML</h6>
+      <video width="100%" height="100%" controls>
+        <source src="http://localhost:3000/videos/courses/HTML & CSS/Introduction to HTML.WEBM" type="video/WEBM">
+      </video>
+
+      <h6>Introduction to CSS</h6>
+      <video width="100%" height="100%" controls>
+        <source src="http://localhost:3000/videos/courses/HTML & CSS/Introduction to CSS.WEBM" type="video/WEBM">
+      </video>
+
+            `);
+          
+        }
+        else if(result.info[0].id===2){
+          $('#courseLister').append(`
+             <h6>Introduction to JavaScript</h6>
+      <video width="100%" height="100%" controls>
+        <source src="http://localhost:3000/videos/courses/JavaScript/Introduction to JavaScript.WEBM" type="video/WEBM">
+      </video>
+            `);
+        }
+
+        else if(result.info[0].id===3){
+          $('#courseLister').append(`
+             <h6>Introduction to Wireframe</h6>
+      <video width="100%" height="100%" controls>
+        <source src="http://localhost:3000/videos/courses/WireFrame/Introduction to Wire Frame.webm" type="video/WEBM">
+      </video>
+
+      <h6>Starting Wire Frame</h6>
+      <video width="100%" height="100%" controls>
+        <source src="http://localhost:3000/videos/courses/WireFrame/Starting Wire Frame.webm" type="video/WEBM">
+      </video>
+
+
+            `);
+        }
         
        },
        error: function(jqXHR, status) {
         console.log(jqXHR);
        }
      });
+
+
+
 
 
 

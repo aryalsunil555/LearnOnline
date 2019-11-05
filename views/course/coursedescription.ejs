@@ -35,7 +35,7 @@
 <body>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">cyberSchool</a>
+  <a class="navbar-brand" href="index">cyberSchool</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -50,11 +50,9 @@
       <li class="nav-item">
         <a class="nav-link" href="courses">Courses</a>
       </li>
+      
       <li class="nav-item">
-        <a class="nav-link" href="index" id="signup">Signup</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="login">Login</a>
+        <a class="nav-link" href="index" id="login">Log Out</a>
       </li>
 
     </ul>
@@ -80,8 +78,8 @@
 
     <img id="courseImage">
     <h6 class="coursePrice w-100 mt-3" id="coursePrice">Price: $100</h6>
-    <button class="btn btn-primary w-100 mt-3">ADD TO CART</button>
-    <button class="btn btn-outline-dark w-100 mt-3">BUY</button>  
+    <!-- <button class="btn btn-primary w-100 mt-3">ADD TO CART</button> -->
+    <button class="btn btn btn-primary w-100 mt-3" id="buyCourse">BUY</button>  
   </div>  
   </div>
   
@@ -102,8 +100,8 @@
 
   <div class="courseVideoContainer list-group mt-3">
     <h3 class="ml-5">Course Content</h3>
-    <ul> 
-      <p>Introduction to HTML</p>
+    <ul id="courseLister"> 
+     <!--  <p>Introduction to HTML</p>
       <video width="100%" height="100%" controls>
         <source src="http://localhost:3000/videos/courses/HTML & CSS/Introduction to HTML.WEBM" type="video/WEBM">
       </video>
@@ -111,7 +109,7 @@
       <p>Introduction to CSS</p>
       <video width="100%" height="100%" controls>
         <source src="http://localhost:3000/videos/courses/HTML & CSS/Introduction to CSS.WEBM" type="video/WEBM">
-      </video>
+      </video> -->
 <!--      <li class="list-group-item list-group-item-action"> Introduction to HTML</li> 
      <li class="list-group-item list-group-item-action"> Introduction to CSS</li> 
      <li class="list-group-item list-group-item-action"> Introduction to JavaScript</li> --> 

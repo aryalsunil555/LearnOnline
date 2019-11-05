@@ -96,6 +96,11 @@
                 Description: $('#addCourseDescription').val(),
                 Credit: $('#addCourseCredit').val(),
                 Fee: $('#addCourseFee').val(),
+                StartDate: $('#addStartDate').val(),
+                EndDate: $('#addEndDate').val(),
+                CourseTypeID: $('#addCourseTypeID').val(),
+                TeacherID: $('#addTeacherID').val(),
+                RatingID: $('#addRatingID').val(),
                 // course_image:$('#addCourseImage').val(),
                 // start_date:$('#addCourseStartDate').val(),
                 // end_date:$('#addCourseEndDate').val()
@@ -127,7 +132,7 @@
                 error: function(jqXHR, status) {
                     console.log(status);
                     console.log(jqXHR.responseJSON.message);
-                    alert(jqXHR.responseJSON.message);
+                    // alert(jqXHR.responseJSON.message);
                     alert('DATA GAYENA');
                 }
             });

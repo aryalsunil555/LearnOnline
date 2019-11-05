@@ -1,4 +1,3 @@
-// let studentCounter = 0;
 
 
 
@@ -12,7 +11,9 @@ function getStudentsList() {
         success: function(result, status) {
             // console.log(result.info);
             $('#studentsListBody').empty();
+            let studentCounts=0;
             for (key in result.info) {
+                studentCounts++;
                 $('#studentsListBody').append(
                     `
         <tr>
@@ -30,12 +31,9 @@ function getStudentsList() {
           <td><button type="button" id="delete" data-id="${result.info[key].id}" class="deleteStudent btn btn-danger">Delete</button></td>
         </tr>
           `
-                );
-
-                // studentCounter++;
-
-                // console.log(studentCounter);
+                );    
             }
+            $('#totalStudentsNumber').html(`Total Students: ${studentCounts}`);
         },
         error: function(jqXHR, status) {
             console.log(jqXHR);

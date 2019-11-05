@@ -9,6 +9,7 @@ $.ajax({
        success: function(result, status) {
         console.log(result.info);
         $('#coursesListBody').empty();
+        let courseCounts=0;
         for(key in result.info){
           $('#coursesListBody').append(            
           `
@@ -26,7 +27,9 @@ $.ajax({
         </tr>
           `
               );
+          courseCounts++;
         }
+        $('#totalCoursesNumber').html(`Total Courses: ${courseCounts}`);
        },
        error: function(jqXHR, status) {
         console.log(jqXHR);

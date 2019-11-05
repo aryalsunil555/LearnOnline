@@ -9,6 +9,7 @@ $.ajax({
        success: function(result, status) {
         console.log(result.info);
         $('#teachersListBody').empty();
+        let teacherCounts=0;
         for(key in result.info){
           $('#teachersListBody').append(            
           `
@@ -29,7 +30,9 @@ $.ajax({
         </tr>
           `
               );
+          teacherCounts++;
         }
+        $('#totalTeacherNumber').html(`Total Teachers: ${teacherCounts}`);
        },
        error: function(jqXHR, status) {
         console.log(jqXHR);
